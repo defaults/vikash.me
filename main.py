@@ -3,6 +3,8 @@ import jinja2
 import os
 
 
+from webapp2_extras import routes
+
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
     autoescape=True,
