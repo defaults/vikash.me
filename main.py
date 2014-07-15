@@ -20,12 +20,16 @@ class SubdomainHandler(webapp2.RequestHandler):
     def get(self):
         self.response.write("blogging")
 
+class WwwHandler(webapp2.RequestHandler):
+    def get(self):
+        self.redirect('/')
+
 app = webapp2.WSGIApplication([
     routes.DomainRoute('blog.vikashkumar.me', [
         webapp2.Route('/', handler=SubdomainHandler, name='home'),
     ]),
     routes.DomainRoute('www.vikashkumar.me', [
-        webapp2.Route('/', handler=MainHandler, name='home'),
+        webapp2.Route('/', handler=WwwHandler, name='home'),
     ]),
     webapp2.Route('/', handler=MainHandler, name='home'),
     ],
