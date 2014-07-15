@@ -22,7 +22,7 @@ class SubdomainHandler(webapp2.RequestHandler):
 
 class WwwHandler(webapp2.RequestHandler):
     def get(self):
-        self.redirect('/')
+        self.redirect('http://vikashkumar.me')
 
 app = webapp2.WSGIApplication([
     routes.DomainRoute('blog.vikashkumar.me', [
