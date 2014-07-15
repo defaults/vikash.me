@@ -14,8 +14,14 @@ class MainHandler(webapp2.RequestHandler):
         template = JINJA_ENVIRONMENT.get_template('index.html')
         self.response.write(template.render())
 
-app = webapp2.WSGIApplication(
-    [
-    ('/', MainHandler),
+class SubdomainHandler(webapp2.RequestHandler):
+    def get(self):
+        self.response.write("blogging")
+
+app = webapp2.WSGIApplication([
+    routes.DomainRoute('blog.vikashkumar.me', [
+        webapp2.Route('/', handler=SubdomainHandler, name='home'),
+    ])
+    webapp2.Route('/', handler=HomeHandler, name='home'),
     ],
     debug=True)
