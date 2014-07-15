@@ -1,6 +1,6 @@
 /* Wrapper */
 .icon-button {
-  background-color: white;
+  background-color: none;
   border-radius: 2.6rem;
   cursor: pointer;
   display: inline-block;
@@ -36,7 +36,7 @@
   width: 4.2rem;
   height: 4.2rem;
   border-radius: 4.2rem;
-  margin: -2.2rem;
+  margin: -2.1rem;
 
 }
 
@@ -57,6 +57,41 @@
   z-index: 10;
 }
 
+.content1{
+  text-align: center;
+  font-family: 'Open Sans Condensed', sans-serif;
+  width: 100%;
+  
+  position: relative;
+}
+
+.social{
+  text-align: right;
+  font-size: 20px;
+  padding-top: 40px;
+  
+
+}
+.social1{
+  text-align: left;
+  padding-top: 50px;
+  padding-bottom: 30px;
+  font-size: 40px;
+}
+
+@media (max-width: 780px){
+  .social,
+  .social1 {
+    text-align: center;
+  }
+  .social {
+    padding-bottom: 0px;
+  }
+  .social1 {
+    padding-bottom: 50px;
+    padding-top: 0px;
+  }
+}
 
 
 
@@ -86,16 +121,16 @@
 
 
 .icon-button .icon-twitter {
-  color: #333;
+  color: white;
 }
 .icon-button .icon-facebook {
-  color: #333;
+  color: white;
 }
 .icon-button .fa-tumblr {
-  color: #333;
+  color: white;
 }
 .icon-button .icon-google-plus {
-  color: #333;
+  color: white;
 }
 .icon-button .fa-instagram {
   color: #517fa4;
@@ -117,7 +152,7 @@
 .icon-button:hover .fa-instagram,
 .icon-button:hover .fa-youtube,
 .icon-button:hover .fa-pinterest {
-  color: white;
+  color: #333;
   text-decoration: none;
   border-bottom: none;
 }
