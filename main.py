@@ -24,6 +24,6 @@ app = webapp2.WSGIApplication([
     routes.DomainRoute('blog.vikashkumar.me', [
         webapp2.Route('/', handler=SubdomainHandler, name='home'),
     ]),
-    webapp2.Route('/', handler=HomeHandler, name='home'),
+    webapp2.Route('/', handler=MainHandler, name='home'),
     ],
     debug=True)
