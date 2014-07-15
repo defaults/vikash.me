@@ -23,7 +23,7 @@ class SubdomainHandler(webapp2.RequestHandler):
 app = webapp2.WSGIApplication([
     routes.DomainRoute('blog.vikashkumar.me', [
         webapp2.Route('/', handler=SubdomainHandler, name='home'),
-    ])
+    ]),
     webapp2.Route('/', handler=HomeHandler, name='home'),
     ],
     debug=True)
