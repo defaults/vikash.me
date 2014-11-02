@@ -7,7 +7,7 @@ import urllib
 from webapp2_extras import routes
 from webapp2_extras import jinja2
 
-
+#method for handling errors
 def error(request, response, exception):
     logging.exception(exception)
     params = {
@@ -16,6 +16,8 @@ def error(request, response, exception):
     jinja = jinja2.get_jinja2()
     response.write(jinja.render_template('error.html', **params))
 
+
+#base handler
 class BaseHandler(webapp2.RequestHandler):
 
     @webapp2.cached_property
@@ -28,14 +30,14 @@ class BaseHandler(webapp2.RequestHandler):
         temp = self.jinja2.render_template(_template, **params)
         self.response.write(temp)
 
-
+#welcome page handler
 class HomeHandler(BaseHandler):
     def get(self):
         params = {
 
         }
         self.render_response('home.html',**params)
-
+#handler for blog
 class BlogHandler(BaseHandler):
     def get(self):
         params = {
@@ -43,10 +45,14 @@ class BlogHandler(BaseHandler):
         }
         self.render_response('blog.html',**params)
 
+
+#handler to redirect to naked domain
 class WwwHandler(BaseHandler):
     def get(self):
         self.redirect('http://vikashkumar.me')
 
+
+#error handler
 class ErrorHandler(BaseHandler):
     def get(self,*args):
         params = {
@@ -66,6 +72,6 @@ app = webapp2.WSGIApplication([
     ],
     debug=True)
 
-
+#errors
 app.error_handlers[404] = error
 app.error_handlers[500] = error

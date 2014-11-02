@@ -1,4 +1,45 @@
-/* Wrapper */
+
+.name {
+  font-family: 'Dawning of a New Day', cursive;
+    font-size: 120px;
+  font-weight: 400;
+}
+ .img {
+    height: 300px;
+    width: 300px;
+  }
+  .img-circle {
+    margin: 10px;
+     -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+
+    -webkit-box-shadow: 0 0 0 3px #fff, 0 0 0 4px #999, 0 2px 5px 4px rgba(0,0,0,.2);
+    -moz-box-shadow: 0 0 0 3px #fff, 0 0 0 4px #999, 0 2px 5px 4px rgba(0,0,0,.2);
+    box-shadow: 0 0 0 3px #fff, 0 0 0 4px #999, 0 2px 5px 4px rgba(0,0,0,.2);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Wrapper
 .icon-button {
   background-color: none;
   border-radius: 2.6rem;
@@ -17,7 +58,7 @@
   width: 2.6rem;
 }
 
-/* Circle */
+/* Circle
 .icon-button span {
   border-radius: 0;
   display: block;
@@ -40,7 +81,7 @@
 
 }
 
-/* Icons */
+/* Icons
 .icon-button i {
   background: none;
   color: white;
@@ -61,7 +102,7 @@
   text-align: center;
   font-family: 'Open Sans Condensed', sans-serif;
   width: 100%;
-  
+
   position: relative;
 }
 
@@ -69,7 +110,7 @@
   text-align: right;
   font-size: 20px;
   padding-top: 40px;
-  
+
 
 }
 .social1{
@@ -173,7 +214,7 @@
     margin: -1.6rem;
   }
 
-  /* Icons */
+  /* Icons
   .icon-button i {
     height: 2.8rem;
     line-height: 2.8rem;
@@ -181,3 +222,4 @@
   }
 
 }
+*/
