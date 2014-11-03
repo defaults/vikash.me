@@ -1,3 +1,38 @@
+body {
+  background: #ffffff url(/static/img/web-tile.png);
+}
+a {
+    text-decoration: none;
+    color: grey;
+}
+a:hover {
+  text-decoration: none;
+}
+
+.button {
+  font-family: 'Raleway', sans-serif;
+  text-decoration: none;
+  box-shadow: none;
+  color: #ffff;
+}
+.info {
+  font-family: 'Raleway', sans-serif;
+  font-size: 40px;
+
+}
+footer {
+  font-family: 'Raleway', sans-serif;
+
+}
+.fa-heart {
+  color: grey;
+}
+.fa-heart:hover {
+  color: red;
+}
+.fa-circle {
+  color: grey;
+}
 
 .name {
   font-family: 'Dawning of a New Day', cursive;
