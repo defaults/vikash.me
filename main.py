@@ -22,6 +22,7 @@ class BaseHandler(webapp2.RequestHandler):
 
     @webapp2.cached_property
     def jinja2(self):
+        gfiohfjg
         # Returns a Jinja2 renderer cached in the app registry.
         return jinja2.get_jinja2(app=self.app)
 
