@@ -1,5 +1,6 @@
 body {
   background: #ffffff url(/static/img/web-tile.png);
+  padding-bottom: 70px;
 }
 a {
     text-decoration: none;
