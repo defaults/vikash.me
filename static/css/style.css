@@ -9,6 +9,17 @@ a:hover {
   text-decoration: none;
 }
 
+.container-fluid {
+  padding-top: 7%;
+}
+.buttons {
+  padding-top: 200px;
+  text-align: center;
+}
+.box {
+  padding-left: 50px;
+}
+
 .btn {
   font-family: 'Raleway', sans-serif;
   text-decoration: none;
@@ -25,11 +36,14 @@ a:hover {
 
 .info {
   font-family: 'Raleway', sans-serif;
-  font-size: 40px;
+  font-size: 30px;
 
 }
 footer {
   font-family: 'Raleway', sans-serif;
+  text-align: center;
+  margin-top: 5%;
+  position: relative;
 
 }
 .fa-heart {
@@ -52,6 +66,9 @@ footer {
 .social {
   color: grey;
 }
+.icons {
+  text-align: center;
+}
 
 
 .name {
@@ -60,8 +77,11 @@ footer {
   font-weight: 400;
 }
  .img {
-    height: 300px;
-    width: 300px;
+    height: 350px;
+    width: 350px;
+  }
+  .image {
+    text-align: right;
   }
   .img-circle {
     margin: 10px;
