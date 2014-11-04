@@ -13,10 +13,10 @@ a:hover {
 }
 
 .container-fluid {
-  padding-top: 7%;
+  padding-top: 5%;
 }
 .buttons {
-  padding-top: 200px;
+  padding-top: 150px;
   text-align: center;
 }
 .box {
@@ -40,7 +40,7 @@ a:hover {
 
 .info {
   font-family: 'Raleway', sans-serif;
-  font-size: 30px;
+  font-size: 20px;
 
 }
 footer {
@@ -73,7 +73,7 @@ footer {
 
 .name {
   font-family: 'Dawning of a New Day', cursive;
-    font-size: 120px;
+    font-size: 100px;
   font-weight: 400;
 }
  .img {
