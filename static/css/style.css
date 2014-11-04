@@ -1,6 +1,8 @@
 body {
   background: #ffffff url(/static/img/web-tile.png);
   padding-bottom: 70px;
+  height: 100%;
+  width: 100%;
 }
 a {
     text-decoration: none;
@@ -53,13 +55,6 @@ footer {
 }
 .fa-heart:hover {
   color: red;
-}
-.fa-circle {
-  color: grey;
-}
-.fa-circle-thin {
-  color: grey;
-
 }
 
 .social {
