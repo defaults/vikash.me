@@ -28,7 +28,8 @@ a:hover {
   color: #ffff;
   background: transparent;
 }
-.btn:hover {
+.btn:hover,
+.btn:active {
   background: transparent;
   color: #ffff;
   border-style: double;
@@ -62,10 +63,13 @@ footer {
 }
 
 .social {
-  cursor: pointer;
 }
 .social {
   color: grey;
+}
+.social:hover {
+  color: rgb(42, 100, 150);
+
 }
 .icons {
   text-align: center;
