@@ -45,6 +45,14 @@ class BlogHandler(BaseHandler):
         }
         self.render_response('blog.html',**params)
 
+#handler for about page
+class AboutHandler(BaseHandler):
+    def get(self):
+        params = {
+
+        }
+        self.render_response('about.html'**params)
+
 
 #handler to redirect to naked domain
 class WwwHandler(BaseHandler):
@@ -68,6 +76,7 @@ app = webapp2.WSGIApplication([
     routes.DomainRoute('www.vikashkumar.me', [
         webapp2.Route('/', handler=WwwHandler, name='www'),
     ]),
+    webapp2.Route('/about', handler=AboutHandler, name='about'),
     webapp2.Route('/', handler=HomeHandler, name='home'),
     ],
     debug=True)

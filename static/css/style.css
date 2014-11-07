@@ -6,7 +6,7 @@ body {
 }
 a {
     text-decoration: none;
-    color: grey;
+    color: #808080;
 }
 a:hover {
   text-decoration: none;
@@ -70,7 +70,7 @@ footer {
 }
 
 .fa-heart {
-  color: grey;
+  color: #808080;
 }
 .fa-heart:hover {
   color: red;
@@ -79,7 +79,7 @@ footer {
 .social {
 }
 .social {
-  color: grey;
+  color: #808080;
 }
 .social:hover {
   color: rgb(42, 100, 150);
@@ -99,7 +99,7 @@ footer {
 
 
 /* media query styles */
-@media screen and (max-width: 992px) {
+  @media screen and (max-width: 992px) {
 .image,
 .box {
   text-align: center;
