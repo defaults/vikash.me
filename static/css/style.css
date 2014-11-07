@@ -17,6 +17,7 @@ a:hover {
 }
 .buttons {
   padding-top: 150px;
+  padding-bottom: 75px;
   text-align: center;
 }
 .box {
@@ -77,8 +78,8 @@ footer {
   font-weight: 400;
 }
  .img {
-    height: 350px;
-    width: 350px;
+    height: 300px;
+    width: 300px;
   }
   .image {
     text-align: right;
