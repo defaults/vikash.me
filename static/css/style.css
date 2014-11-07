@@ -1,8 +1,8 @@
 body {
-  background: #ffffff url(/static/img/web-tile.png);
-  padding-bottom: 70px;
-  height: 100%;
+  background: #ffffff url(/static/img/web-tile.png);  height: 100%;
   width: 100%;
+  height: 100px;
+  padding-bottom: 100px;
 }
 a {
     text-decoration: none;
@@ -19,9 +19,8 @@ a:hover {
   padding-top: 150px;
   padding-bottom: 75px;
   text-align: center;
-}
-.box {
-  padding-left: 50px;
+  margin-left: 100px;
+  margin-right: 100px;
 }
 
 .btn {
@@ -39,34 +38,6 @@ a:hover {
   color: rgb(42, 100, 150);
 }
 
-.info {
-  font-family: 'Raleway', sans-serif;
-  font-size: 20px;
-
-}
-footer {
-  font-family: 'Raleway', sans-serif;
-  text-align: center;
-  margin-top: 5%;
-  position: relative;
-
-}
-.fa-heart {
-  color: grey;
-}
-.fa-heart:hover {
-  color: red;
-}
-
-.social {
-}
-.social {
-  color: grey;
-}
-.social:hover {
-  color: rgb(42, 100, 150);
-
-}
 .icons {
   text-align: center;
 }
@@ -84,6 +55,37 @@ footer {
   .image {
     text-align: right;
   }
+.info {
+  font-family: 'Raleway', sans-serif;
+  font-size: 20px;
+
+}
+
+footer {
+  font-family: 'Raleway', sans-serif;
+  text-align: center;
+  margin-top: 5%;
+  position: relative;
+
+}
+
+.fa-heart {
+  color: grey;
+}
+.fa-heart:hover {
+  color: red;
+}
+
+.social {
+}
+.social {
+  color: grey;
+}
+.social:hover {
+  color: rgb(42, 100, 150);
+
+}
+
   .img-circle {
     margin: 10px;
      -webkit-border-radius: 50%;
@@ -94,3 +96,32 @@ footer {
     -moz-box-shadow: 0 0 0 3px #fff, 0 0 0 4px #999, 0 2px 5px 4px rgba(0,0,0,.2);
     box-shadow: 0 0 0 3px #fff, 0 0 0 4px #999, 0 2px 5px 4px rgba(0,0,0,.2);
 }
+
+
+/* media query styles */
+@media screen and (max-width: 992px) {
+.image,
+.box {
+  text-align: center;
+}
+.buttons {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+}
+@media screen and (max-width: 600px) {
+  .name {
+    font-size: 75px;
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .name {
+    font-size: 60px;
+  }
+  .info {
+    font-size: 18px;
+  }
+}
+
