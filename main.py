@@ -51,7 +51,7 @@ class AboutHandler(BaseHandler):
         params = {
 
         }
-        self.render_response('about.html'**params)
+        self.render_response('about.html',**params)
 
 
 #handler to redirect to naked domain

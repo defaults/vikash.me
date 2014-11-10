@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>Vikash Kumar</title>
+  <title>{% block tittle %}Vikash Kumar{% endblock %}</title>
 <!-- font -->
 <link href='http://fonts.googleapis.com/css?family=Dawning+of+a+New+Day' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Raleway:200' rel='stylesheet' type='text/css'>
@@ -19,7 +19,7 @@
 
 </head>
 <body>
-
+{% block content %}
 <div class="container-fluid">
 
   <div class="row">
@@ -69,8 +69,9 @@
 
   </div>
 </div>
-
+{% endblock %}
 <footer class="navbar navbar-static-bottom">It's all yours under<a href="http://creativecommons.org/publicdomain/zero/1.0/"> Creative Commons CC0.</a></footer>
+
 
 
 
@@ -78,6 +79,5 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-
 </body>
 </html>
