@@ -1,8 +1,8 @@
+html,
 body {
   background: #ffffff url(/static/img/web-tile.png);  height: 100%;
   width: 100%;
-  height: 100px;
-  padding-bottom: 100px;
+  height: 100%;
 }
 a {
     text-decoration: none;
@@ -14,6 +14,7 @@ a:hover {
 
 .container-fluid {
   padding-top: 5%;
+  min-height: 82%;
 }
 .buttons {
   padding-top: 150px;

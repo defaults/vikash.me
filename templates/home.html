@@ -1,24 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge chrome=1">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>{% block tittle %}Vikash Kumar{% endblock %}</title>
-<!-- font -->
-<link href='http://fonts.googleapis.com/css?family=Dawning+of+a+New+Day' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Raleway:200' rel='stylesheet' type='text/css'>
-  <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
-<!-- font awsome cdn-->
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-<!-- Custom style link -->
-<link rel="stylesheet" type="text/css" href="static/css/style.css">
+{% extends "template.html" %}
 
-</head>
-<body>
+
+{% block tittle %}Vikash Kumar{% endblock %}
+
+{% block nav %}
+
+
+{% endblock %}
+
 {% block content %}
 <div class="container-fluid">
 
@@ -59,7 +48,7 @@
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
       <button type="button" class="btn btn-default btn-lg" onclick="window.location.href='http://blog.vikashkumar.me'">Blog</button>
     </div>
-    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div style="padding-left: 0px;" class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
       <button type="button" class="btn btn-default btn-lg" onclick="window.location.href='https://github.com/codervikash?tab=repositories'">Projects</button>
     </div>
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
@@ -69,15 +58,5 @@
 
   </div>
 </div>
+
 {% endblock %}
-<footer class="navbar navbar-static-bottom">It's all yours under<a href="http://creativecommons.org/publicdomain/zero/1.0/"> Creative Commons CC0.</a></footer>
-
-
-
-
-<!-- Jquery -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-</body>
-</html>
