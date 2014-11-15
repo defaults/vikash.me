@@ -1,8 +1,27 @@
-html,
 body {
-  background: #ffffff url(/static/img/web-tile.png);  height: 100%;
+  background: #ffffff url(/static/img/web-tile.png);
   width: 100%;
   height: 100%;
+  padding-top: 100px;
+}
+
+.navbar {
+  margin-left: 50px;
+  margin-right: 50px;
+  padding-top: 20px;
+  min-height: 120px;
+  background: transparent;
+  background-image: none;
+  box-shadow: none;
+}
+
+.navbar-brand {
+  margin: 0px;
+  padding: 0 10px 0 0;
+}
+.brand {
+  font-family: 'Dawning of a New Day', cursive;
+  font-size: 40px;
 }
 a {
     text-decoration: none;
@@ -12,7 +31,7 @@ a:hover {
   text-decoration: none;
 }
 
-.container-fluid {
+.content {
   padding-top: 5%;
   min-height: 82%;
 }
@@ -46,12 +65,16 @@ a:hover {
 
 .name {
   font-family: 'Dawning of a New Day', cursive;
-    font-size: 100px;
+  font-size: 100px;
   font-weight: 400;
 }
  .img {
     height: 300px;
     width: 300px;
+  }
+  .thumb {
+    height: 80px;
+    width: 80px;
   }
   .image {
     text-align: right;
@@ -98,6 +121,15 @@ footer {
     box-shadow: 0 0 0 3px #fff, 0 0 0 4px #999, 0 2px 5px 4px rgba(0,0,0,.2);
 }
 
+  .thumb-circle {
+     -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+
+    -webkit-box-shadow: 0 0 0 3px #fff, 0 0 0 4px #999, 0 2px 5px 4px rgba(0,0,0,.2);
+    -moz-box-shadow: 0 0 0 3px #fff, 0 0 0 4px #999, 0 2px 5px 4px rgba(0,0,0,.2);
+    box-shadow: 0 0 0 3px #fff, 0 0 0 4px #999, 0 2px 5px 4px rgba(0,0,0,.2);
+}
 
 /* media query styles */
   @media screen and (max-width: 992px) {
@@ -115,6 +147,9 @@ footer {
   .name {
     font-size: 75px;
   }
+  .brand {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 430px) {
@@ -123,6 +158,9 @@ footer {
   }
   .info {
     font-size: 18px;
+  }
+  .brand {
+    display: none;
   }
 }
 
