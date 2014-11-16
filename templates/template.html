@@ -40,7 +40,7 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
+      <ul class="nav navbar-nav navigation">
         <li><a href="#">Home</a></li>
         <li><a href="#">Blog</a></li>
         <li><a href="#">Projects</a></li>
@@ -52,18 +52,26 @@
   </div>
 </nav>
 {% endblock %}
-
+<div class="container">
 {% block content %}
+
 {% endblock %}
 
 {% block footer %}
-<footer class="navbar navbar-static-bottom">It's all yours under<a href="http://creativecommons.org/publicdomain/zero/1.0/"> Creative Commons CC0.</a></footer>
-
+<footer class="navbar footer navbar-static-bottom">It's all yours under<a href="http://creativecommons.org/publicdomain/zero/1.0/"> Creative Commons CC0.</a></footer>
+</div>
 
 <!-- Jquery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+<script>
+  $(".navbar-toggle").click(function() {
+        $(".container").toggleClass("down")
+  });
+</script>
+
 </body>
 </html>
 {% endblock %}
