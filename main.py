@@ -11,7 +11,7 @@ from webapp2_extras import jinja2
 def error(request, response, exception):
     logging.exception(exception)
     params = {
-        'error' : exception.code
+        #'error' : exception.code
     }
     jinja = jinja2.get_jinja2()
     response.write(jinja.render_template('error.html', **params))
@@ -37,6 +37,7 @@ class HomeHandler(BaseHandler):
 
         }
         self.render_response('home.html',**params)
+
 #handler for blog
 class BlogHandler(BaseHandler):
     def get(self):

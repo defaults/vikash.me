@@ -14,24 +14,6 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/static\/css\/bootstrap.min.css": {
-		"fileType": 16,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/static\/css\/bootstrap.min.css",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
-	"\/static\/css\/cover.css": {
-		"fileType": 16,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/static\/css\/cover.css",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
 	"\/static\/css\/style.css": {
 		"fileType": 16,
 		"ignore": 0,
@@ -41,49 +23,38 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/static\/img\/paven.png": {
-		"fileType": 32768,
+	"\/static\/img\/cropped.jpeg": {
+		"fileType": 16384,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"initialSize": 418,
-		"inputAbbreviatedPath": "\/static\/img\/paven.png",
-		"outputAbbreviatedPath": "\/static\/img\/paven.png",
+		"initialSize": 394205,
+		"inputAbbreviatedPath": "\/static\/img\/cropped.jpeg",
+		"outputAbbreviatedPath": "\/static\/img\/cropped.jpeg",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"processed": 1
 		},
-	"\/static\/js\/bootstrap.min.js": {
-		"fileType": 64,
+	"\/static\/img\/pic_thumb.jpeg": {
+		"fileType": 16384,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/static\/js\/bootstrap.min.js",
-		"outputAbbreviatedPath": "\/static\/js\/min\/bootstrap.min-min.js",
+		"initialSize": 73023,
+		"inputAbbreviatedPath": "\/static\/img\/pic_thumb.jpeg",
+		"outputAbbreviatedPath": "\/static\/img\/pic_thumb.jpeg",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
+		"processed": 1
 		},
-	"\/static\/js\/docs.min.js": {
-		"fileType": 64,
+	"\/static\/img\/web-tile.png": {
+		"fileType": 32768,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/static\/js\/docs.min.js",
-		"outputAbbreviatedPath": "\/static\/js\/min\/docs.min-min.js",
+		"initialSize": 14676,
+		"inputAbbreviatedPath": "\/static\/img\/web-tile.png",
+		"outputAbbreviatedPath": "\/static\/img\/web-tile.png",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/static\/js\/jquery.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/static\/js\/jquery.js",
-		"outputAbbreviatedPath": "\/static\/js\/min\/jquery-min.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
+		"processed": 1
 		},
 	"\/templates\/about.html": {
 		"fileType": 8192,
@@ -121,20 +92,20 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/templates\/main.html": {
-		"fileType": 8192,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/templates\/main.html",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
 	"\/templates\/projects.html": {
 		"fileType": 8192,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/templates\/projects.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/templates\/template.html": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/templates\/template.html",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
@@ -588,7 +559,7 @@
 		},
 	"jsLintFlags2": {
 		"ass": {
-			"active": 0,
+			"active": 1,
 			"flagValue": -1
 			},
 		"bitwise": {
@@ -628,7 +599,7 @@
 			"flagValue": -1
 			},
 		"indent": {
-			"active": 0,
+			"active": 1,
 			"flagValue": 4
 			},
 		"maxlen": {

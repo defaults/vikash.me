@@ -68,9 +68,18 @@ a:hover {
 }
 
 .icons {
-  text-align: center;
+  text-align: right;
 }
 
+.toggle-light {
+  font-size: 40px;
+  cursor: pointer;
+}
+
+.night-mode {
+  background: #ffffff url(/static/img/web_tile_night.png);
+
+}
 
 .name {
   font-family: 'Dawning of a New Day', cursive;

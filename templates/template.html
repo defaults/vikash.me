@@ -10,9 +10,9 @@
 <link href='http://fonts.googleapis.com/css?family=Dawning+of+a+New+Day' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Raleway:200' rel='stylesheet' type='text/css'>
   <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
 <!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
 <!-- font awsome cdn-->
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <!-- Custom style link -->
@@ -64,12 +64,23 @@
 <!-- Jquery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 
 <script>
+
   $(".navbar-toggle").click(function() {
         $(".container").toggleClass("down")
   });
+
+  // jquery for toggling light
+  var d = localStorage.getItem("nightmode");
+
+  d == "true" ? $("body").addClass("night-mode") : $("body").removeClass("night-mode");
+  $(".toggle-light").click(function() {
+    $("body").toggleClass("night-mode");
+    $("body").hasClass("night-mode") ? localStorage.setItem("nightmode" , "true") : localStorage.setItem("nightmode", "false");
+  });
+
 </script>
 
 </body>
