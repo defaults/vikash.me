@@ -2,43 +2,75 @@ body {
   background: #ffffff url(/static/img/web-tile.png);
   width: 100%;
   height: 100%;
+  font-family: 'Raleway', sans-serif;
+  -ms-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -webkit-font-kerning: normal;
+  -moz-font-kerning: normal;
+  font-kerning: normal;
+}
+a {
+    text-decoration: none;
+    color: #808080;
 }
 
+a:hover {
+  text-decoration: none;
+  color: #7B3F00;
+}
+.header {
+   margin: 2% 12% 0 12%;
+}
+
+.head {
+  border-bottom: solid;
+  border-width: 1px;
+  bor
+}
+.low-header {
+  font-family: 'Raleway', sans-serif;
+  font-size: 1.5em;
+  padding: 1% 0 2% 0;
+
+}
 .navbar {
 
   background: transparent;
   background-image: none;
   box-shadow: none;
+  border: none;
 }
-.navbar-header {
- min-height: 120px;
+.navbar-nav>li>a {
+  padding-top: 0;
+  padding-bottom: 0;
+  text-decoration: none;
+  text-shadow: none;
+}
+.navbar-nav>li>a:hover,
+.navbar-nav>li>a:active {
+   color: #7B3F00;
+}
 
-}
-.navigation {
-  font-family: 'Raleway', sans-serif;
-  font-size: 20px;
-  padding-top: 10px;
-}
 
 .brand {
   font-family: 'Dawning of a New Day', cursive;
-  font-size: 1em;
+  font-size: 2em;
+  cursor: pointer;
+ }
+
+.brand-night {
   color: #F5DEB3;
+  font-family: 'Dawning of a New Day', cursive;
+  font-size: 2em;
+  cursor: pointer;
 }
 
 .night-mode {
   background: #ffffff url(/static/img/web_tile_night.png);
   color: #F5DEB3;
-
-}
-
-a {
-    text-decoration: none;
-    color: #808080;
-}
-a:hover {
-  text-decoration: none;
-  color: #7B3F00;
 }
 
 .buttons {
@@ -76,6 +108,9 @@ a:hover {
     margin-bottom: 5%;
   margin-top: 2%;
 }
+.togglle-template {
+  margin: 0;
+}
 
 .toggle-light {
   font-size: 2.5em;
@@ -92,10 +127,11 @@ a:hover {
   font-size: 4em;
   font-weight: 400;
 }
- .img {
-    height: 250px;
-    width: 250px;
-  }
+
+.img {
+  height: 250px;
+  width: 250px;
+}
 
 .image {
   text-align: right;
@@ -104,7 +140,6 @@ a:hover {
 .info {
   font-family: 'Raleway', sans-serif;
   font-size: 1.3em;
-
 }
 
 footer {
@@ -113,7 +148,6 @@ footer {
   margin-top: 5%;
   position: relative;
   width: 100%;
-
 }
 
 .fa-heart {
@@ -124,23 +158,21 @@ footer {
 }
 
 .social {
-}
-.social {
   color: #808080;
 }
 .social:hover {
   color: #7B3F00;
 }
 
-  .img-circle {
-    margin: 10px;
-     -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    border-radius: 50%;
+.img-circle {
+  margin: 10px;
+   -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
 
-    -webkit-box-shadow: 0 0 0 3px #fff, 0 0 0 4px #999, 0 2px 5px 4px rgba(0,0,0,.2);
-    -moz-box-shadow: 0 0 0 3px #fff, 0 0 0 4px #999, 0 2px 5px 4px rgba(0,0,0,.2);
-    box-shadow: 0 0 0 3px #fff, 0 0 0 4px #999, 0 2px 5px 4px rgba(0,0,0,.2);
+  -webkit-box-shadow: 0 0 0 3px #fff, 0 0 0 4px #999, 0 2px 5px 4px rgba(0,0,0,.2);
+  -moz-box-shadow: 0 0 0 3px #fff, 0 0 0 4px #999, 0 2px 5px 4px rgba(0,0,0,.2);
+  box-shadow: 0 0 0 3px #fff, 0 0 0 4px #999, 0 2px 5px 4px rgba(0,0,0,.2);
 }
 
 /* media query styles */
@@ -163,6 +195,9 @@ footer {
     margin-left: 0;
     margin-right: 0;
   }
+  .header {
+    margin: 2%;
+  }
 }
 
 
@@ -172,11 +207,5 @@ footer {
   }
 }
 
-/*@media screen and (max-height: 850px) {
-  .buttons {
-    padding-top: 40px;
-    padding-bottom: 10px;
-  }
-}*/
 
 

@@ -1,5 +1,5 @@
 application: vikash-kumar
-version: 2.0
+version: 1
 runtime: python27
 threadsafe: true
 api_version: 1
