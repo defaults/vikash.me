@@ -22,19 +22,20 @@ a:hover {
   color: #7B3F00;
 }
 .header {
-   margin: 2% 12% 0 12%;
+   max-width: 100rem;
+  margin: 2rem  auto;
+  margin-bottom: 3.11111rem;
+
+}
+.content {
+  max-width: 100rem;
+
 }
 
 .head {
   border-bottom: solid;
+  padding-bottom: 1em;
   border-width: 1px;
-  bor
-}
-.low-header {
-  font-family: 'Raleway', sans-serif;
-  font-size: 1.5em;
-  padding: 1% 0 2% 0;
-
 }
 .navbar {
 
@@ -43,17 +44,20 @@ a:hover {
   box-shadow: none;
   border: none;
 }
-.navbar-nav>li>a {
-  padding-top: 0;
-  padding-bottom: 0;
-  text-decoration: none;
-  text-shadow: none;
+.navigation {
+font-family: 'Raleway', sans-serif;
+  font-size: 1.5em;
+  font-weight: 500;
+  padding: 1em 0 2em 1em;
+  list-style: none;
 }
-.navbar-nav>li>a:hover,
-.navbar-nav>li>a:active {
-   color: #7B3F00;
+.navigation>li {
+  display: inline-block;
+  margin: 0 .5em 0 .5em;
 }
-
+.navbar-text {
+  margin: 0;
+}
 
 .brand {
   font-family: 'Dawning of a New Day', cursive;
@@ -75,10 +79,9 @@ a:hover {
 
 .buttons {
   padding-top: 8%;
-  padding-bottom: 2%;
+  padding-bottom: 13%;
   text-align: center;
-  margin-left: 12%;
-  margin-right: 12%;
+  max-width: 100rem;
 }
 
 .btn {
@@ -108,13 +111,12 @@ a:hover {
     margin-bottom: 5%;
   margin-top: 2%;
 }
-.togglle-template {
-  margin: 0;
-}
 
 .toggle-light {
   font-size: 2.5em;
   cursor: pointer;
+   margin: 0;
+
 }
 
 .toggle-light:hover {
@@ -141,12 +143,15 @@ a:hover {
   font-family: 'Raleway', sans-serif;
   font-size: 1.3em;
 }
+.footer-main {
+  margin-top: 5%;
+
+}
 
 footer {
   font-family: 'Raleway', sans-serif;
   text-align: center;
-  margin-top: 5%;
-  position: relative;
+    position: relative;
   width: 100%;
 }
 
@@ -156,7 +161,11 @@ footer {
 .fa-heart:hover {
   color: red;
 }
+.social-footer {
+  text-align: center;
+  margin-top: 5%;
 
+}
 .social {
   color: #808080;
 }
@@ -181,6 +190,8 @@ footer {
   .icons {
     text-align: center;
   }
+  .info,
+  .name,
   .image,
   .box {
     text-align: center;
@@ -196,8 +207,16 @@ footer {
 
 
 @media screen and (max-width: 430px) {
-  .info {
+  .info,
+     {
     font-size: 1em;
+    text-align: center;
+  }
+  .name {
+    text-align: center;
+  }
+  .navigation {
+    text-align: center;
   }
 }
 

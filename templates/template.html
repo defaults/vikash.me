@@ -9,7 +9,7 @@
 <!-- font -->
 <link href='http://fonts.googleapis.com/css?family=Dawning+of+a+New+Day' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Raleway:200' rel='stylesheet' type='text/css'>
-  <!-- Latest compiled and minified CSS -->
+<!-- Latest compiled and minified CSS -->
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
 <!-- Optional theme -->
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
@@ -23,42 +23,51 @@
 {% endblock %}
 
 {% block nav %}
-<nav class="navbar navbar-default navbar-fixed-top header" role="navigation">
+<nav class="navbar navbar-default header" role="navigation">
   <div class="container-fluid head">
-    <!-- Brand and toggle get grouped for better mobile display -->
-      <a class="navbar-brand" href="/"><label class="q-brand brand">Vikash Kumar</label></a>
-      <div class="navbar-text">
-        <span class="fa-stack">
-          <a href="mailto:mailkumarvikash@gmail.com"><i id="social" class="fa fa-envelope fa-lg fa-inverse social"></i></a>
-        </span>
-        <span class="fa-stack">
-          <a href="https://twitter.com/CoderVikash"><i class="fa fa-twitter fa-lg fa-inverse social"></i></a>
-        </span>
-        <span class="fa-stack">
-          <a href="https://github.com/codervikash"><i class="fa fa-github-alt fa-lg fa-inverse social"></i></a>
-        </span>
-      </div>
-
-      <div class="toggle-template navbar-right">
-      <span class="toggle-light">☼</span>
-    </div>
-
-    </div>
+        <a class="navbar-brand" href="/"><label class="q-brand">Vikash Kumar</label></a>
+        <div class="navbar-text navbar-right" style="float:right;">
+          <div class="toggle-template">
+            <span class="toggle-light" >☼</span>
+          </div>
+        </div>
+  </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="navbar-left low-header">
-      <ul class="nav navbar-nav">
-          <li><a href="#">Blog</a></li>
-        <li><a href="#">Projects</a></li>
-        <li><a href="#">About</a></li>
+    <div class="row">
+      <ul class=" navigation">
+        <li><a href="http://blog.vikashkumar.me">Blog</a></li>
+        <li><a href="https://github.com/codervikash?tab=repositories">Projects</a></li>
+        <li><a href="/about">About</a></li>
       </ul>
     </div>
-  </div>
 </nav>
 {% endblock %}
-<div class="container">
+<div class="container-fluid content">
+
 {% block content %}
 
+{% endblock %}
+{% block social %}
+<div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div class="social-footer">
+    <label>Connect :</label>
+      <span class="fa-stack fa-lg fa-2x">
+      <!-- <i id="icon" class="fa fa-circle fa-stack-2x fa-2x icon"></i> -->
+        <a href="mailto:mailkumarvikash@gmail.com"><i id="social" class="fa fa-envelope fa-stack-1x fa-inverse social"></i></a>
+      </span>
+      <span class="fa-stack fa-lg fa-2x">
+      <!-- <i class="fa fa-circle fa-stack-2x icon"></i> -->
+        <a href="https://twitter.com/CoderVikash"><i class="fa fa-twitter fa-stack-1x fa-inverse social"></i></a>
+      </span>
+      <span class="fa-stack fa-lg fa-2x">
+      <!-- <i class="fa fa-circle fa-stack-2x icon"></i> -->
+        <a href="https://github.com/codervikash"><i class="fa fa-github-alt fa-stack-1x fa-inverse social"></i></a>
+      </span>
+    </div>
+  </div>
+</div>
 {% endblock %}
 </div>
 {% block footer %}
@@ -69,18 +78,15 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <!-- Latest compiled and minified JavaScript -->
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-
 <script>
 
   // jquery for toggling light
   var d = localStorage.getItem("nightmode");
+  d == "true" ? ($("body").addClass("night-mode"),$(".q-brand").addClass("brand-night"),$(".q-brand").removeClass("brand")) : ($("body").removeClass("night-mode"),$(".q-brand").addClass("brand"),$(".q-brand").removeClass("brand-night"));
 
-  d == "true" ? $("body").addClass("night-mode") : $("body").removeClass("night-mode");
   $(".toggle-light").click(function() {
-    $("body").toggleClass("night-mode");
-    $(".q-brand").toggleClass("brand-night");
-    $(".q-brand").toggleClass("brand");
-    $("body").hasClass("night-mode") ? localStorage.setItem("nightmode" , "true") : localStorage.setItem("nightmode", "false");
+  $("body").toggleClass("night-mode");
+  $("body").hasClass("night-mode") ? (localStorage.setItem("nightmode" , "true"), $(".q-brand").addClass("brand-night"),$(".q-brand").removeClass("brand")): (localStorage.setItem("nightmode", "false"), $(".q-brand").addClass("brand"),$(".q-brand").removeClass("brand-night"))
   });
 
 </script>
