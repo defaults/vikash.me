@@ -28,7 +28,7 @@
         <a class="navbar-brand" href="/"><label class="q-brand">Vikash Kumar</label></a>
         <div class="navbar-text navbar-right" style="float:right;">
           <div class="toggle-template">
-            <span class="toggle-light" >☼</span>
+            <span class="toggle-light">☼</span>
           </div>
         </div>
   </div>
@@ -36,9 +36,9 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="row">
       <ul class=" navigation">
-        <li><a href="http://blog.vikashkumar.me">Blog</a></li>
-        <li><a href="https://github.com/codervikash?tab=repositories">Projects</a></li>
-        <li><a href="/about">About</a></li>
+        <li><a id="blog" href="http://blog.vikashkumar.me">Blog</a></li>
+        <li><a id="project" href="https://github.com/codervikash?tab=repositories">Projects</a></li>
+        <li><a id="about" href="/about">About</a></li>
       </ul>
     </div>
 </nav>
@@ -69,7 +69,6 @@
   </div>
 </div>
 {% endblock %}
-</div>
 {% block footer %}
 <footer class="footer navbar-static-bottom">It's all yours under<a href="http://creativecommons.org/publicdomain/zero/1.0/"> Creative Commons CC0.</a></footer>
 </div>
@@ -86,8 +85,11 @@
 
   $(".toggle-light").click(function() {
   $("body").toggleClass("night-mode");
-  $("body").hasClass("night-mode") ? (localStorage.setItem("nightmode" , "true"), $(".q-brand").addClass("brand-night"),$(".q-brand").removeClass("brand")): (localStorage.setItem("nightmode", "false"), $(".q-brand").addClass("brand"),$(".q-brand").removeClass("brand-night"))
+  $("body").hasClass("night-mode") ? (localStorage.setItem("nightmode" , "true"), $(".q-brand").addClass("brand-night"),$(".q-brand").removeClass("brand")): (localStorage.setItem("nightmode", "false"), $(".q-brand").addClass("brand"),$(".q-brand").removeClass("brand-night"));
   });
+
+
+  $('#{{page}}').addClass('active');
 
 </script>
 

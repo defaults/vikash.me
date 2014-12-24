@@ -34,7 +34,7 @@ class BaseHandler(webapp2.RequestHandler):
 class HomeHandler(BaseHandler):
     def get(self):
         params = {
-
+            'page' : 'home'
         }
         self.render_response('home.html',**params)
 
@@ -42,7 +42,7 @@ class HomeHandler(BaseHandler):
 class BlogHandler(BaseHandler):
     def get(self):
         params = {
-
+            'page' : 'blog'
         }
         self.render_response('blog.html',**params)
 
@@ -50,7 +50,7 @@ class BlogHandler(BaseHandler):
 class AboutHandler(BaseHandler):
     def get(self):
         params = {
-
+            'page' : 'about'
         }
         self.render_response('about.html',**params)
 

@@ -50,10 +50,16 @@ font-family: 'Raleway', sans-serif;
   font-weight: 500;
   padding: 1em 0 2em 1em;
   list-style: none;
+  overflow: visible;
 }
 .navigation>li {
   display: inline-block;
   margin: 0 .5em 0 .5em;
+}
+.active {
+  text-decoration: none;
+  color: #F5DEB3;
+
 }
 .navbar-text {
   margin: 0;
