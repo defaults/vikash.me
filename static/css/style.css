@@ -176,12 +176,6 @@ footer {
 }
 
 /* media query styles */
-@media screen and (max-width: 1200px) {
-  .name {
-    font-size: 3em;
-  }
-
-}
 
 @media screen and (max-width: 990px) {
   .icons {
