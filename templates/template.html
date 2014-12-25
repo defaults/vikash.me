@@ -81,11 +81,11 @@
 
   // jquery for toggling light
   var d = localStorage.getItem("nightmode");
-  d == "true" ? ($("body").addClass("night-mode"),$(".q-brand").addClass("brand-night"),$(".q-brand").removeClass("brand")) : ($("body").removeClass("night-mode"),$(".q-brand").addClass("brand"),$(".q-brand").removeClass("brand-night"));
+  d == "true" ? ($("body").addClass("night-mode"),$(".q-brand").addClass("brand-night")) : ($("body").removeClass("night-mode"),$(".q-brand").removeClass("brand-night"));
 
   $(".toggle-light").click(function() {
   $("body").toggleClass("night-mode");
-  $("body").hasClass("night-mode") ? (localStorage.setItem("nightmode" , "true"), $(".q-brand").addClass("brand-night"),$(".q-brand").removeClass("brand")): (localStorage.setItem("nightmode", "false"), $(".q-brand").addClass("brand"),$(".q-brand").removeClass("brand-night"));
+  $("body").hasClass("night-mode") ? (localStorage.setItem("nightmode" , "true"), $(".q-brand").addClass("brand-night")) : (localStorage.setItem("nightmode", "false"), $(".q-brand").removeClass("brand-night"));
   });
 
 

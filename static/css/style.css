@@ -24,12 +24,30 @@ a:hover {
 .header {
    max-width: 100rem;
   margin: 2rem  auto;
-  margin-bottom: 3.11111rem;
+  margin-bottom: 1.5rem;
 
 }
 .content {
   max-width: 100rem;
 
+}
+.tech {
+  width: 8rem;
+  height: 8rem;
+  margin: 1em 1em 1em 1em;
+  text-align: center;
+}
+.tech-a {
+  width: 13rem;
+  height: 8rem;
+  margin: 1em 1em 1em 1em;
+  text-align: center;
+
+}
+.about {
+  font-size: 1.6em;
+  max-width: 75em;
+  text-align: center;
 }
 
 .head {
@@ -58,24 +76,22 @@ font-family: 'Raleway', sans-serif;
 }
 .active {
   text-decoration: none;
-  color: #F5DEB3;
+  color: #7B3F00;
+
 
 }
 .navbar-text {
   margin: 0;
 }
 
-.brand {
-  font-family: 'Dawning of a New Day', cursive;
-  font-size: 2em;
-  cursor: pointer;
- }
-
 .brand-night {
   color: #F5DEB3;
+  }
+.q-brand {
   font-family: 'Dawning of a New Day', cursive;
   font-size: 2em;
   cursor: pointer;
+
 }
 
 .night-mode {
