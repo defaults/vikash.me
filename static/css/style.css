@@ -31,6 +31,11 @@ a:hover {
   max-width: 100rem;
 
 }
+.article {
+  font-size: .9em;
+  text-align: left;
+
+}
 .tech {
   width: 8rem;
   height: 8rem;
@@ -44,9 +49,9 @@ a:hover {
   text-align: center;
 
 }
-.about {
+.main-content {
   font-size: 1.6em;
-  max-width: 75em;
+  max-width: 60em;
   text-align: center;
 }
 
@@ -125,6 +130,7 @@ font-family: 'Raleway', sans-serif;
 }
 
 .icons {
+  padding-top: 1em;
   text-align: right;
 }
 
@@ -148,22 +154,28 @@ font-family: 'Raleway', sans-serif;
 
 .name {
   font-family: 'Dawning of a New Day', cursive;
-  font-size: 4em;
+  font-size: 4.2em;
   font-weight: 400;
+  padding-bottom: 0;
+  margin-bottom: 0;
 }
 
 .img {
   height: 250px;
   width: 250px;
 }
-
+.tittle {
+  padding-bottom: 2rem;
+}
 .image {
+  padding-top: 3em;
   text-align: right;
 }
 
 .info {
   font-family: 'Raleway', sans-serif;
   font-size: 1.3em;
+  font-weight: 800;
 }
 .footer-main {
   margin-top: 5%;
@@ -216,6 +228,7 @@ footer {
   .name,
   .image,
   .box {
+    padding-top: 0;
     text-align: center;
   }
   .buttons {
