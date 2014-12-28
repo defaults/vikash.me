@@ -10,9 +10,15 @@ from webapp2_extras import jinja2
 #method for handling errors
 def error(request, response, exception):
     logging.exception(exception)
-    params = {
-        #'error' : exception.code
-    }
+    e = exception.code
+    if e:
+        params = {
+            'error' : e
+        }
+    else:
+        params = {
+
+        }
     jinja = jinja2.get_jinja2()
     response.write(jinja.render_template('error.html', **params))
 

@@ -23,39 +23,6 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/static\/img\/AngularJS-large.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 16329,
-		"inputAbbreviatedPath": "\/static\/img\/AngularJS-large.png",
-		"outputAbbreviatedPath": "\/static\/img\/AngularJS-large.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/static\/img\/angularjs.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 70209,
-		"inputAbbreviatedPath": "\/static\/img\/angularjs.png",
-		"outputAbbreviatedPath": "\/static\/img\/angularjs.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/static\/img\/gcp-live-logo.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 100686,
-		"inputAbbreviatedPath": "\/static\/img\/gcp-live-logo.png",
-		"outputAbbreviatedPath": "\/static\/img\/gcp-live-logo.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
 	"\/static\/img\/img_300x300.jpeg": {
 		"fileType": 16384,
 		"ignore": 0,
@@ -65,7 +32,7 @@
 		"outputAbbreviatedPath": "\/static\/img\/img_300x300.jpeg",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
-		"processed": 0
+		"processed": 1
 		},
 	"\/static\/img\/web-tile.png": {
 		"fileType": 32768,
@@ -87,7 +54,7 @@
 		"outputAbbreviatedPath": "\/static\/img\/web_tile_night.png",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
-		"processed": 0
+		"processed": 1
 		},
 	"\/templates\/about.html": {
 		"fileType": 8192,
@@ -726,7 +693,7 @@
 	"markdownEnableFootnotes": 0,
 	"markdownEnableSmartyPants": 1,
 	"markdownExpandTabs": 1,
-	"reloadFileURLs": 0,
+	"reloadFileURLs": 1,
 	"sassAutoOutputPathEnabled": 1,
 	"sassAutoOutputPathFilenamePattern": "*.css",
 	"sassAutoOutputPathRelativePath": "..\/css",

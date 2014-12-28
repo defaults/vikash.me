@@ -53,6 +53,7 @@ a:hover {
   font-size: 1.6em;
   max-width: 60em;
   text-align: center;
+  margin: 0 .4em 0 .4em;
 }
 
 .head {
@@ -187,6 +188,7 @@ footer {
   text-align: center;
     position: relative;
   width: 100%;
+  padding-bottom: 2rem;
 }
 
 .fa-heart {
@@ -205,6 +207,10 @@ footer {
 }
 .social:hover {
   color: #7B3F00;
+}
+.error {
+  padding: 10rem 0 15rem 0;
+  text-align: center;
 }
 
 .img-circle {
