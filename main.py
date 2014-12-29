@@ -88,6 +88,7 @@ class ErrorHandler(BaseHandler):
 
 app = webapp2.WSGIApplication([
     routes.DomainRoute('blog.vikashkumar.me', [
+        webapp2.Route('/<tittle>', handler=ArticleHandler, name='article'),
         webapp2.Route('/', handler=BlogHandler, name='blog'),
     ]),
     routes.DomainRoute('www.vikashkumar.me', [
