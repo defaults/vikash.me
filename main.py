@@ -53,7 +53,7 @@ class BlogHandler(BaseHandler):
 
 #handler for blog
 class ArticleHandler(BaseHandler):
-    def get(self):
+    def get(self, **kwargs):
         params = {
             'page' : 'article'
         }
@@ -93,7 +93,7 @@ app = webapp2.WSGIApplication([
     ]),
     webapp2.Route('/about', handler=AboutHandler, name='about'),
     webapp2.Route('/blog', handler=BlogHandler, name='blog'),
-    webapp2.Route('/blog/<w+>', handler=ArticleHandler, name='article'),
+    webapp2.Route('/blog/<tittle>', handler=ArticleHandler, name='article'),
     webapp2.Route('/', handler=HomeHandler, name='home'),
     ],
     debug=True)
