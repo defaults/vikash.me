@@ -54,8 +54,10 @@ class BlogHandler(BaseHandler):
 #handler for blog
 class ArticleHandler(BaseHandler):
     def get(self, **kwargs):
+        # a = tittle
         params = {
-            'page' : 'article'
+            'page' : 'article',
+            'arg' : 'a'
         }
         self.render_response('article.html',**params)
 
