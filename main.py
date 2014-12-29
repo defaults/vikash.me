@@ -10,10 +10,9 @@ from webapp2_extras import jinja2
 #method for handling errors
 def error(request, response, exception):
     logging.exception(exception)
-    e = exception.code
-    if e:
+    if exception.code :
         params = {
-            'error' : e
+            'error' : exception.code
         }
     else:
         params = {
@@ -52,6 +51,15 @@ class BlogHandler(BaseHandler):
         }
         self.render_response('blog.html',**params)
 
+#handler for blog
+class ArticleHandler(BaseHandler):
+    def get(self):
+        params = {
+            'page' : 'article'
+        }
+        self.render_response('article.html',**params)
+
+
 #handler for about page
 class AboutHandler(BaseHandler):
     def get(self):
@@ -84,6 +92,8 @@ app = webapp2.WSGIApplication([
         webapp2.Route('/', handler=WwwHandler, name='www'),
     ]),
     webapp2.Route('/about', handler=AboutHandler, name='about'),
+    webapp2.Route('/blog', handler=BlogHandler, name='blog'),
+    webapp2.Route('/blog/<w+>', handler=ArticleHandler, name='article'),
     webapp2.Route('/', handler=HomeHandler, name='home'),
     ],
     debug=True)
