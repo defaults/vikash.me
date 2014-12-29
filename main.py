@@ -2,6 +2,7 @@ import webapp2
 import os
 import logging
 import urllib
+import model
 
 
 from webapp2_extras import routes
@@ -10,14 +11,9 @@ from webapp2_extras import jinja2
 #method for handling errors
 def error(request, response, exception):
     logging.exception(exception)
-    if exception.code :
-        params = {
-            'error' : exception.code
-        }
-    else:
-        params = {
-
-        }
+    params = {
+        'error' : exception.code
+    }
     jinja = jinja2.get_jinja2()
     response.write(jinja.render_template('error.html', **params))
 
@@ -46,21 +42,76 @@ class HomeHandler(BaseHandler):
 #handler for blog
 class BlogHandler(BaseHandler):
     def get(self):
+
+        #code to search the database for blog posts
+
         params = {
-            'page' : 'blog'
+            'page' : 'blog',
+            'tittle' : tittle,
+            'date' : date
         }
         self.render_response('blog.html',**params)
 
-#handler for blog
+#handler for serving article
 class ArticleHandler(BaseHandler):
     def get(self, **kwargs):
-        # a = tittle
-        params = {
-            'page' : 'article',
-            'arg' : 'a'
-        }
-        self.render_response('article.html',**params)
+        article_url = kwargs['article_url']
 
+        #string manipulation to replace url - with  ' ' and compare to tittle
+
+        if tittle:
+
+            # query database for tittle, content & date
+
+            params = {
+                'page' : 'article',
+                'tittle' : tittle,
+                'content' : content,
+                'date' : date
+            }
+            self.render_response('article.html',**params)
+        else:
+            self.abort(404)
+
+#handler for writing blog
+class WriteHandler(BaseHandler):
+
+    # add function to authenticate user
+
+
+    def get(self, **kwargs):
+        auth = kwargs['token']
+
+        #some code to check token
+
+        # if token match:
+            params = {
+                'page' : 'write'
+            }
+
+        # else:
+            params = {
+                'page' : 'token'
+                'message' : 'check your main for link to write'
+            }
+
+        self.render_response('write.html',**params)
+
+        #code for redirecting to generate token
+
+        #first check authentication
+    def post(self, **kwargs):
+        tittle = self.response.get('tittle')
+        content = self.response.get('content')
+
+        #code to upload image to cloud storage
+
+        params = {
+            'page' : 'author'
+        }
+
+        # inform that post has been updated
+        self.render_response('write.html',**params)
 
 #handler for about page
 class AboutHandler(BaseHandler):
@@ -87,16 +138,18 @@ class ErrorHandler(BaseHandler):
 
 
 app = webapp2.WSGIApplication([
-    routes.DomainRoute('blog.vikashkumar.me', [
-        webapp2.Route('/<tittle>', handler=ArticleHandler, name='article'),
-        webapp2.Route('/', handler=BlogHandler, name='blog'),
-    ]),
     routes.DomainRoute('www.vikashkumar.me', [
         webapp2.Route('/', handler=WwwHandler, name='www'),
     ]),
+    routes.DomainRoute('blog.vikashkumar.me', [
+        webapp2.Route('/<article_url>', handler=ArticleHandler, name='article'),
+        webapp2.Route('/write/<token>', handler=WriteHandler, name='write'),
+        webapp2.Route('/', handler=BlogHandler, name='blog'),
+    ]),
     webapp2.Route('/about', handler=AboutHandler, name='about'),
     webapp2.Route('/blog', handler=BlogHandler, name='blog'),
-    webapp2.Route('/blog/<tittle>', handler=ArticleHandler, name='article'),
+    webapp2.Route('/blog/<article_url>', handler=ArticleHandler, name='article'),
+    webapp2.Route('/blog/write/<token>', handler=WriteHandler, name='write'),
     webapp2.Route('/', handler=HomeHandler, name='home'),
     ],
     debug=True)
