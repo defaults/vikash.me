@@ -7,8 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>{% block tittle %}Vikash Kumar{% endblock %}</title>
 <!-- font -->
-<link href='http://fonts.googleapis.com/css?family=Dawning+of+a+New+Day' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Raleway:200' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Dawning+of+a+New+Day' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Raleway:200' rel='stylesheet' type='text/css'>
 <!-- Latest compiled and minified CSS -->
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
 <!-- Optional theme -->
@@ -18,6 +18,8 @@
 <!-- Custom style link -->
 <link rel="stylesheet" type="text/css" href="/static/css/style.css">
 
+<!-- google analytics -->
+
 </head>
 <body>
 {% endblock %}
@@ -25,10 +27,10 @@
 {% block nav %}
 <nav class="navbar navbar-default header" role="navigation">
   <div class="container-fluid head">
-        <a class="navbar-brand" href="/"><label class="q-brand">Vikash Kumar</label></a>
+        <a class="navbar-brand" href="https://vikashkumar.me"><label class="q-brand">Vikash Kumar</label></a>
         <div class="navbar-text navbar-right" style="float:right;">
           <div class="toggle-template">
-            <span class="toggle-light">☼</span>
+            <span class="toggle-light"><i class="light"></i></span>
           </div>
         </div>
   </div>
@@ -36,9 +38,9 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="row">
       <ul class=" navigation">
-        <li><a id="blog" href="http://blog.vikashkumar.me">Blog</a></li>
+        <li><a id="blog" href="https://blog.vikashkumar.me">Blog</a></li>
         <li><a id="project" href="https://github.com/codervikash?tab=repositories">Portfolio</a></li>
-        <li><a id="about" href="/about">About</a></li>
+        <li><a id="about" href="https://vikashkumar.me/about">About</a></li>
       </ul>
     </div>
 </nav>
@@ -81,18 +83,17 @@
 
   // jquery for toggling light
   var d = localStorage.getItem("nightmode");
-  d == "true" ? ($("body").addClass("night-mode"),$(".q-brand").addClass("brand-night")) : ($("body").removeClass("night-mode"),$(".q-brand").removeClass("brand-night"));
+  d == "true" ? ($("body").addClass("night-mode"),$(".q-brand").addClass("brand-night"),$(".light").addClass("fa fa-sun-o")) : ($("body").removeClass("night-mode"),$(".q-brand").removeClass("brand-night"),$(".light").addClass("fa fa-adjust"));
 
   $(".toggle-light").click(function() {
   $("body").toggleClass("night-mode");
-  $("body").hasClass("night-mode") ? (localStorage.setItem("nightmode" , "true"), $(".q-brand").addClass("brand-night")) : (localStorage.setItem("nightmode", "false"), $(".q-brand").removeClass("brand-night"));
+  $("body").hasClass("night-mode") ? (localStorage.setItem("nightmode" , "true"), $(".q-brand").addClass("brand-night"),$(".light").removeClass("fa fa-adjust"),$(".light").addClass("fa fa-sun-o")) : (localStorage.setItem("nightmode", "false"), $(".q-brand").removeClass("brand-night"),$(".light").removeClass("fa fa-sun-o"),$(".light").addClass("fa fa-adjust"));
   });
 
 
   $('#{{page}}').addClass('active');
 
 </script>
-
 </body>
 </html>
 {% endblock %}

@@ -3,8 +3,10 @@ import os
 import logging
 import urllib
 import model
+import random
+import string
 
-
+from google.appengine.api import mail
 from webapp2_extras import routes
 from webapp2_extras import jinja2
 
@@ -81,18 +83,35 @@ class WriteHandler(BaseHandler):
 
     def get(self, **kwargs):
         auth = kwargs['token']
+        # token = model.auth.querry
 
-        #some code to check token
-
-        # if token match:
+        if auth == 'xxx':
             params = {
                 'page' : 'write'
             }
 
-        # else:
+        else:
+            gtoken =  ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(20))
+            save = model.auth(token = gtoken)
+            save.put()
+
+            # # in production
+            # mail.send_mail(sender="Vikash Kumar <mailkumarvikash@gmail.com>",
+            #   to="Vikash Kumar <mailkumarvikash@gmail.com>",
+            #   subject="Link to write blog",
+            #   body="""
+            #     https://blog.vikashkumar.me/write/%s
+            # """, %(gtoken))
+            # params = {
+            #     'page' : 'token'
+            #     'message' : 'check your mail for link to write'
+            # }
+
+            # for test
+            url = 'http://vikashkumar.me/blog/write/' + gtoken
             params = {
-                'page' : 'token'
-                'message' : 'check your main for link to write'
+                'page' : 'token',
+                'message' : url
             }
 
         self.render_response('write.html',**params)
@@ -138,9 +157,6 @@ class ErrorHandler(BaseHandler):
 
 
 app = webapp2.WSGIApplication([
-    routes.DomainRoute('www.vikashkumar.me', [
-        webapp2.Route('/', handler=WwwHandler, name='www'),
-    ]),
     routes.DomainRoute('blog.vikashkumar.me', [
         webapp2.Route('/<article_url>', handler=ArticleHandler, name='article'),
         webapp2.Route('/write/<token>', handler=WriteHandler, name='write'),
