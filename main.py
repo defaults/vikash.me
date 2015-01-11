@@ -89,16 +89,18 @@ class WriteHandler(BaseHandler):
         if verify :
             params = {
                 'page' : 'write',
-                'message' : 'welcome'
+                'welcome' : ''
             }
+
+            self.render_response('zenpen.html',**params)
+            return
 
         else:
             verify = model.Auth.query().get()
             if verify :
                     params = {
                     'page' : 'write',
-                    'message' :  'Already a request is pending. Check your mail!'
-                }
+                    'pending' :  'pending'                }
             else :
                 gtoken =  ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(20))
                 save = model.Auth(token = gtoken)
@@ -120,7 +122,7 @@ class WriteHandler(BaseHandler):
                 url = 'http://localhost:8080/blog/write/' + gtoken
                 params = {
                     'page' : 'token',
-                    'message' : url
+                    'url' : url
                 }
 
         self.render_response('write.html',**params)
