@@ -92,7 +92,7 @@ a:hover {
 }
 .buttons {
     padding-top: 8%;
-    padding-bottom: 13%;
+    padding-bottom: 15%;
     text-align: center;
     max-width: 100rem
 }
@@ -200,17 +200,19 @@ footer {
     }
     .buttons {
         margin-left: 0;
-        margin-right: 0
+        margin-right: 0;
     }
     .header {
         margin: 2%
     }
 }
 @media screen and (max-width: 430px) {
-    ,
     .info {
-        font-size: 1em;
+        font-size: 1.3em;
         text-align: center
+    }
+    .name {
+        font-size: 3.2em;
     }
     .name,
     .navigation {
