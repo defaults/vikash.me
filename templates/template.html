@@ -30,7 +30,7 @@
         <a class="navbar-brand" href="https://vikashkumar.me"><label class="q-brand">Vikash Kumar</label></a>
         <div class="navbar-text navbar-right" style="float:right;">
           <div class="toggle-template">
-            <span class="toggle-light"><i class="light"></i></span>
+            <span class="toggle-light"><i class="fa fa-adjust"></i></span>
           </div>
         </div>
   </div>
@@ -83,13 +83,12 @@
 
   // jquery for toggling light
   var d = localStorage.getItem("nightmode");
-  d == "true" ? ($("body").addClass("night-mode"),$(".q-brand").addClass("brand-night"),$(".light").addClass("fa fa-sun-o")) : ($("body").removeClass("night-mode"),$(".q-brand").removeClass("brand-night"),$(".light").addClass("fa fa-adjust"));
+  d == "true" ? ($("body").addClass("night-mode"), $(".q-brand").addClass("brand-night"),$(".toggle-light").css("color","white")) : ($("body").removeClass("night-mode"), $(".q-brand").removeClass("brand-night"),$(".toggle-light").css("color","black"));
 
   $(".toggle-light").click(function() {
-  $("body").toggleClass("night-mode");
-  $("body").hasClass("night-mode") ? (localStorage.setItem("nightmode" , "true"), $(".q-brand").addClass("brand-night"),$(".light").removeClass("fa fa-adjust"),$(".light").addClass("fa fa-sun-o")) : (localStorage.setItem("nightmode", "false"), $(".q-brand").removeClass("brand-night"),$(".light").removeClass("fa fa-sun-o"),$(".light").addClass("fa fa-adjust"));
+      $("body").toggleClass("night-mode");
+      $("body").hasClass("night-mode") ? (localStorage.setItem("nightmode", "true"), $(".q-brand").addClass("brand-night"),$(".toggle-light").css("color","white")) : (localStorage.setItem("nightmode", "false"), $(".q-brand").removeClass("brand-night"),$(".toggle-light").css("color","black"));
   });
-
 
   $('#{{page}}').addClass('active');
 

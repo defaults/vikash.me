@@ -123,10 +123,7 @@ a:hover {
 .toggle-light {
     font-size: 2.5em;
     cursor: pointer;
-    margin: 0
-}
-.toggle-light:hover {
-    color: #7B3F00
+    margin: 0;
 }
 .name {
     font-family: 'Dawning of a New Day', cursive;

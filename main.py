@@ -83,36 +83,43 @@ class WriteHandler(BaseHandler):
 
     def get(self, **kwargs):
         auth = kwargs['token']
-        # token = model.auth.querry
-
-        if auth == 'xxx':
+        verify = model.Auth.query(model.Auth.token == auth).get()
+        if verify :
             params = {
-                'page' : 'write'
+                'page' : 'write',
+                'message' : 'welcome'
             }
 
         else:
-            gtoken =  ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(20))
-            save = model.auth(token = gtoken)
-            save.put()
+            verify = model.Auth.query().get()
+            if verify :
+                    params = {
+                    'page' : 'write',
+                    'message' :  'Already a request is pending. Check your mail!'
+                }
+            else :
+                gtoken =  ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(20))
+                save = model.Auth(token = gtoken)
+                save.put()
 
-            # # in production
-            # mail.send_mail(sender="Vikash Kumar <mailkumarvikash@gmail.com>",
-            #   to="Vikash Kumar <mailkumarvikash@gmail.com>",
-            #   subject="Link to write blog",
-            #   body="""
-            #     https://blog.vikashkumar.me/write/%s
-            # """, %(gtoken))
-            # params = {
-            #     'page' : 'token'
-            #     'message' : 'check your mail for link to write'
-            # }
+                # in production
+                # mail.send_mail(sender="Vikash Kumar <mailkumarvikash@gmail.com>",
+                #   to="Vikash Kumar <mailkumarvikash@gmail.com>",
+                #   subject="Link to write blog",
+                #   body="""
+                #     https://blog.vikashkumar.me/write/%s
+                # """, %(gtoken))
+                # params = {
+                #     'page' : 'token'
+                #     'message' : 'check your mail for link to write'
+                # }
 
-            # for test
-            url = 'http://vikashkumar.me/blog/write/' + gtoken
-            params = {
-                'page' : 'token',
-                'message' : url
-            }
+                # for test
+                url = 'http://localhost:8080/blog/write/' + gtoken
+                params = {
+                    'page' : 'token',
+                    'message' : url
+                }
 
         self.render_response('write.html',**params)
 
@@ -122,7 +129,11 @@ class WriteHandler(BaseHandler):
     def post(self, **kwargs):
         tittle = self.response.get('tittle')
         content = self.response.get('content')
-
+        save = model.Article(tittle = tittle,
+                            content = content)
+        save.put()
+        token = model.Auth.query().get()
+        token.key.delete()
         #code to upload image to cloud storage
 
         params = {
