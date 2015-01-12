@@ -28,8 +28,6 @@ var ui = (function() {
 		if ( supportsHtmlStorage() ) {
 			loadState();
 		}
-
-		console.log( "Checkin under the hood eh? We've probably got a lot in common. You should totally check out ZenPen on github! (https://github.com/tholman/zenpen)." );
 	}
 
 	function loadState() {
@@ -159,11 +157,6 @@ var ui = (function() {
 		overlay.style.display = "block";
 		wordCountBox.style.display = "block";
 		wordCountElement.focus();
-	}
-
-	function onAboutButtonClick( event ) {
-		overlay.style.display = "block";
-		descriptionModal.style.display = "block";
 	}
 
 	function onSaveClick( event ) {

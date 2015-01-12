@@ -5,7 +5,7 @@ from webapp2_extras import security
 
 class Article(ndb.Model):
   tittle = ndb.StringProperty()
-  content = ndb.BlobProperty()
+  content = ndb.TextProperty()
   date = ndb.DateTimeProperty(auto_now = True)
   # image = ndb.
 

@@ -35,6 +35,39 @@ class BaseHandler(webapp2.RequestHandler):
         temp = self.jinja2.render_template(_template, **params)
         self.response.write(temp)
 
+    def authentication(self):
+        verify = model.Auth.query().get()
+        if verify :
+                params = {
+                'page' : 'write',
+                'pending' :  'pending'
+                }
+        else :
+            gtoken =  ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(20))
+            save = model.Auth(token = gtoken)
+            save.put()
+
+            # in production
+            # mail.send_mail(sender="Vikash Kumar <mailkumarvikash@gmail.com>",
+            #   to="Vikash Kumar <mailkumarvikash@gmail.com>",
+            #   subject="Link to write blog",
+            #   body="""
+            #     https://blog.vikashkumar.me/write/%s
+            # """, %(gtoken))
+            # params = {
+            #     'page' : 'token'
+            #     'message' : 'check your mail for link to write'
+            # }
+
+            # for test
+            url = 'http://localhost:8080/blog/write/' + gtoken
+            params = {
+                'page' : 'token',
+                'url' : url
+            }
+
+        self.render_response('write.html',**params)
+
 #welcome page handler
 class HomeHandler(BaseHandler):
     def get(self):
@@ -46,13 +79,12 @@ class HomeHandler(BaseHandler):
 #handler for blog
 class BlogHandler(BaseHandler):
     def get(self):
-
         #code to search the database for blog posts
+        article = model.Article.query().fetch()
 
         params = {
             'page' : 'blog',
-            'tittle' : tittle,
-            'date' : date
+            'article' : article
         }
         self.render_response('blog.html',**params)
 
@@ -60,29 +92,33 @@ class BlogHandler(BaseHandler):
 class ArticleHandler(BaseHandler):
     def get(self, **kwargs):
         article_url = kwargs['article_url']
+        article_tittle = article_url.replace('-',' ')
+        article_content = model.Article.query(model.Article.tittle == article_tittle).fetch()
 
-        #string manipulation to replace url - with  ' ' and compare to tittle
+        if article_content:
+            # mark_content = article_content.content
+            # mark_tittle = article_content.tittle
+            # date = article_content.date
 
-        if tittle:
+            # content = markdown.markdown(mark_content)
+            # tittle = markdown.markdown(mark_tittle)
 
-            # query database for tittle, content & date
 
             params = {
                 'page' : 'article',
-                'tittle' : tittle,
-                'content' : content,
-                'date' : date
+                'article' : article_content
+                # 'content' : content,
+                # 'tittle' : tittle,
+                # 'date' : date
             }
             self.render_response('article.html',**params)
         else:
             self.abort(404)
 
+
 #handler for writing blog
 class WriteHandler(BaseHandler):
-
     # add function to authenticate user
-
-
     def get(self, **kwargs):
         auth = kwargs['token']
         verify = model.Auth.query(model.Auth.token == auth).get()
@@ -96,54 +132,31 @@ class WriteHandler(BaseHandler):
             return
 
         else:
-            verify = model.Auth.query().get()
-            if verify :
-                    params = {
-                    'page' : 'write',
-                    'pending' :  'pending'                }
-            else :
-                gtoken =  ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(20))
-                save = model.Auth(token = gtoken)
-                save.put()
-
-                # in production
-                # mail.send_mail(sender="Vikash Kumar <mailkumarvikash@gmail.com>",
-                #   to="Vikash Kumar <mailkumarvikash@gmail.com>",
-                #   subject="Link to write blog",
-                #   body="""
-                #     https://blog.vikashkumar.me/write/%s
-                # """, %(gtoken))
-                # params = {
-                #     'page' : 'token'
-                #     'message' : 'check your mail for link to write'
-                # }
-
-                # for test
-                url = 'http://localhost:8080/blog/write/' + gtoken
-                params = {
-                    'page' : 'token',
-                    'url' : url
-                }
-
-        self.render_response('write.html',**params)
+            self.redirect('/write')
+            return
 
         #code for redirecting to generate token
 
         #first check authentication
     def post(self, **kwargs):
-        tittle = self.response.get('tittle')
-        content = self.response.get('content')
-        save = model.Article(tittle = tittle,
-                            content = content)
-        save.put()
-        token = model.Auth.query().get()
-        token.key.delete()
-        #code to upload image to cloud storage
+        auth = kwargs['token']
+        verify = model.Auth.query(model.Auth.token == auth).get()
+        if verify :
+            tittle = self.response.get('tittle')
+            content = self.response.get('content')
+            save = model.Article(tittle = tittle,
+                                content = content)
+            save.put()
+            token = model.Auth.query().get()
+            token.key.delete()
 
-        params = {
-            'page' : 'author'
-        }
-
+            params = {
+                'page' : 'author',
+                'sucess' : 'true'
+            }
+        else :
+            self.abort(404)
+            return
         # inform that post has been updated
         self.render_response('write.html',**params)
 
@@ -154,13 +167,6 @@ class AboutHandler(BaseHandler):
             'page' : 'about'
         }
         self.render_response('about.html',**params)
-
-
-#handler to redirect to naked domain
-class WwwHandler(BaseHandler):
-    def get(self):
-        self.redirect('http://vikashkumar.me')
-
 
 #error handler
 class ErrorHandler(BaseHandler):
@@ -173,14 +179,15 @@ class ErrorHandler(BaseHandler):
 
 app = webapp2.WSGIApplication([
     routes.DomainRoute('blog.vikashkumar.me', [
-        webapp2.Route('/<article_url>', handler=ArticleHandler, name='article'),
         webapp2.Route('/write/<token>', handler=WriteHandler, name='write'),
+        webapp2.Route('/<article_url>', handler=ArticleHandler, name='article'),
         webapp2.Route('/', handler=BlogHandler, name='blog'),
     ]),
     webapp2.Route('/about', handler=AboutHandler, name='about'),
     webapp2.Route('/blog', handler=BlogHandler, name='blog'),
-    webapp2.Route('/blog/<article_url>', handler=ArticleHandler, name='article'),
+    webapp2.Route('/write', handler=BaseHandler, name='authentication', handler_method='authentication'),
     webapp2.Route('/blog/write/<token>', handler=WriteHandler, name='write'),
+    webapp2.Route('/blog/<article_url>', handler=ArticleHandler, name='article'),
     webapp2.Route('/', handler=HomeHandler, name='home'),
     ],
     debug=True)
