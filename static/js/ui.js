@@ -159,10 +159,21 @@ var ui = (function() {
 		wordCountElement.focus();
 	}
 
-	function onSaveClick( event ) {
-		overlay.style.display = "block";
-		saveModal.style.display = "block";
-	}
+
+
+
+
+
+
+	// function onSaveClick( event ) {
+	// 	overlay.style.display = "block";
+	// 	saveModal.style.display = "block";
+	// }
+
+
+
+
+
 
 	function saveText( event ) {
 
