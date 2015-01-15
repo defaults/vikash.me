@@ -1,12 +1,16 @@
+
 <!doctype html>
 <html>
+
 	<head>
+
 		<!-- MISC/META -->
-		<title> Write Blog | Vikash Kumar </title>
-    <meta charset="utf-8">
+		<title> Write | Vikash Kumar </title>
+        <meta charset="utf-8">
 
 		<!-- CSS -->
 		<link href='//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+
 		<link href="/static/css/style_zenpen.css" rel="stylesheet">
 		<link href="/static/css/fonts.css" rel="stylesheet">
 
@@ -22,27 +26,17 @@
 
 	<body class="yin">
 
-
 		<div class="overlay">
+
 			<div class="wordcount modal">
 				<h1>Target Word Count</h1>
 				<div>
 					<input type="number" name="quantity" value="0" min="0"></input>
 				</div>
 			</div>
-<!-- 			<div class="saveoverlay modal">
-				<h1>Select save format</h1>
-				<p class='saveselection'>
-					<span data-format='markdown'>Markdown</span>
-					<span data-format='html'>HTML</span>
-					<span data-format='plain'>Plain Text</span>
-				</p>
-				<button class='savebutton useicons'>&#xe006;</button>
-				<div> Or select format and press ctrl+c (cmd+c on mac) to copy the text. </div>
-				<textarea class='hiddentextbox'></textarea>
-			</div>
+
 		</div>
- -->
+
 		<div class="text-options">
 			<div class="options">
 				<span class="no-overflow">
@@ -52,8 +46,7 @@
 						<button class="bold">b</button>
 						<button class="italic">i</button>
 						<button class="quote">&rdquo;</button>
-						<!-- <button class="code">hh</button>
- -->					</span>
+					</span>
 				</span>
 			</div>
 		</div>
@@ -89,7 +82,7 @@
 		<section>
 
 			<header contenteditable="true" class="header">
-				Header Here
+				This is ZenPen
 			</header>
 
 			<article contenteditable="true" class="content">
@@ -98,19 +91,31 @@
 					A minimalist writing zone, where you can block out all distractions and get to what's important. The writing!
 				</p>
 
+				<p>
+					To get started, all you need to do is delete this text (seriously, just highlight it and hit delete), and fill the page with your own fantastic words.
+				</p>
 
 				<p>
-					Use <b>bold</b>, <i>italics</i>, <b><i>both</i></b> and <a href="http://zenpen.io"> urls </a> just by highlighting the text and selecting them from the tiny options box that appears above it.
+					You can use <b>bold</b>, <i>italics</i>, <b><i>both</i></b> and <a href="http://zenpen.io"> urls </a> just by highlighting the text and selecting them from the tiny options box that appears above it.
 				</p>
 
 				<blockquote>
 					Quotes are easy to add too!
 				</blockquote>
 
-			</article>
+				<p>
+					For <i>questions</i> and <b>open source info</b>, Click that little question mark at the bottom left of the screen.
+				</p>
 
+				<p>Happy Typing! ~ <b>Tim Holman (@twholman)</b></p>
+
+			</article>
 		</section>
 
+<form action="/" role="form" method="POST">
+								<textarea class="hiddentextbox" name="text"></textarea>
+								<button type="submit">Submit</button>
+			</form>
 		<!-- JS -->
 		<script type="text/javascript">
 			// Load required scripts.

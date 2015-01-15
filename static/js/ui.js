@@ -90,14 +90,14 @@ var ui = (function() {
 			saveElement = document.querySelector( '.save' );
 			saveElement.onclick = onSaveClick;
 
-			var formatSelectors = document.querySelectorAll( '.saveselection span' );
-			for( var i in formatSelectors ) {
-				formatSelectors[i].onclick = selectFormat;
-			}
+			// var formatSelectors = document.querySelectorAll( '.saveselection span' );
+			// for( var i in formatSelectors ) {
+			// 	formatSelectors[i].onclick = selectFormat;
+			// }
 
-			document.querySelector('.savebutton').onclick = saveText;
-		} else {
-			document.querySelector('.save.useicons').style.display = "none";
+		// 	document.querySelector('.savebutton').onclick = saveText;
+		// } else {
+		// 	document.querySelector('.save.useicons').style.display = "none";
 		}
 
 		// Overlay when modals are active
@@ -114,7 +114,7 @@ var ui = (function() {
 
 		descriptionModal = overlay.querySelector( '.description' );
 
-		saveModal = overlay.querySelector('.saveoverlay');
+		// saveModal = overlay.querySelector('.saveoverlay');
 
 		wordCounter = document.querySelector( '.word-counter' );
 		wordCounterProgress = wordCounter.querySelector( '.progress' );
@@ -165,30 +165,45 @@ var ui = (function() {
 
 
 
-	// function onSaveClick( event ) {
-	// 	overlay.style.display = "block";
-	// 	saveModal.style.display = "block";
-	// }
+	function onSaveClick( event ) {
+		// overlay.style.display = "block";
+		// saveModal.style.display = "block";
 
 
+		var header = document.querySelector('header.header');
+		var headerText = header.innerHTML.replace(/(\r\n|\n|\r)/gm,"") + "\n";
 
+		var body = document.querySelector('article.content');
+		var bodyText = body.innerHTML;
 
+		textToWrite = formatText(headerText,bodyText);
 
+		var textArea = document.querySelector('.hiddentextbox');
+		textArea.value = textToWrite;
+		textArea.focus();
+		textArea.select();
 
-	function saveText( event ) {
-
-		if (typeof saveFormat != 'undefined' && saveFormat != '') {
-			var blob = new Blob([textToWrite], {type: "text/plain;charset=utf-8"});
-			/* remove tabs and line breaks from header */
-			var headerText = header.innerHTML.replace(/(\t|\n|\r)/gm,"");
-			if (headerText === "") {
-			    headerText = "ZenPen";
-			}
-			saveAs(blob, headerText + '.txt');
-		} else {
-			document.querySelector('.saveoverlay h1').style.color = '#FC1E1E';
-		}
 	}
+
+
+
+
+
+
+	// function saveText( event ) {
+
+	// 	if (typeof saveFormat != 'undefined' && saveFormat != '') {
+	// 		var blob = new Blob([textToWrite], {type: "text/plain;charset=utf-8"});
+	// 		/* remove tabs and line breaks from header */
+	// 		var headerText = header.innerHTML.replace(/(\t|\n|\r)/gm,"");
+	// 		if (headerText === "") {
+	// 		    headerText = "ZenPen";
+	// 		}
+	// 		saveAs(blob, headerText + '.txt');
+	// 	} else {
+	// 		document.querySelector('.saveoverlay h1').style.color = '#FC1E1E';
+	// 	}
+	// }
 
 	/* Allows the user to press enter to tab from the title */
 	function onHeaderKeyPress( event ) {
@@ -256,55 +271,55 @@ var ui = (function() {
 		}
 	}
 
-	function selectFormat( e ) {
+	// function selectFormat( e ) {
 
-		if ( document.querySelectorAll('span.activesave').length > 0 ) {
-			document.querySelector('span.activesave').className = '';
-		}
+	// 	if ( document.querySelectorAll('span.activesave').length > 0 ) {
+	// 		document.querySelector('span.activesave').className = '';
+	// 	}
 
-		document.querySelector('.saveoverlay h1').style.cssText = '';
+	// 	document.querySelector('.saveoverlay h1').style.cssText = '';
 
-		var targ;
-		if (!e) var e = window.event;
-		if (e.target) targ = e.target;
-		else if (e.srcElement) targ = e.srcElement;
+	// 	var targ;
+	// 	if (!e) var e = window.event;
+	// 	if (e.target) targ = e.target;
+	// 	else if (e.srcElement) targ = e.srcElement;
 
-		// defeat Safari bug
-		if (targ.nodeType == 3) {
-			targ = targ.parentNode;
-		}
+	// 	// defeat Safari bug
+	// 	if (targ.nodeType == 3) {
+	// 		targ = targ.parentNode;
+	// 	}
 
-		targ.className ='activesave';
+	// 	targ.className ='activesave';
 
-		saveFormat = targ.getAttribute('data-format');
+	// 	saveFormat = targ.getAttribute('data-format');
 
-		var header = document.querySelector('header.header');
-		var headerText = header.innerHTML.replace(/(\r\n|\n|\r)/gm,"") + "\n";
+	// 	var header = document.querySelector('header.header');
+	// 	var headerText = header.innerHTML.replace(/(\r\n|\n|\r)/gm,"") + "\n";
 
-		var body = document.querySelector('article.content');
-		var bodyText = body.innerHTML;
+	// 	var body = document.querySelector('article.content');
+	// 	var bodyText = body.innerHTML;
 
-		textToWrite = formatText(saveFormat,headerText,bodyText);
+	// 	textToWrite = formatText(saveFormat,headerText,bodyText);
 
-		var textArea = document.querySelector('.hiddentextbox');
-		textArea.value = textToWrite;
-		textArea.focus();
-		textArea.select();
+	// 	var textArea = document.querySelector('.hiddentextbox');
+	// 	textArea.value = textToWrite;
+	// 	textArea.focus();
+	// 	textArea.select();
 
-	}
+	// }
 
-	function formatText( type, header, body ) {
+	function formatText( header, body ) {
 
 		var text;
-		switch( type ) {
+		// switch( type ) {
 
-			case 'html':
-				header = "<h1>" + header + "</h1>";
-				text = header + body;
-				text = text.replace(/\t/g, '');
-			break;
+		// 	case 'html':
+		// 		header = "<h1>" + header + "</h1>";
+		// 		text = header + body;
+		// 		text = text.replace(/\t/g, '');
+		// 	break;
 
-			case 'markdown':
+			// case 'markdown':
 				header = header.replace(/\t/g, '');
 				header = header.replace(/\n$/, '');
 				header = "#" + header + "#";
@@ -336,24 +351,25 @@ var ui = (function() {
                                 }
 
 				text = header +"\n\n"+ text;
-			break;
 
-			case 'plain':
-				header = header.replace(/\t/g, '');
+			// break;
 
-				var tmp = document.createElement('div');
-				tmp.innerHTML = body;
-				text = tmp.textContent || tmp.innerText || "";
+		// 	case 'plain':
+		// 		header = header.replace(/\t/g, '');
 
-				text = text.replace(/\t/g, '')
-					.replace(/\n{3}/g,"\n")
-					.replace(/\n/,""); //replace the opening line break
+		// 		var tmp = document.createElement('div');
+		// 		tmp.innerHTML = body;
+		// 		text = tmp.textContent || tmp.innerText || "";
 
-				text = header + text;
-			break;
-			default:
-			break;
-		}
+		// 		text = text.replace(/\t/g, '')
+		// 			.replace(/\n{3}/g,"\n")
+		// 			.replace(/\n/,""); //replace the opening line break
+
+		// 		text = header + text;
+		// 	break;
+		// 	default:
+		// 	break;
+		// }
 
 		return text;
 	}
@@ -370,7 +386,7 @@ var ui = (function() {
 		overlay.style.display = "none";
 		wordCountBox.style.display = "none";
 		descriptionModal.style.display = "none";
-		saveModal.style.display = "none";
+		// saveModal.style.display = "none";
 
 		if ( document.querySelectorAll('span.activesave' ).length > 0) {
 			document.querySelector('span.activesave').className = '';
