@@ -4,6 +4,7 @@ import logging
 import urllib
 import random
 import string
+import json
 
 import model
 import markdown
@@ -96,24 +97,20 @@ class ArticleHandler(BaseHandler):
         article_content = model.Article.query(model.Article.tittle == article_tittle).fetch()
 
         if article_content:
-            # mark_content = article_content.content
-            # mark_tittle = article_content.tittle
-            # date = article_content.date
-
-            # content = markdown.markdown(mark_content)
-            # tittle = markdown.markdown(mark_tittle)
-
+            for article in article_content:
+                content =  markdown.markdown(article.content)
+                tittle = article.tittle
+                date = article.date
 
             params = {
                 'page' : 'article',
-                'article' : article_content
-                # 'content' : content,
-                # 'tittle' : tittle,
-                # 'date' : date
+                'tittle' : tittle,
+                'content' : content
             }
             self.render_response('article.html',**params)
         else:
             self.abort(404)
+            return
 
 
 #handler for writing blog

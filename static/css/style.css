@@ -189,6 +189,23 @@ footer {
     -moz-box-shadow: 0 0 0 3px #fff, 0 0 0 4px #999, 0 2px 5px 4px rgba(0, 0, 0, .2);
     box-shadow: 0 0 0 3px #fff, 0 0 0 4px #999, 0 2px 5px 4px rgba(0, 0, 0, .2)
 }
+
+/*--- article styles  */
+blockquote {
+    border-left: 4px solid deepskyblue;
+    margin-left: -19px;
+    padding-left: 15px;
+    margin-right: 0px;
+}
+
+.quote {
+    line-height: 60px !important;
+    font-size: 49px !important;
+}
+
+
+
+
 @media screen and (max-width: 990px) {
     .icons {
         text-align: center
