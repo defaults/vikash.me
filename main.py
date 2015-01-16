@@ -142,13 +142,13 @@ class WriteHandler(BaseHandler):
         auth = kwargs['token']
         verify = model.Auth.query(model.Auth.token == auth).get()
         if verify :
-            tittle = self.response.get('tittle')
-            content = self.response.get('content')
-            save = model.Article(tittle = tittle,
+            header = self.request.get('header')
+            content = self.request.get('text')
+            save = model.Article(tittle = header,
                                 content = content)
             save.put()
-            token = model.Auth.query().get()
-            token.key.delete()
+            # token = model.Auth.query().get()
+            # token.key.delete()
 
             params = {
                 'page' : 'author',

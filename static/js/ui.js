@@ -178,11 +178,22 @@ var ui = (function() {
 
 		textToWrite = formatText(headerText,bodyText);
 
-		var textArea = document.querySelector('.hiddentextbox');
-		textArea.value = textToWrite;
-		textArea.focus();
-		textArea.select();
+		console.log(textToWrite['header']);
+		console.log(textToWrite['text']);
 
+		$.ajax({
+	  url: "/blog/write/GQG27BASVO93UWPN0JGW",
+	  type: 'POST',
+	  data: textToWrite,
+	  success: function(data, status){
+	    console.log(data);
+	  }
+	});
+	// var httpRequest;
+
+	//       httpRequest = new XMLHttpRequest();
+	// 	   	httpRequest.open('POST', '/blog/write/GQG27BASVO93UWPN0JGW');
+	// 	    httpRequest.send(textToWrite);
 	}
 
 
@@ -311,6 +322,8 @@ var ui = (function() {
 	function formatText( header, body ) {
 
 		var text;
+		var data;
+
 		// switch( type ) {
 
 		// 	case 'html':
@@ -322,7 +335,7 @@ var ui = (function() {
 			// case 'markdown':
 				header = header.replace(/\t/g, '');
 				header = header.replace(/\n$/, '');
-				header = "#" + header + "#";
+				// header = "#" + header + "#";
 
 				text = body.replace(/\t/g, '');
 
@@ -350,7 +363,7 @@ var ui = (function() {
                                         }
                                 }
 
-				text = header +"\n\n"+ text;
+				// text = header +"\n\n"+ text;
 
 			// break;
 
@@ -370,8 +383,8 @@ var ui = (function() {
 		// 	default:
 		// 	break;
 		// }
-
-		return text;
+		data = {'header':header,'text': text}
+		return data;
 	}
 
 	function onOverlayClick( event ) {
