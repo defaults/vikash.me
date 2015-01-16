@@ -158,8 +158,9 @@ var ui = (function() {
 
 		textToWrite = formatText(headerText,bodyText);
 
+		var page = window.location.href;
 		$.ajax({
-	  url: "/blog/write/GQG27BASVO93UWPN0JGW",
+	  url: page,
 	  type: 'POST',
 	  data: textToWrite,
 	  success: function(data, status){
@@ -247,11 +248,12 @@ var ui = (function() {
 
 		text = text.replace(/<b>|<\/b>/g,"**")
 			.replace(/\r\n+|\r+|\n+|\t+/ig,"")
-			.replace(/<i>|<\/i>/g,"_")
+			.replace(/<i>|<\/i>/g,"*")
 			.replace(/<blockquote>/g,"> ")
 			.replace(/<\/blockquote>/g,"")
 			.replace(/<p>|<\/p>/gi,"\n")
 			.replace(/<br>/g,"\n");
+			// .replace(/<code>|<\/code>/g,"\n\n\n\n");
 
 		var links = text.match(/<a href="(.+)">(.+)<\/a>/gi);
 

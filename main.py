@@ -98,7 +98,7 @@ class ArticleHandler(BaseHandler):
 
         if article_content:
             for article in article_content:
-                content =  markdown.markdown(article.content)
+                content =  markdown.markdown(article.content, extras=["code-friendly"])
                 tittle = article.tittle
                 date = article.date
 
