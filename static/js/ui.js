@@ -163,8 +163,11 @@ var ui = (function() {
 	  url: page,
 	  type: 'POST',
 	  data: textToWrite,
-	  success: function(data, status){
-	    //
+	  success: function(status){
+	    delete localStorage['content'];
+	    delete localStorage['header'];
+	    header.innerHTML = "Thank You!!"
+	    article.innerHTML = "Blog posted.";
 	  }
 	});
 	}
@@ -247,13 +250,13 @@ var ui = (function() {
 		text = body.replace(/\t/g, '');
 
 		text = text.replace(/<b>|<\/b>/g,"**")
-			.replace(/\r\n+|\r+|\n+|\t+/ig,"")
+			.replace(/\r\n+|\r+|\n+/ig,"")
 			.replace(/<i>|<\/i>/g,"*")
 			.replace(/<blockquote>/g,"> ")
-			.replace(/<\/blockquote>/g,"")
+			.replace(/<\/blockquote>/g,"\n")
 			.replace(/<p>|<\/p>/gi,"\n")
-			.replace(/<br>/g,"\n");
-			// .replace(/<code>|<\/code>/g,"\n\n\n\n");
+			.replace(/<br>/g,"\n")
+			.replace(/<pre>|<\/pre>/g,"\n\n\n\n")
 
 		var links = text.match(/<a href="(.+)">(.+)<\/a>/gi);
 

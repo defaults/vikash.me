@@ -18,6 +18,10 @@
 <!-- Custom style link -->
 <link rel="stylesheet" type="text/css" href="/static/css/style.css">
 
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+
+
 <!-- google analytics -->
 
 </head>
@@ -91,6 +95,14 @@
   });
 
   $('#{{page}}').addClass('active');
+
+
+$(document).ready(function() {
+    $('pre').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+
+});
 
 </script>
 </body>

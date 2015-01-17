@@ -4,7 +4,7 @@ var editor = (function() {
 	var headerField, contentField, cleanSlate, lastType, currentNodeList, savedSelection;
 
 	// Editor Bubble elements
-	var textOptions, optionsBox, boldButton, italicButton, quoteButton, urlButton, urlInput;
+	var textOptions, optionsBox, boldButton, italicButton, quoteButton, codeButton, urlButton, urlInput;
 
 	var composing;
 
@@ -50,7 +50,7 @@ var editor = (function() {
 				checkTextHighlighting( event );
 			}, 1);
 		};
-		
+
 		// Window bindings
 		window.addEventListener( 'resize', function( event ) {
 			updateBubblePosition();
@@ -93,6 +93,9 @@ var editor = (function() {
 		urlInput = textOptions.querySelector( '.url-input' );
 		urlInput.onblur = onUrlInputBlur;
 		urlInput.onkeydown = onUrlInputKeyDown;
+
+		codeButton = textOptions.querySelector( '.code' );
+		codeButton.onclick = onCodeClick;
 	}
 
 	function checkTextHighlighting( event ) {
@@ -132,12 +135,12 @@ var editor = (function() {
 
 		lastType = selection.isCollapsed;
 	}
-	
+
 	function updateBubblePosition() {
 		var selection = window.getSelection();
 		var range = selection.getRangeAt(0);
 		var boundary = range.getBoundingClientRect();
-		
+
 		textOptions.style.top = boundary.top - 5 + window.pageYOffset + "px";
 		textOptions.style.left = (boundary.left + boundary.right)/2 + "px";
 	}
@@ -171,6 +174,13 @@ var editor = (function() {
 		} else {
 			urlButton.className = "url useicons"
 		}
+
+		if ( hasNode( currentNodeList, 'C') ) {
+			codeButton.className = "code active"
+		} else {
+			codeButton.className = "code"
+		}
+
 	}
 
 	function onSelectorBlur() {
@@ -217,7 +227,7 @@ var editor = (function() {
 	}
 
 	function saveState( event ) {
-		
+
 		localStorage[ 'header' ] = headerField.innerHTML;
 		localStorage[ 'content' ] = contentField.innerHTML;
 	}
@@ -286,6 +296,19 @@ var editor = (function() {
 		}
 	}
 
+	function onCodeClick( event ) {
+		var nodeNames = findNodes( window.getSelection().focusNode );
+
+		if ( hasNode( nodeNames, 'PRE' ) ) {
+			document.execCommand( 'formatBlock', false, 'p' );
+			document.execCommand( 'outdent' );
+
+		} else {
+			document.execCommand( 'formatBlock', false, 'pre' );
+		}
+
+	}
+
 	function onUrlInputKeyDown( event ) {
 
 		if ( event.keyCode === 13 ) {
@@ -313,12 +336,12 @@ var editor = (function() {
 		document.execCommand( 'unlink', false );
 
 		if (url !== "") {
-		
+
 			// Insert HTTP if it doesn't exist.
 			if ( !url.match("^(http|https)://") ) {
 
-				url = "http://" + url;	
-			} 
+				url = "http://" + url;
+			}
 
 			document.execCommand( 'createLink', false, url );
 		}
@@ -330,7 +353,7 @@ var editor = (function() {
 	}
 
 	function getWordCount() {
-		
+
 		var text = get_text( contentField );
 
 		if ( text === "" ) {

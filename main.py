@@ -12,6 +12,7 @@ import markdown
 from google.appengine.api import mail
 from webapp2_extras import routes
 from webapp2_extras import jinja2
+from jinja2 import environment
 
 #method for handling errors
 def error(request, response, exception):
@@ -35,6 +36,16 @@ class BaseHandler(webapp2.RequestHandler):
         # Renders a template and writes the result to the response.
         temp = self.jinja2.render_template(_template, **params)
         self.response.write(temp)
+
+
+    def format_datetime(value, format='medium'):
+        if format == 'full':
+            format="EEEE, d. MMMM y 'at' HH:mm"
+        elif format == 'medium':
+            format="EE dd.MM.y HH:mm"
+        return babel.dates.format_datetime(value, format)
+
+    environment.filters['datetime'] = format_datetime
 
     def authentication(self):
         verify = model.Auth.query().get()
@@ -69,6 +80,7 @@ class BaseHandler(webapp2.RequestHandler):
 
         self.render_response('write.html',**params)
 
+
 #welcome page handler
 class HomeHandler(BaseHandler):
     def get(self):
@@ -93,8 +105,7 @@ class BlogHandler(BaseHandler):
 class ArticleHandler(BaseHandler):
     def get(self, **kwargs):
         article_url = kwargs['article_url']
-        article_tittle = article_url.replace('-',' ')
-        article_content = model.Article.query(model.Article.tittle == article_tittle).fetch()
+        article_content = model.Article.query(model.Article.url == article_url).fetch()
 
         if article_content:
             for article in article_content:
@@ -105,7 +116,8 @@ class ArticleHandler(BaseHandler):
             params = {
                 'page' : 'article',
                 'tittle' : tittle,
-                'content' : content
+                'content' : content,
+                'date' : date
             }
             self.render_response('article.html',**params)
         else:
@@ -141,21 +153,18 @@ class WriteHandler(BaseHandler):
         if verify :
             header = self.request.get('header')
             content = self.request.get('text')
+            url = header.replace(' ','-').lower()
             save = model.Article(tittle = header,
-                                content = content)
+                                content = content,
+                                url = url)
             save.put()
             # token = model.Auth.query().get()
             # token.key.delete()
 
-            params = {
-                'page' : 'author',
-                'sucess' : 'true'
-            }
         else :
             self.abort(404)
             return
-        # inform that post has been updated
-        self.render_response('write.html',**params)
+
 
 #handler for about page
 class AboutHandler(BaseHandler):

@@ -12,20 +12,12 @@
   </div>
 </div>
 
-{% elif url %}
+{% else %}
 
 <div class="row main-content">
   <div class="col-lg-12 error">
     <a href="{{url}}"> We have send you link at your mail. Kindly follow it to get write page.</a>
 </div>
-</div>
-{% else %}
-<div class="row main-content">
-  <div class="col-lg-12 error">
-<!--     <p>Your article has been published. Thank you!</p>
- -->
-<p>{{sucess}}</p>
- </div>
 </div>
 {% endif %}
 

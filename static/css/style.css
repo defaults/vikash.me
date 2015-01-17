@@ -47,7 +47,7 @@ a:hover {
 }
 .main-content {
     font-size: 1.6em;
-    max-width: 60em;
+    max-width: 50em;
     text-align: center;
     margin: 0
 }
@@ -204,7 +204,11 @@ blockquote {
 }
 
 
-
+pre {
+    margin-left: 3rem;
+    max-width: 80rem;
+    border: 0;
+}
 
 @media screen and (max-width: 990px) {
     .icons {
@@ -226,6 +230,9 @@ blockquote {
     }
     .toggle {
         margin-bottom: 0;
+    }
+    pre {
+        margin: 0;
     }
 }
 @media screen and (max-width: 430px) {
