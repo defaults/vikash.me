@@ -256,7 +256,6 @@ var ui = (function() {
 			.replace(/<\/blockquote>/g,"\n")
 			.replace(/<p>|<\/p>/gi,"\n")
 			.replace(/<br>/g,"\n")
-			.replace(/<pre>|<\/pre>/g,"\n\n\n\n")
 
 		var links = text.match(/<a href="(.+)">(.+)<\/a>/gi);
 

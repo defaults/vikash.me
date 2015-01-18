@@ -1,6 +1,10 @@
 {% extends "template.html" %}
 
-{% block tittle %}{{error}} | Vikash Kumar{% endblock %}
+{% block tittle %} {% if error.code %}
+{{error.code}}
+{% else %}
+{{error}}
+{% endif %} | Vikash Kumar{% endblock %}
 
 {% block content %}
 <div class="row main-content">

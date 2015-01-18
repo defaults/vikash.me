@@ -12,13 +12,12 @@ import markdown
 from google.appengine.api import mail
 from webapp2_extras import routes
 from webapp2_extras import jinja2
-from jinja2 import environment
 
 #method for handling errors
 def error(request, response, exception):
     logging.exception(exception)
     params = {
-        'error' : exception.code
+        'error' : exception
     }
     jinja = jinja2.get_jinja2()
     response.write(jinja.render_template('error.html', **params))
@@ -36,16 +35,6 @@ class BaseHandler(webapp2.RequestHandler):
         # Renders a template and writes the result to the response.
         temp = self.jinja2.render_template(_template, **params)
         self.response.write(temp)
-
-
-    def format_datetime(value, format='medium'):
-        if format == 'full':
-            format="EEEE, d. MMMM y 'at' HH:mm"
-        elif format == 'medium':
-            format="EE dd.MM.y HH:mm"
-        return babel.dates.format_datetime(value, format)
-
-    environment.filters['datetime'] = format_datetime
 
     def authentication(self):
         verify = model.Auth.query().get()
@@ -112,7 +101,6 @@ class ArticleHandler(BaseHandler):
                 content =  markdown.markdown(article.content, extras=["code-friendly"])
                 tittle = article.tittle
                 date = article.date
-
             params = {
                 'page' : 'article',
                 'tittle' : tittle,
@@ -185,16 +173,16 @@ class ErrorHandler(BaseHandler):
 
 app = webapp2.WSGIApplication([
     routes.DomainRoute('blog.vikashkumar.me', [
-        webapp2.Route('/write/<token>', handler=WriteHandler, name='write'),
-        webapp2.Route('/<article_url>', handler=ArticleHandler, name='article'),
-        webapp2.Route('/', handler=BlogHandler, name='blog'),
+        routes.RedirectRoute('/write/<token>', handler=WriteHandler, name='write', strict_slash=True),
+        routes.RedirectRoute('/<article_url>', handler=ArticleHandler, name='article', strict_slash=True),
+        routes.RedirectRoute('/', handler=BlogHandler, name='blog', strict_slash=True),
     ]),
-    webapp2.Route('/about', handler=AboutHandler, name='about'),
-    webapp2.Route('/blog', handler=BlogHandler, name='blog'),
-    webapp2.Route('/write', handler=BaseHandler, name='authentication', handler_method='authentication'),
-    webapp2.Route('/blog/write/<token>', handler=WriteHandler, name='write'),
-    webapp2.Route('/blog/<article_url>', handler=ArticleHandler, name='article'),
-    webapp2.Route('/', handler=HomeHandler, name='home'),
+    routes.RedirectRoute('/about', handler=AboutHandler, name='about', strict_slash=True),
+    routes.RedirectRoute('/blog', handler=BlogHandler, name='blog', strict_slash=True),
+    routes.RedirectRoute('/write', handler=BaseHandler, name='authentication', handler_method='authentication', strict_slash=True),
+    routes.RedirectRoute('/blog/write/<token>', handler=WriteHandler, name='write', strict_slash=True),
+    routes.RedirectRoute('/blog/<article_url>', handler=ArticleHandler, name='article', strict_slash=True),
+    routes.RedirectRoute('/', handler=HomeHandler, name='home', strict_slash=True),
     ],
     debug=True)
 

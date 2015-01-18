@@ -18,9 +18,8 @@
 <!-- Custom style link -->
 <link rel="stylesheet" type="text/css" href="/static/css/style.css">
 
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/default.min.css">
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
-
+{% block extra %}
+{% endblock %}
 
 <!-- google analytics -->
 
@@ -49,6 +48,7 @@
     </div>
 </nav>
 {% endblock %}
+<div class="row main-row">
 <div class="container-fluid content">
 
 {% block content %}
@@ -78,7 +78,7 @@
 {% block footer %}
 <footer class="footer navbar-static-bottom">It's all yours under<a href="http://creativecommons.org/publicdomain/zero/1.0/"> Creative Commons CC0.</a>.</footer>
 </div>
-
+</div>
 <!-- Jquery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <!-- Latest compiled and minified JavaScript -->
@@ -96,7 +96,6 @@
 
   $('#{{page}}').addClass('active');
 
-
 $(document).ready(function() {
     $('pre').each(function(i, block) {
     hljs.highlightBlock(block);
@@ -105,6 +104,8 @@ $(document).ready(function() {
 });
 
 </script>
+
+
 </body>
 </html>
 {% endblock %}

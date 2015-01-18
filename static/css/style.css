@@ -25,13 +25,11 @@ a:hover {
     margin: 2rem auto 1.5rem
 }
 .content {
-    max-width: 100rem;
-    padding-left: 0.4rem;
-    padding-right: 0.4rem;
-}
+    max-width: 92rem;
+    }
 .article {
     font-size: .9em;
-    text-align: left
+    text-align: justify;
 }
 .tech {
     width: 8rem;
@@ -45,9 +43,12 @@ a:hover {
     margin: 1em;
     text-align: center
 }
+.main-row {
+    margin: 0;
+    text-align: center;
+}
 .main-content {
-    font-size: 1.6em;
-    max-width: 50em;
+    font-size: 2em;
     text-align: center;
     margin: 0
 }

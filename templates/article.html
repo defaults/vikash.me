@@ -2,10 +2,19 @@
 
 {% block tittle %}Article | Vikash Kumar{% endblock %}
 
+
+{% block extra %}
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/default.min.css">
+
+{% endblock %}
+
 {% block content %}
 <div class="row">
     <div class="col-lg-12 main-content">
       <h1 class="tittle">{{tittle}}</h1>
+      <h3 class="time">{{date.strftime('%a, %B %d')}}</h3>
       <article class="article">{{content | safe}}</article>
    </div>
  {% endblock %}
