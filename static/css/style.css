@@ -14,14 +14,14 @@ body {
 }
 a {
     text-decoration: none;
-    color: gray
+    color: rgb(107, 26, 26);
 }
 .row {
     margin: 0;
 }
 a:hover {
     text-decoration: none;
-    color: #7B3F00
+    color: rgb(107, 26, 26);
 }
 .header {
     max-width: 100rem;
@@ -29,6 +29,11 @@ a:hover {
 }
 .content {
     max-width: 92rem;
+    min-height: 40rem;
+}
+.container-fluid {
+    padding-left: 0;
+    padding-right: 0;
 }
 .content-home {
     margin-top: 7rem;
@@ -37,7 +42,7 @@ a:hover {
 .article {
     font-size: .7em;
     text-align: justify;
-    font-weight: 600;
+    font-weight: 500;
 }
 .tech {
     width: 8rem;
@@ -48,7 +53,7 @@ a:hover {
 .tech-a {
     width: 13rem;
     height: 8rem;
-    margin: 1em;
+    margin: 1em 0 1em 0;
     text-align: center
 }
 .main-row {
@@ -88,15 +93,16 @@ a:hover {
 }
 .active {
     text-decoration: none;
-    color: #7B3F00
+    color: rgb(107, 26, 26);
 }
 .navbar-text {
     margin: 0
 }
-.brand-night {
+/*.brand-night {
     color: wheat
 }
-.q-brand {
+*/
+/*.q-brand {
     font-family: 'Dawning of a New Day', cursive;
     font-size: 2em;
     cursor: pointer
@@ -105,6 +111,7 @@ a:hover {
     background: url(/static/img/web_tile_night.png) #fff;
     color: wheat
 }
+*/
 .buttons {
     padding-top: 5rem;
     padding-bottom: 9rem;
@@ -122,9 +129,9 @@ a:hover {
 .btn:active,
 .btn:hover {
     background: 0 0;
-    color: #7B3F00;
+    color: rgb(107, 26, 26);
     border-style: double;
-    border-color: #7B3F00
+    border-color: rgb(107, 26, 26);
 }
 .icons {
     padding-top: 1em;
@@ -144,7 +151,8 @@ text-align: right;
     cursor: pointer;
     margin: 0;
 }
-*/.name {
+*/
+.name {
     font-family: 'Dawning of a New Day', cursive;
     font-size: 4.2em;
     font-weight: 400;
@@ -211,7 +219,7 @@ text-align: right;
     color: gray
 }
 .social:hover {
-    color: #7B3F00
+    color: rgb(107, 26, 26);
 }
 .error {
     padding: 10rem 0 15rem;
@@ -229,12 +237,13 @@ text-align: right;
 
 /*--- article styles  */
 blockquote {
-    border-left: 4px solid deepskyblue;
-    margin-left: -19px;
-    padding-left: 15px;
-    margin-right: 0px;
+border-left: 4px solid rgb(107, 26, 26);
+margin-left: -19px;
+padding-left: 15px;
+margin-right: 0px;
+font-size: 1.2em;
+font-style: italic;
 }
-
 .quote {
     line-height: 60px !important;
     font-size: 49px !important;
