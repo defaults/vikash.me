@@ -99,11 +99,14 @@ class ArticleHandler(BaseHandler):
                 content =  markdown.markdown(article.content, extras=["code-friendly"])
                 tittle = article.tittle
                 date = article.date
+                url = article.url
+
             params = {
                 'page' : 'article',
                 'tittle' : tittle,
                 'content' : content,
-                'date' : date
+                'date' : date,
+                'url' :url
             }
             self.render_response('article.html',**params)
         else:
@@ -180,7 +183,7 @@ app = webapp2.WSGIApplication([
     # routes.RedirectRoute('/blog', handler=BlogHandler, name='blog', strict_slash=True),
     # routes.RedirectRoute('/write', handler=BaseHandler, name='authentication', handler_method='authentication', strict_slash=True),
     # routes.RedirectRoute('/blog/write/<token>', handler=WriteHandler, name='write', strict_slash=True),
-    routes.RedirectRoute('/blog/<article_url>', handler=ArticleHandler, name='article', strict_slash=True),
+    # routes.RedirectRoute('/blog/<article_url>', handler=ArticleHandler, name='article', strict_slash=True),
     routes.RedirectRoute('/', handler=HomeHandler, name='home', strict_slash=True),
     ])
 

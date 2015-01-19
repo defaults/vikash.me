@@ -89,26 +89,27 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 <script>
 
-  // jquery for toggling light
-  var d = localStorage.getItem("nightmode");
-  d == "true" ? ($("body").addClass("night-mode"), $(".q-brand").addClass("brand-night"),$(".toggle-light").css("color","white")) : ($("body").removeClass("night-mode"), $(".q-brand").removeClass("brand-night"),$(".toggle-light").css("color","black"));
+//   // jquery for toggling light
+//   var d = localStorage.getItem("nightmode");
+//   d == "true" ? ($("body").addClass("night-mode"), $(".q-brand").addClass("brand-night"),$(".toggle-light").css("color","white")) : ($("body").removeClass("night-mode"), $(".q-brand").removeClass("brand-night"),$(".toggle-light").css("color","black"));
 
-  $(".toggle-light").click(function() {
-      $("body").toggleClass("night-mode");
-      $("body").hasClass("night-mode") ? (localStorage.setItem("nightmode", "true"), $(".q-brand").addClass("brand-night"),$(".toggle-light").css("color","white")) : (localStorage.setItem("nightmode", "false"), $(".q-brand").removeClass("brand-night"),$(".toggle-light").css("color","black"));
-  });
+//   $(".toggle-light").click(function() {
+//       $("body").toggleClass("night-mode");
+//       $("body").hasClass("night-mode") ? (localStorage.setItem("nightmode", "true"), $(".q-brand").addClass("brand-night"),$(".toggle-light").css("color","white")) : (localStorage.setItem("nightmode", "false"), $(".q-brand").removeClass("brand-night"),$(".toggle-light").css("color","black"));
+//   });
 
-  $('#{{page}}').addClass('active');
+//   $('#{{page}}').addClass('active');
 
-$(document).ready(function() {
-    $('pre').each(function(i, block) {
-    hljs.highlightBlock(block);
-  });
+// $(document).ready(function() {
+//     $('pre').each(function(i, block) {
+//     hljs.highlightBlock(block);
+//   });
 
-});
+// });
 
-</script>
-
+ </script>
+{% block discus %}
+{% endblock %}
 
 </body>
 </html>

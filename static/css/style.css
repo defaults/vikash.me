@@ -246,6 +246,9 @@ pre {
     max-width: 86rem;
     border: 0;
 }
+#disqus_thread {
+    margin-top: 2rem;
+}
 
 @media screen and (max-width: 990px) {
     .icons {
