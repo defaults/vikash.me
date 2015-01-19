@@ -171,8 +171,11 @@ text-align: right;
 .post {
     text-align: left;
     font-size: 3rem;
-    font-weight: bolder;
+    font-weight: 500;
     margin-left: 3rem;
+}
+.time-post{
+    color: #777;
 }
 .time {
     font-size: 2.3rem;
