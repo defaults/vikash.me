@@ -1,0 +1,4 @@
+user-agent: *
+   disallow: /attribution
+   disallow: /write
+   Sitemap: http://vikashkumar.me/static/sitemap.xml

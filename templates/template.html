@@ -5,6 +5,29 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+{% block seo %}
+  <meta name="description" content="Personal home page and blog of Vikash Kumar." />
+  <meta name="google-site-verification" content="DbfaEmBqSHBfNrEjIqF3UbAsQu-lXI21ZU-GgeM2bLs
+" />
+<!-- Facebook tag -->
+  <meta property=”og:title” content="Home Page | Vikash Kumar" />
+  <meta property=”og:url” content=”https://vikashkumar.me” />
+  <meta property=”og:type” content=”website” />
+  <meta property=”og:description” content=”Personal home page and blog of Vikash Kumar.”/>
+  <meta property=”og:image” content="https://vikashkumar.me/static/img/img_300x300.jpeg" />
+  <meta name="og:site_name" content="VikashKumar">
+  <meta property="article:author" content="Vikash Kumar">
+
+<!-- twitter tag -->
+   <meta name=”twitter:card” content=”summary” />
+   <meta name=”twitter:title” content=”Home Page | Vikash Kumar” />
+   <meta name=”twitter:description” content=”Personal home page and blog of Vikash Kumar.” />
+   <meta name=”twitter:url” content=”https://vikashkumar.me” />
+   <meta name=”twitter:image” content=”https://vikashkumar.me/static/img/img_300x300.jpeg” />
+   <meta name="twitter:creator" content="@CoderVikash">
+{% endblock %}
+
   <title>{% block tittle %}Vikash Kumar{% endblock %}</title>
   <!-- font -->
   <link href='//fonts.googleapis.com/css?family=Dawning+of+a+New+Day' rel='stylesheet' type='text/css'>
@@ -41,7 +64,7 @@
   <div class="row">
     <ul class=" navigation">
       <li><a id="blog" href="https://blog.vikashkumar.me">Blog</a></li>
-      <li><a id="project" href="https://github.com/codervikash?tab=repositories">Portfolio</a></li>
+      <li><a id="project" href="https://github.com/codervikash?tab=repositories" target="blank">Portfolio</a></li>
       <li><a id="about" href="https://vikashkumar.me/about">About</a></li>
     </ul>
   </div>

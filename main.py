@@ -72,7 +72,7 @@ class BaseHandler(webapp2.RequestHandler):
 class HomeHandler(BaseHandler):
     def get(self):
         params = {
-            'page' : 'home'
+            'page' : 'Vikash Kumar'
         }
         self.render_response('home.html',**params)
 
@@ -180,10 +180,10 @@ app = webapp2.WSGIApplication([
         routes.RedirectRoute('/', handler=BlogHandler, name='blog', strict_slash=True),
     ]),
     routes.RedirectRoute('/about', handler=AboutHandler, name='about', strict_slash=True),
-    # routes.RedirectRoute('/blog', handler=BlogHandler, name='blog', strict_slash=True),
-    # routes.RedirectRoute('/write', handler=BaseHandler, name='authentication', handler_method='authentication', strict_slash=True),
-    # routes.RedirectRoute('/blog/write/<token>', handler=WriteHandler, name='write', strict_slash=True),
-    # routes.RedirectRoute('/blog/<article_url>', handler=ArticleHandler, name='article', strict_slash=True),
+    routes.RedirectRoute('/blog', handler=BlogHandler, name='blog', strict_slash=True),
+    routes.RedirectRoute('/write', handler=BaseHandler, name='authentication', handler_method='authentication', strict_slash=True),
+    routes.RedirectRoute('/blog/write/<token>', handler=WriteHandler, name='write', strict_slash=True),
+    routes.RedirectRoute('/blog/<article_url>', handler=ArticleHandler, name='article', strict_slash=True),
     routes.RedirectRoute('/', handler=HomeHandler, name='home', strict_slash=True),
     ])
 
