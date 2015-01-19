@@ -49,22 +49,22 @@ class BaseHandler(webapp2.RequestHandler):
             save.put()
 
             # in production
-            # mail.send_mail(sender="Vikash Kumar <mailkumarvikash@gmail.com>",
-            #   to="Vikash Kumar <mailkumarvikash@gmail.com>",
-            #   subject="Link to write blog",
-            #   body="""
-            #     https://blog.vikashkumar.me/write/%s
-            # """, %(gtoken))
-            # params = {
-            #     'page' : 'token'
-            #     'message' : 'check your mail for link to write'
-            # }
+            mail.send_mail(sender="Vikash Kumar <mailkumarvikash@gmail.com>",
+              to="Vikash Kumar <mailkumarvikash@gmail.com>",
+              subject="Link to write blog",
+              body="""
+                https://blog.vikashkumar.me/write/%s
+            """, %(gtoken))
+            params = {
+                'page' : 'token'
+                'message' : 'check your mail for link to write'
+            }
 
             # for test
-            url = 'http://localhost:8080/blog/write/' + gtoken
+            # url = 'http://localhost:8080/blog/write/' + gtoken
             params = {
                 'page' : 'token',
-                'url' : url
+                'url' : ''
             }
 
         self.render_response('write.html',**params)
@@ -146,8 +146,8 @@ class WriteHandler(BaseHandler):
                                 content = content,
                                 url = url)
             save.put()
-            # token = model.Auth.query().get()
-            # token.key.delete()
+            token = model.Auth.query().get()
+            token.key.delete()
 
         else :
             self.abort(404)
@@ -173,14 +173,12 @@ class ErrorHandler(BaseHandler):
 
 app = webapp2.WSGIApplication([
     routes.DomainRoute('blog.vikashkumar.me', [
+    routes.RedirectRoute('/write', handler=BaseHandler, name='authentication', handler_method='authentication', strict_slash=True),
         routes.RedirectRoute('/write/<token>', handler=WriteHandler, name='write', strict_slash=True),
         routes.RedirectRoute('/<article_url>', handler=ArticleHandler, name='article', strict_slash=True),
         routes.RedirectRoute('/', handler=BlogHandler, name='blog', strict_slash=True),
     ]),
     routes.RedirectRoute('/about', handler=AboutHandler, name='about', strict_slash=True),
-    routes.RedirectRoute('/blog', handler=BlogHandler, name='blog', strict_slash=True),
-    routes.RedirectRoute('/write', handler=BaseHandler, name='authentication', handler_method='authentication', strict_slash=True),
-    routes.RedirectRoute('/blog/write/<token>', handler=WriteHandler, name='write', strict_slash=True),
     routes.RedirectRoute('/blog/<article_url>', handler=ArticleHandler, name='article', strict_slash=True),
     routes.RedirectRoute('/', handler=HomeHandler, name='home', strict_slash=True),
     ],
