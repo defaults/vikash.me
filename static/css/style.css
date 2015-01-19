@@ -29,8 +29,9 @@ a:hover {
 }
 .content {
     max-width: 92rem;
-    }
+}
 .content-home {
+    margin-top: 7rem;
     max-width: 100rem;
 }
 .article {
@@ -53,7 +54,8 @@ a:hover {
     text-align: center;
     height: auto !important;
     padding: 0 auto -6em;
-}
+
+    }
 .main-content {
     font-size: 2em;
     text-align: center;
@@ -75,7 +77,8 @@ a:hover {
     font-weight: 500;
     padding: 1em 0 2em 1em;
     list-style: none;
-    overflow: visible
+    overflow: visible;
+    text-align: left;
 }
 .navigation>li {
     display: inline-block;
@@ -101,8 +104,8 @@ a:hover {
     color: wheat
 }
 .buttons {
-    padding-top: 8%;
-    padding-bottom: 15%;
+    padding-top: 5rem;
+    padding-bottom: 9rem;
     text-align: center;
     max-width: 100rem
 }
@@ -123,9 +126,13 @@ a:hover {
 }
 .icons {
     padding-top: 1em;
-    text-align: right
+    text-align: right;
 }
-.toggle {
+.image {
+padding-top: 3em;
+text-align: right;
+}
+/*.toggle {
     text-align: right;
     margin-bottom: 5%;
     margin-top: 2%
@@ -135,7 +142,7 @@ a:hover {
     cursor: pointer;
     margin: 0;
 }
-.name {
+*/.name {
     font-family: 'Dawning of a New Day', cursive;
     font-size: 4.2em;
     font-weight: 400;
@@ -276,5 +283,8 @@ pre {
     .name,
     .navigation {
         text-align: center
+    }
+    .buttons {
+        padding-bottom: 5rem;
     }
 }
