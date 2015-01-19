@@ -54,18 +54,16 @@ class BaseHandler(webapp2.RequestHandler):
               subject="Link to write blog",
               body="""
                 https://blog.vikashkumar.me/write/%s
-            """, %(gtoken))
+            """ % (gtoken))
             params = {
                 'page' : 'token'
-                'message' : 'check your mail for link to write'
             }
 
             # for test
             # url = 'http://localhost:8080/blog/write/' + gtoken
-            params = {
-                'page' : 'token',
-                'url' : ''
-            }
+            # params = {
+            #     'page' : 'token'
+            # }
 
         self.render_response('write.html',**params)
 
@@ -173,16 +171,18 @@ class ErrorHandler(BaseHandler):
 
 app = webapp2.WSGIApplication([
     routes.DomainRoute('blog.vikashkumar.me', [
-    routes.RedirectRoute('/write', handler=BaseHandler, name='authentication', handler_method='authentication', strict_slash=True),
+        routes.RedirectRoute('/write', handler=BaseHandler, name='authentication', handler_method='authentication', strict_slash=True),
         routes.RedirectRoute('/write/<token>', handler=WriteHandler, name='write', strict_slash=True),
         routes.RedirectRoute('/<article_url>', handler=ArticleHandler, name='article', strict_slash=True),
         routes.RedirectRoute('/', handler=BlogHandler, name='blog', strict_slash=True),
     ]),
     routes.RedirectRoute('/about', handler=AboutHandler, name='about', strict_slash=True),
+    # routes.RedirectRoute('/blog', handler=BlogHandler, name='blog', strict_slash=True),
+    # routes.RedirectRoute('/write', handler=BaseHandler, name='authentication', handler_method='authentication', strict_slash=True),
+    # routes.RedirectRoute('/blog/write/<token>', handler=WriteHandler, name='write', strict_slash=True),
     routes.RedirectRoute('/blog/<article_url>', handler=ArticleHandler, name='article', strict_slash=True),
     routes.RedirectRoute('/', handler=HomeHandler, name='home', strict_slash=True),
-    ],
-    debug=True)
+    ])
 
 #errors
 app.error_handlers[404] = error
