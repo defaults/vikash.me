@@ -82,7 +82,7 @@ class HomeHandler(BaseHandler):
 class BlogHandler(BaseHandler):
     def get(self):
         #code to search the database for blog posts
-        article = model.Article.query().fetch()
+        article = model.Article.query().order(-model.Article.date)
 
         params = {
             'page' : 'blog',

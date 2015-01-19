@@ -1,7 +1,10 @@
+* {
+margin: 0;
+}
 body {
     background: url(/static/img/web-tile.png) #fff;
     width: 100%;
-    height: 100%;
+    min-height: 100%;
     font-family: Raleway, sans-serif;
     -ms-text-size-adjust: none;
     -webkit-text-size-adjust: none;
@@ -22,11 +25,14 @@ a:hover {
 }
 .header {
     max-width: 100rem;
-    margin: 2rem auto 1.5rem
+    margin: 2rem auto -1.5rem;
 }
 .content {
     max-width: 92rem;
     }
+.content-home {
+    max-width: 100rem;
+}
 .article {
     font-size: .9em;
     text-align: justify;
@@ -44,8 +50,9 @@ a:hover {
     text-align: center
 }
 .main-row {
-    margin: 0;
     text-align: center;
+    height: auto !important;
+    padding: 0 auto -6em;
 }
 .main-content {
     font-size: 2em;
@@ -140,7 +147,28 @@ a:hover {
     width: 250px
 }
 .tittle {
-    padding-bottom: 2rem
+    padding-bottom: 1.5rem;
+    font-weight: bold;
+    font-size: 4.5rem;
+}
+.post {
+    text-align: left;
+    font-size: 3rem;
+    font-weight: bolder;
+    margin-left: 3rem;
+}
+.time {
+    font-size: 2.3rem;
+    padding-bottom: 1em;
+    font-weight: lighter;
+
+}
+.time-post {
+    text-align: left;
+    padding-left: 1rem;
+    font-size: 2rem;
+    margin-left: 3rem
+}
 }
 .image {
     padding-top: 3em;
@@ -151,15 +179,17 @@ a:hover {
     font-size: 1.3em;
     font-weight: 800
 }
-.footer-main {
-    margin-top: 5%
+.footer, .push {
+    height: 6em;
+}
+.foot-note {
+    margin-bottom: 2rem;
 }
 footer {
     font-family: Raleway, sans-serif;
     text-align: center;
     position: relative;
     width: 100%;
-    padding-bottom: 2rem
 }
 .fa-heart {
     color: gray
@@ -169,7 +199,6 @@ footer {
 }
 .social-footer {
     text-align: center;
-    margin-top: 5%
 }
 .social {
     color: gray
@@ -206,8 +235,8 @@ blockquote {
 
 
 pre {
-    margin-left: 3rem;
-    max-width: 80rem;
+    margin: 1em;
+    max-width: 86rem;
     border: 0;
 }
 
