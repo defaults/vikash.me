@@ -102,12 +102,12 @@ a:hover {
     color: wheat
 }
 */
-/*.q-brand {
+.q-brand {
     font-family: 'Dawning of a New Day', cursive;
     font-size: 2em;
     cursor: pointer
 }
-.night-mode {
+/*.night-mode {
     background: url(/static/img/web_tile_night.png) #fff;
     color: wheat
 }

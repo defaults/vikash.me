@@ -50,7 +50,7 @@ class BaseHandler(webapp2.RequestHandler):
 
             # in production
             mail.send_mail(sender="Vikash Kumar <mailkumarvikash@gmail.com>",
-              to="Vikash Kumar <mailkumarvikash@gmail.com>",
+              to="Vikash Kumar <mail@vikashkumar.me>",
               subject="Link to write blog",
               body="""
                 https://blog.vikashkumar.me/write/%s
