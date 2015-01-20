@@ -1,24 +1,30 @@
 {% extends "template.html" %}
 
 {% block seo %}
-  <meta name="description" content="Personal home page and blog of Vikash Kumar." />
+  <meta name="description" content="Personal home page and blog of Vikash Kumar.
+  A passionate Geek & Developer. I love Python and algorithms.
+  @CoderVikash" />
   <meta name="google-site-verification" content="DbfaEmBqSHBfNrEjIqF3UbAsQu-lXI21ZU-GgeM2bLs
 " />
 <!-- Facebook tag -->
-  <meta property=”og:title” content="Home Page | Vikash Kumar" />
-  <meta property=”og:url” content=”https://blog.vikashkumar.me” />
-  <meta property=”og:type” content="blog" />
-  <meta property=”og:description” content=”Personal blog of Vikash Kumar.”/>
-  <meta property=”og:image” content="https://vikashkumar.me/static/img/img_300x300.jpeg" />
-  <meta name="og:site_name" content="Blog Vikash Kumar">
-  <meta property="article:author" content="Vikash Kumar">
+  <meta property="og:tittle" content="Blog | Vikash Kumar" />
+  <meta property="og:url" content="https://blog.vikashkumar.me" />
+  <meta property="og:type" content="blog" />
+  <meta property="og:description" content="Personal home page and blog of Vikash Kumar.
+  A passionate Geek & Developer. I love Python and algorithms.
+  @CoderVikash"/>
+  <meta property="og:image" content="https://vikashkumar.me/static/img/100x100.jpeg" />
+  <meta property="og:site_name" content="Blog Vikash Kumar">
 
 <!-- twitter tag -->
-   <meta name=”twitter:card” content=”summary” />
-   <meta name=”twitter:title” content=”Blog | Vikash Kumar” />
-   <meta name=”twitter:description” content=”Personal blog of Vikash Kumar.” />
-   <meta name=”twitter:url” content=”https://blog.vikashkumar.me” />
-   <meta name=”twitter:image” content=”https://vikashkumar.me/static/img/img_300x300.jpeg” />
+   <meta name="twitter:card" content="summary" />
+   <meta name="twitter:title" content="Blog | Vikash Kumar" />
+   <meta name="twitter:description" content="Personal home page and blog of Vikash Kumar.
+  A passionate Geek & Developer. I love Python and algorithms.
+
+  @CoderVikash"/>
+   <meta name="twitter:url" content="https://blog.vikashkumar.me"/>
+   <meta name="twitter:image" content="https://vikashkumar.me/static/img/100x100.jpeg"/>
    <meta name="twitter:creator" content="@CoderVikash">
 {% endblock %}
 
@@ -31,7 +37,7 @@
     <h1 class="tittle">Blog</h1>
   {% for article in article %}
     <div class="col-lg-12">
-      <a href="/{{article.url}}">
+      <a href="/{{article.url}}/">
         <h2 class="post">{{article.tittle}}</h1>
         <h3 class="time-post">{{article.date.strftime('%a, %B %d')}}</h3>
       </a>
