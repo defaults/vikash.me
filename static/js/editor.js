@@ -23,7 +23,7 @@ var editor = (function() {
 		createEventBindings();
 
 		// Load state if storage is supported
-		if ( supportsHtmlStorage() ) {
+		if (supportsHtmlStorage()) {
 			loadState();
 		}
 	}
@@ -31,10 +31,10 @@ var editor = (function() {
 	function createEventBindings() {
 
 		// Key up bindings
-		if ( supportsHtmlStorage() ) {
+		if (supportsHtmlStorage()) {
 
-			document.onkeyup = function( event ) {
-				checkTextHighlighting( event );
+			document.onkeyup = function(event) {
+				checkTextHighlighting(event);
 				saveState();
 			}
 
@@ -44,20 +44,20 @@ var editor = (function() {
 
 		// Mouse bindings
 		document.onmousedown = checkTextHighlighting;
-		document.onmouseup = function( event ) {
+		document.onmouseup = function(event) {
 
-			setTimeout( function() {
-				checkTextHighlighting( event );
+			setTimeout(function() {
+				checkTextHighlighting(event);
 			}, 1);
 		};
 
 		// Window bindings
-		window.addEventListener( 'resize', function( event ) {
+		window.addEventListener('resize', function(event) {
 			updateBubblePosition();
 		});
 
 
-		document.body.addEventListener( 'scroll', function() {
+		document.body.addEventListener('scroll', function() {
 
 			// TODO: Debounce update bubble position to stop excessive redraws
 			updateBubblePosition();
@@ -65,66 +65,66 @@ var editor = (function() {
 
 		// Composition bindings. We need them to distinguish
 		// IME composition from text selection
-		document.addEventListener( 'compositionstart', onCompositionStart );
-		document.addEventListener( 'compositionend', onCompositionEnd );
+		document.addEventListener('compositionstart', onCompositionStart);
+		document.addEventListener('compositionend', onCompositionEnd);
 	}
 
 
 	function bindElements() {
 
-		headerField = document.querySelector( '.header' );
-		contentField = document.querySelector( '.content' );
-		textOptions = document.querySelector( '.text-options' );
+		headerField = document.querySelector('.header');
+		contentField = document.querySelector('.content');
+		textOptions = document.querySelector('.text-options');
 
-		optionsBox = textOptions.querySelector( '.options' );
+		optionsBox = textOptions.querySelector('.options');
 
-		boldButton = textOptions.querySelector( '.bold' );
+		boldButton = textOptions.querySelector('.bold');
 		boldButton.onclick = onBoldClick;
 
-		italicButton = textOptions.querySelector( '.italic' );
+		italicButton = textOptions.querySelector('.italic');
 		italicButton.onclick = onItalicClick;
 
-		quoteButton = textOptions.querySelector( '.quote' );
+		quoteButton = textOptions.querySelector('.quote');
 		quoteButton.onclick = onQuoteClick;
 
-		urlButton = textOptions.querySelector( '.url' );
+		urlButton = textOptions.querySelector('.url');
 		urlButton.onmousedown = onUrlClick;
 
-		urlInput = textOptions.querySelector( '.url-input' );
+		urlInput = textOptions.querySelector('.url-input');
 		urlInput.onblur = onUrlInputBlur;
 		urlInput.onkeydown = onUrlInputKeyDown;
 
-		codeButton = textOptions.querySelector( '.code' );
+		codeButton = textOptions.querySelector('.code');
 		codeButton.onclick = onCodeClick;
 	}
 
-	function checkTextHighlighting( event ) {
+	function checkTextHighlighting(event) {
 
 		var selection = window.getSelection();
 
 
-		if ( (event.target.className === "url-input" ||
-		    event.target.classList.contains( "url" ) ||
-		    event.target.parentNode.classList.contains( "ui-inputs" ) ) ) {
+		if ((event.target.className === "url-input" ||
+			event.target.classList.contains("url") ||
+			event.target.parentNode.classList.contains("ui-inputs"))) {
 
-			currentNodeList = findNodes( selection.focusNode );
+			currentNodeList = findNodes(selection.focusNode);
 			updateBubbleStates();
 			return;
 		}
 
 		// Check selections exist
-		if ( selection.isCollapsed === true && lastType === false ) {
+		if (selection.isCollapsed === true && lastType === false) {
 
 			onSelectorBlur();
 		}
 
 		// Text is selected
-		if ( selection.isCollapsed === false && composing === false ) {
+		if (selection.isCollapsed === false && composing === false) {
 
-			currentNodeList = findNodes( selection.focusNode );
+			currentNodeList = findNodes(selection.focusNode);
 
 			// Find if highlighting is in the editable area
-			if ( hasNode( currentNodeList, "ARTICLE") ) {
+			if (hasNode(currentNodeList, "ARTICLE")) {
 				updateBubbleStates();
 				updateBubblePosition();
 
@@ -142,7 +142,7 @@ var editor = (function() {
 		var boundary = range.getBoundingClientRect();
 
 		textOptions.style.top = boundary.top - 5 + window.pageYOffset + "px";
-		textOptions.style.left = (boundary.left + boundary.right)/2 + "px";
+		textOptions.style.left = (boundary.left + boundary.right) / 2 + "px";
 	}
 
 	function updateBubbleStates() {
@@ -151,31 +151,31 @@ var editor = (function() {
 		// browser support isn't quite there, and this functionality doesn't
 		// warrent a shim.
 
-		if ( hasNode( currentNodeList, 'B') ) {
+		if (hasNode(currentNodeList, 'B')) {
 			boldButton.className = "bold active"
 		} else {
 			boldButton.className = "bold"
 		}
 
-		if ( hasNode( currentNodeList, 'I') ) {
+		if (hasNode(currentNodeList, 'I')) {
 			italicButton.className = "italic active"
 		} else {
 			italicButton.className = "italic"
 		}
 
-		if ( hasNode( currentNodeList, 'BLOCKQUOTE') ) {
+		if (hasNode(currentNodeList, 'BLOCKQUOTE')) {
 			quoteButton.className = "quote active"
 		} else {
 			quoteButton.className = "quote"
 		}
 
-		if ( hasNode( currentNodeList, 'A') ) {
+		if (hasNode(currentNodeList, 'A')) {
 			urlButton.className = "url useicons active"
 		} else {
 			urlButton.className = "url useicons"
 		}
 
-		if ( hasNode( currentNodeList, 'C') ) {
+		if (hasNode(currentNodeList, 'C')) {
 			codeButton.className = "code active"
 		} else {
 			codeButton.className = "code"
@@ -186,7 +186,7 @@ var editor = (function() {
 	function onSelectorBlur() {
 
 		textOptions.className = "text-options fade";
-		setTimeout( function() {
+		setTimeout(function() {
 
 			if (textOptions.className == "text-options fade") {
 
@@ -194,10 +194,10 @@ var editor = (function() {
 				textOptions.style.top = '-999px';
 				textOptions.style.left = '-999px';
 			}
-		}, 260 )
+		}, 260)
 	}
 
-	function findNodes( element ) {
+	function findNodes(element) {
 
 		var nodeNames = {};
 
@@ -208,12 +208,12 @@ var editor = (function() {
 		// 	nodeNames[ 'B' ] = true;
 		// }
 
-		while ( element.parentNode ) {
+		while (element.parentNode) {
 
 			nodeNames[element.nodeName] = true;
 			element = element.parentNode;
 
-			if ( element.nodeName === 'A' ) {
+			if (element.nodeName === 'A') {
 				nodeNames.url = element.href;
 			}
 		}
@@ -221,64 +221,64 @@ var editor = (function() {
 		return nodeNames;
 	}
 
-	function hasNode( nodeList, name ) {
+	function hasNode(nodeList, name) {
 
-		return !!nodeList[ name ];
+		return !!nodeList[name];
 	}
 
-	function saveState( event ) {
+	function saveState(event) {
 
-		localStorage[ 'header' ] = headerField.innerHTML;
-		localStorage[ 'content' ] = contentField.innerHTML;
+		localStorage['header'] = headerField.innerHTML;
+		localStorage['content'] = contentField.innerHTML;
 	}
 
 	function loadState() {
 
-		if ( localStorage[ 'header' ] ) {
-			headerField.innerHTML = localStorage[ 'header' ];
+		if (localStorage['header']) {
+			headerField.innerHTML = localStorage['header'];
 		}
 
-		if ( localStorage[ 'content' ] ) {
-			contentField.innerHTML = localStorage[ 'content' ];
+		if (localStorage['content']) {
+			contentField.innerHTML = localStorage['content'];
 		}
 	}
 
 	function onBoldClick() {
-		document.execCommand( 'bold', false );
+		document.execCommand('bold', false);
 	}
 
 	function onItalicClick() {
-		document.execCommand( 'italic', false );
+		document.execCommand('italic', false);
 	}
 
 	function onQuoteClick() {
 
-		var nodeNames = findNodes( window.getSelection().focusNode );
+		var nodeNames = findNodes(window.getSelection().focusNode);
 
-		if ( hasNode( nodeNames, 'BLOCKQUOTE' ) ) {
-			document.execCommand( 'formatBlock', false, 'p' );
-			document.execCommand( 'outdent' );
+		if (hasNode(nodeNames, 'BLOCKQUOTE')) {
+			document.execCommand('formatBlock', false, 'p');
+			document.execCommand('outdent');
 		} else {
-			document.execCommand( 'formatBlock', false, 'blockquote' );
+			document.execCommand('formatBlock', false, 'blockquote');
 		}
 	}
 
 	function onUrlClick() {
 
-		if ( optionsBox.className == 'options' ) {
+		if (optionsBox.className == 'options') {
 
 			optionsBox.className = 'options url-mode';
 
 			// Set timeout here to debounce the focus action
-			setTimeout( function() {
+			setTimeout(function() {
 
-				var nodeNames = findNodes( window.getSelection().focusNode );
+				var nodeNames = findNodes(window.getSelection().focusNode);
 
-				if ( hasNode( nodeNames , "A" ) ) {
+				if (hasNode(nodeNames, "A")) {
 					urlInput.value = nodeNames.url;
 				} else {
 					// Symbolize text turning into a link, which is temporary, and will never be seen.
-					document.execCommand( 'createLink', false, '/' );
+					document.execCommand('createLink', false, '/');
 				}
 
 				// Since typing in the input box kills the highlighted text we need
@@ -296,78 +296,78 @@ var editor = (function() {
 		}
 	}
 
-	function onCodeClick( event ) {
-		var nodeNames = findNodes( window.getSelection().focusNode );
+	function onCodeClick(event) {
+		var nodeNames = findNodes(window.getSelection().focusNode);
 
-		if ( hasNode( nodeNames, 'PRE' ) ) {
-			document.execCommand( 'formatBlock', false, 'p' );
-			document.execCommand( 'outdent' );
+		if (hasNode(nodeNames, 'PRE')) {
+			document.execCommand('formatBlock', false, 'p');
+			document.execCommand('outdent');
 
 		} else {
-			document.execCommand( 'formatBlock', false, 'pre' );
+			document.execCommand('formatBlock', false, 'pre');
 		}
 
 	}
 
-	function onUrlInputKeyDown( event ) {
+	function onUrlInputKeyDown(event) {
 
-		if ( event.keyCode === 13 ) {
+		if (event.keyCode === 13) {
 			event.preventDefault();
-			applyURL( urlInput.value );
+			applyURL(urlInput.value);
 			urlInput.blur();
 		}
 	}
 
-	function onUrlInputBlur( event ) {
+	function onUrlInputBlur(event) {
 
 		optionsBox.className = 'options';
-		applyURL( urlInput.value );
+		applyURL(urlInput.value);
 		urlInput.value = '';
 
-		currentNodeList = findNodes( window.getSelection().focusNode );
+		currentNodeList = findNodes(window.getSelection().focusNode);
 		updateBubbleStates();
 	}
 
-	function applyURL( url ) {
+	function applyURL(url) {
 
 		rehighlightLastSelection();
 
 		// Unlink any current links
-		document.execCommand( 'unlink', false );
+		document.execCommand('unlink', false);
 
 		if (url !== "") {
 
 			// Insert HTTP if it doesn't exist.
-			if ( !url.match("^(http|https)://") ) {
+			if (!url.match("^(http|https)://")) {
 
 				url = "http://" + url;
 			}
 
-			document.execCommand( 'createLink', false, url );
+			document.execCommand('createLink', false, url);
 		}
 	}
 
 	function rehighlightLastSelection() {
 
-		window.getSelection().addRange( lastSelection );
+		window.getSelection().addRange(lastSelection);
 	}
 
 	function getWordCount() {
 
-		var text = get_text( contentField );
+		var text = get_text(contentField);
 
-		if ( text === "" ) {
+		if (text === "") {
 			return 0
 		} else {
 			return text.split(/\s+/).length;
 		}
 	}
 
-	function onCompositionStart ( event ) {
+	function onCompositionStart(event) {
 		composing = true;
 	}
 
-	function onCompositionEnd (event) {
+	function onCompositionEnd(event) {
 		composing = false;
 	}
 
