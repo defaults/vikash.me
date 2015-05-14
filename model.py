@@ -12,4 +12,3 @@ class Article(ndb.Model):
 
 class Auth(ndb.Model):
   token = ndb.StringProperty()
-
