@@ -5,6 +5,7 @@ import urllib
 import random
 import string
 import json
+import re
 
 import model
 import markdown
@@ -143,7 +144,7 @@ class WriteHandler(BaseHandler):
         if verify :
             header = self.request.get('header')
             content = self.request.get('text')
-            url = header.replace(' ','-').lower()
+            url = re.sub(r'[/|!|"|:|;|.|%|^|&|*|(|)|@|,|{|}|+|=|_|?|<|>]', 'p', header).replace(' ', '-').lower()
             save = model.Article(tittle = header,
                                 content = content,
                                 url = url)
