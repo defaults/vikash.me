@@ -285,6 +285,10 @@ pre {
     pre {
         margin: 0;
     }
+    .post,
+    .time-post {
+        margin-left: 1rem;
+    }
 }
 @media screen and (max-width: 430px) {
     .info {

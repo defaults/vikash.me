@@ -7,7 +7,7 @@ class Article(ndb.Model):
   url = ndb.StringProperty()
   tittle = ndb.StringProperty()
   content = ndb.TextProperty()
-  date = ndb.DateTimeProperty(auto_now = True)
+  date = ndb.DateTimeProperty()
   # image = ndb.
 
 class Auth(ndb.Model):
