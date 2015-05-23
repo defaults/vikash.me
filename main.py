@@ -6,6 +6,7 @@ import random
 import string
 import json
 import re
+import datetime
 
 import model
 import markdown
@@ -64,7 +65,8 @@ class BaseHandler(webapp2.RequestHandler):
             # for test
             # url = 'http://localhost:8080/blog/write/' + gtoken
             # params = {
-            #     'page' : 'token'
+            #     'page' : 'token',
+            #     'url' : url
             # }
 
         self.render_response('write.html',**params)
@@ -145,9 +147,11 @@ class WriteHandler(BaseHandler):
             header = self.request.get('header')
             content = self.request.get('text')
             url = re.sub(r'[/|!|"|:|;|.|%|^|&|*|(|)|@|,|{|}|+|=|_|?|<|>]', 'p', header).replace(' ', '-').lower()
+            time = datetime.datetime(2015, 03, 02, hour=01, minute=25, second=55, microsecond=66)
             save = model.Article(tittle = header,
                                 content = content,
-                                url = url)
+                                url = url,
+                                date = time)
             save.put()
             token = model.Auth.query().get()
             token.key.delete()

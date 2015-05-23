@@ -16,14 +16,14 @@ var editor = (function() {
 		// Set cursor position
 		var range = document.createRange();
 		var selection = window.getSelection();
-		range.setStart(headerField, 1);
+		range.setStart( headerField, 1 );
 		selection.removeAllRanges();
 		selection.addRange(range);
 
 		createEventBindings();
 
 		// Load state if storage is supported
-		if (supportsHtmlStorage()) {
+		if ( supportsHtmlStorage( ) ) {
 			loadState();
 		}
 	}
@@ -56,7 +56,6 @@ var editor = (function() {
 			updateBubblePosition();
 		});
 
-
 		document.body.addEventListener('scroll', function() {
 
 			// TODO: Debounce update bubble position to stop excessive redraws
@@ -68,7 +67,6 @@ var editor = (function() {
 		document.addEventListener('compositionstart', onCompositionStart);
 		document.addEventListener('compositionend', onCompositionEnd);
 	}
-
 
 	function bindElements() {
 
@@ -102,10 +100,9 @@ var editor = (function() {
 
 		var selection = window.getSelection();
 
-
 		if ((event.target.className === "url-input" ||
-			event.target.classList.contains("url") ||
-			event.target.parentNode.classList.contains("ui-inputs"))) {
+				event.target.classList.contains("url") ||
+				event.target.parentNode.classList.contains("ui-inputs"))) {
 
 			currentNodeList = findNodes(selection.focusNode);
 			updateBubbleStates();
