@@ -1,6 +1,6 @@
 body {
     background: url(/static/img/web-tile.png) #fff;
-    width: 100% !important;
+    width: 100%;
     min-height: 100%;
     font-family: Raleway, sans-serif;
     -ms-text-size-adjust: none;
