@@ -1,14 +1,13 @@
-import time
-
 from google.appengine.ext import ndb
-from webapp2_extras import security
+
 
 class Article(ndb.Model):
-  url = ndb.StringProperty()
-  tittle = ndb.StringProperty()
-  content = ndb.TextProperty()
-  date = ndb.DateTimeProperty()
-  # image = ndb.
+    url = ndb.StringProperty()
+    tittle = ndb.StringProperty()
+    content = ndb.TextProperty()
+    date = ndb.DateTimeProperty()
+    # image = ndb.
+
 
 class Auth(ndb.Model):
-  token = ndb.StringProperty()
+    token = ndb.StringProperty()
