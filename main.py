@@ -69,6 +69,15 @@ class BaseHandler(webapp2.RequestHandler):
 
         self.render_response('write.html', **params)
 
+    # funtion to send mail
+    def sendEmail(emailTo, emailSubject, emailBody):
+        mail.send_mail(sender="Vikash Kumar <mailkumarvikash@gmail.com>",
+                       to=emailTo,
+                       subject=emailSubject,
+                       body=emailBody)
+
+        return
+
 
 # welcome page handler
 class HomeHandler(BaseHandler):
