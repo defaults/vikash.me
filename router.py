@@ -3,6 +3,7 @@ import logging
 import webapp2
 
 from controllers import server
+from controllers import blog
 from webapp2_extras import jinja2
 from webapp2_extras import routes
 
@@ -21,42 +22,51 @@ app = webapp2.WSGIApplication([
     routes.DomainRoute('blog.vikashkumar.me', [
         routes.RedirectRoute(
             '/write',
-            handler=server.BaseHandler,
+            handler=blog.BlogHandler,
             name='authentication',
             handler_method='authentication', strict_slash=True),
         routes.RedirectRoute(
             '/write/<token>/',
-            handler=server.WriteHandler, name='write', strict_slash=True),
+            handler=blog.WriteHandler, name='write', strict_slash=True),
         routes.RedirectRoute(
             '/<article_url>/',
-            handler=server.ArticleHandler, name='article', strict_slash=True),
+            handler=blog.ArticleHandler, name='article', strict_slash=True),
+        routes.RedirectRoute(
+            '/write/resend_mail',
+            handler=blog.BlogHandler, name='resendMail',
+            handler_method='resendMail', strict_slash=True),
+        routes.RedirectRoute(
+            '/blog/dashboard/',
+            handler=blog.DashboardHandler, name='dashboard',
+            strict_slash=True),
         routes.RedirectRoute(
             '/',
-            handler=server.BlogHandler, name='blog', strict_slash=True),
+            handler=blog.ArticlesListHandler, name='blog',
+            strict_slash=True),
     ]),
     routes.RedirectRoute(
         '/about',
         handler=server.AboutHandler, name='about', strict_slash=True),
     routes.RedirectRoute(
         '/blog',
-        handler=server.BlogHandler, name='blog', strict_slash=True),
+        handler=blog.ArticlesListHandler, name='blog', strict_slash=True),
     routes.RedirectRoute(
         '/write',
-        handler=server.BaseHandler, name='authentication',
+        handler=blog.BlogHandler, name='authentication',
         handler_method='authentication', strict_slash=True),
     routes.RedirectRoute(
         '/write/resend_mail',
-        handler=server.BaseHandler, name='resendMail',
+        handler=blog.BlogHandler, name='resendMail',
         handler_method='resendMail', strict_slash=True),
     routes.RedirectRoute(
         '/blog/write/<token>',
-        handler=server.WriteHandler, name='write', strict_slash=True),
+        handler=blog.WriteHandler, name='write', strict_slash=True),
     routes.RedirectRoute(
         '/blog/<article_url>/',
-        handler=server.ArticleHandler, name='article', strict_slash=True),
+        handler=blog.ArticleHandler, name='article', strict_slash=True),
     routes.RedirectRoute(
         '/blog/dashboard/',
-        handler=server.DashboardHandler, name='dashboard', strict_slash=True),
+        handler=blog.DashboardHandler, name='dashboard', strict_slash=True),
     routes.RedirectRoute(
         '/', handler=server.HomeHandler, name='home', strict_slash=True),
 ])
