@@ -4,24 +4,13 @@ import random
 import re
 import string
 
-import markdown
-import model
 import webapp2
 
-
+from vendors import markdown
+from models import model
 from google.appengine.api import mail
 from webapp2_extras import jinja2
 from webapp2_extras import routes
-
-
-# method for handling errors
-def error(request, response, exception):
-    logging.exception(exception)
-    params = {
-        'error': exception
-    }
-    jinja = jinja2.get_jinja2()
-    response.write(jinja.render_template('error.html', **params))
 
 
 # base handler
@@ -177,29 +166,3 @@ class AboutHandler(BaseHandler):
             'page': 'about'
         }
         self.render_response('about.html', **params)
-
-
-# error handler
-class ErrorHandler(BaseHandler):
-    def get(self, *args):
-        self.response.write(error)
-
-
-app = webapp2.WSGIApplication([
-    routes.DomainRoute('blog.vikashkumar.me', [
-        routes.RedirectRoute('/write', handler=BaseHandler, name='authentication', handler_method='authentication', strict_slash=True),
-        routes.RedirectRoute('/write/<token>/', handler=WriteHandler, name='write', strict_slash=True),
-        routes.RedirectRoute('/<article_url>/', handler=ArticleHandler, name='article', strict_slash=True),
-        routes.RedirectRoute('/', handler=BlogHandler, name='blog', strict_slash=True),
-    ]),
-    routes.RedirectRoute('/about', handler=AboutHandler, name='about', strict_slash=True),
-    routes.RedirectRoute('/blog', handler=BlogHandler, name='blog', strict_slash=True),
-    routes.RedirectRoute('/write', handler=BaseHandler, name='authentication', handler_method='authentication', strict_slash=True),
-    routes.RedirectRoute('/blog/write/<token>', handler=WriteHandler, name='write', strict_slash=True),
-    routes.RedirectRoute('/blog/<article_url>/', handler=ArticleHandler, name='article', strict_slash=True),
-    routes.RedirectRoute('/', handler=HomeHandler, name='home', strict_slash=True),
-])
-
-# errors
-app.error_handlers[404] = error
-app.error_handlers[500] = error
