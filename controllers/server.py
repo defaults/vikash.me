@@ -141,13 +141,13 @@ class WriteHandler(BaseHandler):
             self.render_response('zenpen.html', **params)
             return
 
+        # else redirecting to generate token
         else:
             self.redirect('/write')
             return
 
-        # code for redirecting to generate token
 
-        # first check authentication
+    # first check authentication
     def post(self, **kwargs):
         auth = kwargs['token']
         verify = model.Auth.query(model.Auth.token == auth).get()
