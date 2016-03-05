@@ -4,9 +4,12 @@ from google.appengine.ext import ndb
 class Article(ndb.Model):
     url = ndb.StringProperty()
     tittle = ndb.StringProperty()
-    content = ndb.TextProperty()
     date = ndb.DateTimeProperty()
-    # image = ndb.
+    content = ndb.TextProperty()
+    shortUrl = ndb.StringProperty()
+    stars = ndb.IntegerProperty(default=0)
+    tags = ndb.StringProperty(repeated=True)
+    published = ndb.BooleanProperty(default=True)
 
 
 class Auth(ndb.Model):
