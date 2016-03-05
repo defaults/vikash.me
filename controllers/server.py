@@ -3,14 +3,16 @@ import logging
 import random
 import re
 import string
+import json
 
 import webapp2
-
-from vendors import markdown
-from models import model
 from google.appengine.api import mail
 from webapp2_extras import jinja2
 from webapp2_extras import routes
+
+from vendors import markdown
+from models import model
+from config import config
 
 
 # base handler
@@ -38,28 +40,36 @@ class BaseHandler(webapp2.RequestHandler):
             save = model.Auth(token=gtoken)
             save.put()
 
-            # in production
-            mail.send_mail(sender="Vikash Kumar <mailkumarvikash@gmail.com>",
-                           to="Vikash Kumar <mail@vikashkumar.me>",
-                           subject="Link to write blog",
-                           body="""
-                           https://blog.vikashkumar.me/write/%s
-                                    """ % (gtoken))
+            to = config.admin['admin_name'] + ' ' + '<' + config.admin['admin_mail'] + '>'
+            subject = 'Link to write blog'
+            body = 'https://blog.vikashkumar.me/write/{0}'.format(gtoken)
+
+            self.sendEmail(to, subject, body)
+
             params = {
                 'page': 'token'
             }
 
-            # for test
-            # url = 'http://localhost:8080/blog/write/' + gtoken
-            # params = {
-            #     'page' : 'token',
-            #     'url' : url
-            # }
-
         self.render_response('write.html', **params)
 
+    # function to resend blog mail
+    def resendMail(self):
+        verify = model.Auth.query().get()
+
+        if not verify:
+            verify = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(20))
+            save = model.Auth(token=verify)
+            save.put()
+
+        to = config.admin['admin_name'] + ' ' + '<' + config.admin['admin_mail'] + '>'
+        subject = 'Link to write blog'
+        body = 'https://blog.vikashkumar.me/write/{0}'.format(verify.token)
+
+        self.sendEmail(to, subject, body)
+        self.response.out.write(json.dumps({'status' : 'success'}))
+
     # funtion to send mail
-    def sendEmail(emailTo, emailSubject, emailBody):
+    def sendEmail(self, emailTo, emailSubject, emailBody):
         mail.send_mail(sender="Vikash Kumar <mailkumarvikash@gmail.com>",
                        to=emailTo,
                        subject=emailSubject,
