@@ -36,7 +36,8 @@ class BaseHandler(webapp2.RequestHandler):
                     'pending': 'pending'
                 }
         else:
-            gtoken = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(20))
+            gtoken = ''.join(random.choice(string.ascii_uppercase +
+                                           string.digits) for _ in range(20))
             save = model.Auth(token=gtoken)
             save.put()
 
@@ -57,7 +58,8 @@ class BaseHandler(webapp2.RequestHandler):
         verify = model.Auth.query().get()
 
         if not verify:
-            verify = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(20))
+            verify = ''.join(random.choice(string.ascii_uppercase +
+                                           string.digits) for _ in range(20))
             save = model.Auth(token=verify)
             save.put()
 
@@ -66,7 +68,7 @@ class BaseHandler(webapp2.RequestHandler):
         body = 'https://blog.vikashkumar.me/write/{0}'.format(verify.token)
 
         self.sendEmail(to, subject, body)
-        self.response.out.write(json.dumps({'status' : 'success'}))
+        self.response.out.write(json.dumps({'status': 'success'}))
 
     # funtion to send mail
     def sendEmail(self, emailTo, emailSubject, emailBody):
@@ -104,11 +106,13 @@ class BlogHandler(BaseHandler):
 class ArticleHandler(BaseHandler):
     def get(self, **kwargs):
         article_url = kwargs['article_url']
-        article_content = model.Article.query(model.Article.url == article_url).fetch()
+        article_content = model.Article.query(
+            model.Article.url == article_url).fetch()
 
         if article_content:
             for article in article_content:
-                content = markdown.markdown(article.content, extras=["code-friendly"])
+                content = markdown.markdown(article.content,
+                                            extras=["code-friendly"])
                 tittle = article.tittle
                 date = article.date
                 url = article.url
@@ -146,7 +150,6 @@ class WriteHandler(BaseHandler):
             self.redirect('/write')
             return
 
-
     # first check authentication
     def post(self, **kwargs):
         auth = kwargs['token']
@@ -154,8 +157,10 @@ class WriteHandler(BaseHandler):
         if verify:
             header = self.request.get('header')
             content = self.request.get('text')
-            url = re.sub(r'[/|!|"|:|;|.|%|^|&|*|(|)|@|,|{|}|+|=|_|?|<|>]', 'p', header).replace(' ', '-').lower()
-            time = datetime.datetime(2015, 03, 02, hour=01, minute=25, second=55, microsecond=66)
+            url = re.sub(r'[/|!|"|:|;|.|%|^|&|*|(|)|@|,|{|}|+|=|_|?|<|>]',
+                         'p', header).replace(' ', '-').lower()
+            time = datetime.datetime(2015, 03, 02, hour=01, minute=25,
+                                     second=55, microsecond=66)
             save = model.Article(tittle=header,
                                  content=content,
                                  url=url,
@@ -167,6 +172,10 @@ class WriteHandler(BaseHandler):
         else:
             self.abort(404)
             return
+
+
+class DashboardHandler(BaseHandler):
+    return
 
 
 # handler for about page

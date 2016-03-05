@@ -17,21 +17,48 @@ def error(request, response, exception):
     response.write(jinja.render_template('error.html', **params))
 
 
-
 app = webapp2.WSGIApplication([
     routes.DomainRoute('blog.vikashkumar.me', [
-        routes.RedirectRoute('/write', handler=server.BaseHandler, name='authentication', handler_method='authentication', strict_slash=True),
-        routes.RedirectRoute('/write/<token>/', handler=server.WriteHandler, name='write', strict_slash=True),
-        routes.RedirectRoute('/<article_url>/', handler=server.ArticleHandler, name='article', strict_slash=True),
-        routes.RedirectRoute('/', handler=server.BlogHandler, name='blog', strict_slash=True),
+        routes.RedirectRoute(
+            '/write',
+            handler=server.BaseHandler,
+            name='authentication',
+            handler_method='authentication', strict_slash=True),
+        routes.RedirectRoute(
+            '/write/<token>/',
+            handler=server.WriteHandler, name='write', strict_slash=True),
+        routes.RedirectRoute(
+            '/<article_url>/',
+            handler=server.ArticleHandler, name='article', strict_slash=True),
+        routes.RedirectRoute(
+            '/',
+            handler=server.BlogHandler, name='blog', strict_slash=True),
     ]),
-    routes.RedirectRoute('/about', handler=server.AboutHandler, name='about', strict_slash=True),
-    routes.RedirectRoute('/blog', handler=server.BlogHandler, name='blog', strict_slash=True),
-    routes.RedirectRoute('/write', handler=server.BaseHandler, name='authentication', handler_method='authentication', strict_slash=True),
-    routes.RedirectRoute('/write/resend_mail', handler=server.BaseHandler, name='resendMail', handler_method='resendMail', strict_slash=True),
-    routes.RedirectRoute('/blog/write/<token>', handler=server.WriteHandler, name='write', strict_slash=True),
-    routes.RedirectRoute('/blog/<article_url>/', handler=server.ArticleHandler, name='article', strict_slash=True),
-    routes.RedirectRoute('/', handler=server.HomeHandler, name='home', strict_slash=True),
+    routes.RedirectRoute(
+        '/about',
+        handler=server.AboutHandler, name='about', strict_slash=True),
+    routes.RedirectRoute(
+        '/blog',
+        handler=server.BlogHandler, name='blog', strict_slash=True),
+    routes.RedirectRoute(
+        '/write',
+        handler=server.BaseHandler, name='authentication',
+        handler_method='authentication', strict_slash=True),
+    routes.RedirectRoute(
+        '/write/resend_mail',
+        handler=server.BaseHandler, name='resendMail',
+        handler_method='resendMail', strict_slash=True),
+    routes.RedirectRoute(
+        '/blog/write/<token>',
+        handler=server.WriteHandler, name='write', strict_slash=True),
+    routes.RedirectRoute(
+        '/blog/<article_url>/',
+        handler=server.ArticleHandler, name='article', strict_slash=True),
+    routes.RedirectRoute(
+        '/blog/dashboard/',
+        handler=server.DashboardHandler, name='dashboard', strict_slash=True),
+    routes.RedirectRoute(
+        '/', handler=server.HomeHandler, name='home', strict_slash=True),
 ])
 
 # errors

@@ -12,5 +12,10 @@ class Article(ndb.Model):
     published = ndb.BooleanProperty(default=True)
 
 
+class Subscribers(object):
+    name = ndb.StringProperty()
+    email = ndb.StringProperty()
+
+
 class Auth(ndb.Model):
     token = ndb.StringProperty()
