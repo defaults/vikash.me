@@ -36,7 +36,7 @@ app = webapp2.WSGIApplication([
             handler=blog.BlogHandler, name='resendMail',
             handler_method='resendMail', strict_slash=True),
         routes.RedirectRoute(
-            '/blog/dashboard/',
+            '/dashboard/',
             handler=blog.DashboardHandler, name='dashboard',
             strict_slash=True),
         routes.RedirectRoute(
