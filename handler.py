@@ -4,7 +4,7 @@ import webapp2
 
 app = webapp2.WSGIApplication([
         routes.RedirectRoute(
-            '/articles',
+            '/articlesgi',
             handler=blog.ArticleHandler, name='article', strict_slash=True),
         routes.RedirectRoute(
             '/subscribers',
