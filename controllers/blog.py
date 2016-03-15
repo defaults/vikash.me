@@ -61,91 +61,34 @@ class BlogHandler(server.BaseHandler):
         self.response.out.write(json.dumps({'status': 'success'}))
 
 
-# handler for blog
-class ArticlesListHandler(BlogHandler):
-    def get(self):
-        # code to search the database for blog posts
-        article = model.Article.query().order(-model.Article.date)
-
-        params = {
-            'page': 'blog',
-            'article': article
-        }
-        self.render_response('blog.html', **params)
-
-
 # handler for serving article
-class ArticleHandler(BlogHandler):
-    def get(self, **kwargs):
-        article_url = kwargs['article_url']
-        article_content = model.Article.query(
-            model.Article.url == article_url).fetch()
+class ArticleHandler(webapp2.RequestHandler):
+    # def __init__(self, request, response):
+    #     self.response.write('hii')
 
-        if article_content:
-            for article in article_content:
-                content = markdown.markdown(article.content,
-                                            extras=["code-friendly"])
-                tittle = article.tittle
-                date = article.date
-                url = article.url
+    def get(self):
+        self.response.out.write('Hii')
 
-            params = {
-                'page': 'article',
-                'tittle': tittle,
-                'content': content,
-                'date': date,
-                'url': url
-            }
-            self.render_response('article.html', **params)
-        else:
-            self.abort(404)
-            return
+    def post(self, **kwargs):
+        pass
+
+    def patch():
+        pass
+
+    def delete():
+        pass
 
 
 # handler for writing blog
-class WriteHandler(BlogHandler):
-    # add function to authenticate user
-    def get(self, **kwargs):
-        auth = kwargs['token']
-        verify = model.Auth.query(model.Auth.token == auth).get()
-        if verify:
-            params = {
-                'page': 'write',
-                'welcome': ''
-            }
+class SubscriberHandler(BlogHandler):
+    def get():
+        pass
 
-            self.render_response('zenpen.html', **params)
-            return
+    def post():
+        pass
 
-        # else redirecting to generate token
-        else:
-            self.redirect('/write')
-            return
+    def patch():
+        pass
 
-    # first check authentication
-    def post(self, **kwargs):
-        auth = kwargs['token']
-        verify = model.Auth.query(model.Auth.token == auth).get()
-        if verify:
-            header = self.request.get('header')
-            content = self.request.get('text')
-            url = re.sub(r'[/|!|"|:|;|.|%|^|&|*|(|)|@|,|{|}|+|=|_|?|<|>]',
-                         'p', header).replace(' ', '-').lower()
-            time = datetime.datetime(2015, 03, 02, hour=01, minute=25,
-                                     second=55, microsecond=66)
-            save = model.Article(tittle=header,
-                                 content=content,
-                                 url=url,
-                                 date=time)
-            save.put()
-            token = model.Auth.query().get()
-            token.key.delete()
-
-        else:
-            self.abort(404)
-            return
-
-
-class DashboardHandler(BlogHandler):
-    def fet(self):
+    def delete():
         pass
