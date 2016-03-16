@@ -5,9 +5,20 @@ from webapp2_extras import routes
 
 from controllers import blog
 
+
+config = {}
+config['webapp2_extras.sessions'] = {
+    'secret_key': 'some-secret-key',
+}
+
 app = webapp2.WSGIApplication([
         routes.RedirectRoute(
             '/api/articles',
+            handler=blog.ArticleHandler,
+            name='article',
+            handler_method='all_articles', strict_slash=True, methods=['GET']),
+        routes.RedirectRoute(
+            '/api/article/<id>',
             handler=blog.ArticleHandler, name='article', strict_slash=True),
         routes.RedirectRoute(
             '/api/subscribers',
@@ -18,5 +29,6 @@ app = webapp2.WSGIApplication([
             handler=blog.TagHandler, name='tag', strict_slash=True),
         routes.RedirectRoute(
             '/auth',
-            handler=blog.AuthHandler, name='auth', strict_slash=True),
-    ], debug=True)
+            handler=blog.BaseHandler,
+            name='auth', handler_method='authentication' strict_slash=True),
+    ], config=config, debug=True)
