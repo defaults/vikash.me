@@ -17,6 +17,15 @@ from controllers import server
 
 # base handler
 class BlogHandler(server.BaseHandler):
+    def __init__(self, request, response):
+        # Set self.request, self.response and self.app.
+        self.initialize(request, response)
+
+
+    # custom dispatch handler
+    def handle_dispatch():
+        # TODO: format return to JSON here
+        pass
 
     def authentication(self):
         verify = model.Auth.query().get()
@@ -63,9 +72,6 @@ class BlogHandler(server.BaseHandler):
 
 # handler for serving article
 class ArticleHandler(webapp2.RequestHandler):
-    # def __init__(self, request, response):
-    #     self.response.write('hii')
-
     def get(self):
         self.response.out.write('Hii')
 
