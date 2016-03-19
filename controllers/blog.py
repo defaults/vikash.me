@@ -102,3 +102,18 @@ class SubscriberHandler(BlogHandler):
     # DELETE subscriber - sets softDeleted flag
     def delete():
         pass
+
+
+# handler for blog tags
+class TagHandler(BlogHandler):
+    # GET all tags
+    def get():
+        pass
+
+    # add a new tag
+    def post():
+        pass
+
+    # delete a tag
+    def delete():
+        pass
