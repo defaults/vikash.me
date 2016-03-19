@@ -23,7 +23,7 @@ class BaseHandler(webapp2.RequestHandler):
 
     # funtion to send mail
     def sendEmail(self, emailTo, emailSubject, emailBody):
-        mail.send_mail(sender="Vikash Kumar <mailkumarvikash@gmail.com>",
+        mail.send_mail(sender=config.admin['admin_mail'],
                        to=emailTo,
                        subject=emailSubject,
                        body=emailBody)

@@ -28,27 +28,16 @@ class BlogHandler(server.BaseHandler):
         pass
 
     def authentication(self):
-        verify = model.Auth.query().get()
-        if verify:
-                params = {
-                    'page': 'write',
-                    'pending': 'pending'
-                }
-        else:
-            gtoken = ''.join(random.choice(string.ascii_uppercase +
-                                           string.digits) for _ in range(20))
-            save = model.Auth(token=gtoken)
-            save.put()
+        gtoken = ''.join(random.choice(string.ascii_uppercase +
+                                       string.digits) for _ in range(20))
+        save = model.Auth(token=gtoken)
+        save.put()
 
-            to = config.admin['admin_name'] + ' ' + '<' + config.admin['admin_mail'] + '>'
-            subject = 'Link to write blog'
-            body = 'https://blog.vikashkumar.me/write/{0}'.format(gtoken)
+        to = config.admin['admin_name'] + ' ' + '<' + config.admin['admin_mail'] + '>'
+        subject = 'Link to write blog'
+        body = 'https://blog.vikashkumar.me/write/{0}'.format(gtoken)
 
-            self.sendEmail(to, subject, body)
-
-            params = {
-                'page': 'token'
-            }
+        self.sendEmail(to, subject, body)
 
         self.render_response('write.html', **params)
 
@@ -72,29 +61,44 @@ class BlogHandler(server.BaseHandler):
 
 # handler for serving article
 class ArticleHandler(webapp2.RequestHandler):
+    # GET method to retrive all articles
+    def all_articles():
+        limit
+        offset
+        article = model.Article.query().order(-model.Article.date)
+        return article
+
+    # GET articles by id
     def get(self):
         self.response.out.write('Hii')
 
+    # POST article
     def post(self, **kwargs):
         pass
 
+    # PATCH article
     def patch():
         pass
 
+    # DELETE article - sets softDeleted flag
     def delete():
         pass
 
 
 # handler for writing blog
 class SubscriberHandler(BlogHandler):
+    # GET all subscribers
     def get():
         pass
 
+    # POST subscriber
     def post():
         pass
 
+    # PATCH an existing subscriber detail
     def patch():
         pass
 
+    # DELETE subscriber - sets softDeleted flag
     def delete():
         pass
