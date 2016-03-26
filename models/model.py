@@ -27,3 +27,7 @@ class Auth(ndb.Model):
     createdOn = ndb.DateTimeProperty()
     modifiedOn = ndb.DateTimeProperty()
     softDeleted = ndb.BooleanProperty(default=False)
+
+class ShortUrl(ndb.Model):
+    fullUrl = ndb.StringProperty()
+    ShortUrl = ndb.StringProperty()

@@ -58,22 +58,34 @@ class BlogHandler(server.BaseHandler):
         self.sendEmail(to, subject, body)
         self.response.out.write(json.dumps({'status': 'success'}))
 
+    def urlShortner(self, fullUrl):
+        ShortUrl = ''.join(random.choice(string.ascii_lowercase +
+                                         string.digits) for _ in range(5))
+        save = model.ShortUrl(fullUrl=fullUrl,
+                              shortURl=shortURl)
+        save.put()
+        return shortURl
+
 
 # handler for serving article
 class ArticleHandler(webapp2.RequestHandler):
     # GET method to retrive all articles
-    def all_articles():
-        limit
-        offset
-        article = model.Article.query().order(-model.Article.date)
-        return article
+    def all_articles(self):
+        limit = self.request.get('limit', default_value=2)
+        limit = sef.request.GET['limit']
+        cookie = self.request.cookies
+        self.response.write(limit)
+        articles = model.Article.query().order(-model.Article.date)
+        return articles
 
     # GET articles by id
     def get(self):
-        self.response.out.write('Hii')
+        article = model.Article.query()
+        return article
 
     # POST article
     def post(self, **kwargs):
+        shortURl = self.urlShortner(fullUrl)
         pass
 
     # PATCH article
