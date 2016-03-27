@@ -28,6 +28,9 @@ app = webapp2.WSGIApplication([
             '/api/tag',
             handler=blog.TagHandler, name='tag', strict_slash=True),
         routes.RedirectRoute(
+            '/api/short',
+            handler=blog.UrlShortnerHandler, name='short', strict_slash=True),
+        routes.RedirectRoute(
             '/auth',
             handler=blog.BlogHandler,
             name='auth', handler_method='authentication', strict_slash=True),

@@ -21,7 +21,6 @@ class BlogHandler(server.BaseHandler):
         # Set self.request, self.response and self.app.
         self.initialize(request, response)
 
-
     # custom dispatch handler
     def handle_dispatch():
         # TODO: format return to JSON here
@@ -127,5 +126,17 @@ class TagHandler(BlogHandler):
         pass
 
     # delete a tag
+    def delete():
+        pass
+
+
+# Handler for URL shortner
+class UrlShortnerHandler(BlogHandler):
+    def get():
+        pass
+
+    def post():
+        pass
+
     def delete():
         pass
