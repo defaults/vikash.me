@@ -8,6 +8,7 @@ import webapp2
 from google.appengine.api import mail
 from webapp2_extras import jinja2
 from webapp2_extras import routes
+from webapp2_extras import sessions
 
 from vendors import markdown
 from models import model
@@ -71,29 +72,50 @@ class ArticleHandler(webapp2.RequestHandler):
     # GET method to retrive all articles
     def all_articles(self):
         limit = self.request.get('limit', default_value=2)
-        limit = sef.request.GET['limit']
-        cookie = self.request.cookies
-        self.response.write(limit)
-        articles = model.Article.query().order(-model.Article.date)
-        return articles
+        # cookie = self.request.cookies
+        time = datetime.datetime(2015, 03, 02, hour=01, minute=25,
+                                     second=55, microsecond=66)
+        articles = [article.to_dict() for article in model.Article.query()]
+        self.response.write(json.dumps(articles))
 
     # GET articles by id
-    def get(self):
-        article = model.Article.query()
-        return article
+    def get(self, **kwargs):
+        id = kwargs['id']
+        article = model.Article.query(id=id)
+        self.send_response(article)
 
     # POST article
     def post(self, **kwargs):
-        shortURl = self.urlShortner(fullUrl)
-        pass
+        header = self.request.get('header')
+        content = self.request.get('text')
+        url = re.sub(r'[/|!|"|:|;|.|%|^|&|*|(|)|@|,|{|}|+|=|_|?|<|>]',
+                     'p', header).replace(' ', '-').lower()
+        time = datetime.datetime()
+        save = model.Article(tittle=header,
+                             content=content,
+                             url=url,
+                             date=time)
+        save.put()
+        return
 
     # PATCH article
     def patch():
-        pass
+        id = self.request.get('id')
+        header = self.request.get('header')
+        content = self.request.get('text')
+        url = re.sub(r'[/|!|"|:|;|.|%|^|&|*|(|)|@|,|{|}|+|=|_|?|<|>]',
+                     'p', header).replace(' ', '-').lower()
+        time = datetime.datetime()
+        save = model.Article(tittle=header,
+                             content=content,
+                             url=url,
+                             date=time)
+        save.put()
+        return
 
     # DELETE article - sets softDeleted flag
     def delete():
-        pass
+        id = self.request.get('id')
 
 
 # handler for writing blog
