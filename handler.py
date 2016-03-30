@@ -18,7 +18,7 @@ app = webapp2.WSGIApplication([
             name='article',
             handler_method='all_articles', strict_slash=True, methods=['GET']),
         routes.RedirectRoute(
-            '/api/article/<id>',
+            '/api/article',
             handler=blog.ArticleHandler, name='article', strict_slash=True),
         routes.RedirectRoute(
             '/api/subscribers',
