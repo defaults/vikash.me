@@ -122,11 +122,17 @@ class ArticleHandler(webapp2.RequestHandler):
 class SubscriberHandler(BlogHandler):
     # GET all subscribers
     def get():
-        pass
+        article = model.Subscriber.query()
+        self.send_response(article)
 
     # POST subscriber
     def post():
-        pass
+        name = self.request.get('name')
+        email = self.request.get('email')
+
+        save = model.Subscriber(name=name,
+                                email=email)
+        save.put()
 
     # PATCH an existing subscriber detail
     def patch():
