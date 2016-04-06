@@ -22,10 +22,10 @@ class BlogHandler(server.BaseHandler):
         # Set self.request, self.response and self.app.
         self.initialize(request, response)
 
-    # custom dispatch handler
-    def handle_dispatch():
-        # TODO: format return to JSON here
-        pass
+    # def handle_dispatch():
+    #     """custom dispatch handler"""
+    #     # TODO: format return to JSON here
+    #     pass
 
     def authentication(self):
         gtoken = ''.join(random.choice(string.ascii_uppercase +
@@ -41,8 +41,8 @@ class BlogHandler(server.BaseHandler):
 
         self.render_response('write.html', **params)
 
-    # function to resend blog mail
     def resendMail(self):
+        """Method to resend mail for login to admin"""
         verify = model.Auth.query().get()
 
         if not verify:
@@ -59,6 +59,7 @@ class BlogHandler(server.BaseHandler):
         self.response.out.write(json.dumps({'status': 'success'}))
 
     def urlShortner(self, fullUrl):
+        """Method for sortning full URL and saving and returning short URL"""
         ShortUrl = ''.join(random.choice(string.ascii_lowercase +
                                          string.digits) for _ in range(5))
         save = model.ShortUrl(fullUrl=fullUrl,
@@ -67,16 +68,48 @@ class BlogHandler(server.BaseHandler):
         return shortURl
 
 
+class JsonRestHandler(webapp2.RequestHandler):
+  """Base RequestHandler type which provides convenience methods for writing
+  JSON HTTP responses.
+  """
+  JSON_MIMETYPE = "application/json"
+
+  def send_error(self, code, message):
+    """Convenience method to format an HTTP error response in a standard format.
+    """
+    self.response.set_status(code, message)
+    self.response.out.write(message)
+    return
+
+  def send_success(self, obj=None):
+    """Convenience method to format a PhotoHunt JSON HTTP response in a standard
+    format.
+    """
+    self.response.headers["Content-Type"] = "application/json"
+    if obj is not None:
+      if isinstance(obj, basestring):
+        self.response.out.write(obj)
+      else:
+        self.response.out.write(json.dumps(obj, cls=model.JsonifiableEncoder))
+
+
 # handler for serving article
-class ArticleHandler(webapp2.RequestHandler):
+class ArticleHandler(BlogHandler, JsonRestHandler):
     # GET method to retrive all articles
     def all_articles(self):
         limit = self.request.get('limit', default_value=2)
         # cookie = self.request.cookies
         time = datetime.datetime(2015, 03, 02, hour=01, minute=25,
                                      second=55, microsecond=66)
-        articles = [article.to_dict() for article in model.Article.query()]
-        self.response.write(json.dumps(articles))
+        # save = model.Article(tittle='hii',
+        #                      content='hii how are you',
+        #                      url='/url',
+        #                      date=time)
+        # save.put()
+        articles = model.Article.query().fetch()
+        # self.response.headers["Content-Type"] = "application/json"
+        # self.response.write(json.dumps(articles, cls=MyJsonEncoder))
+        self.send_success(articles)
 
     # GET articles by id
     def get(self, **kwargs):
@@ -168,3 +201,13 @@ class UrlShortnerHandler(BlogHandler):
 
     def delete():
         pass
+
+
+class MyJsonEncoder(json.JSONEncoder):
+   def default(self, obj):
+      if isinstance(obj, datetime.datetime):
+         # format however you like/need
+         return obj.strftime("%Y-%m-%d")
+      # pass any other unknown types to the base class handler, probably
+      # to raise a TypeError.
+      return json.JSONEncoder.default(self, obj)
