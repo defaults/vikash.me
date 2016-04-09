@@ -71,6 +71,7 @@ class Jsonifiable:
             self.__setattr__(property_key, property_value)
 
 class Article(ndb.Model, Jsonifiable):
+    """Represents article written"""
     url = ndb.StringProperty()
     tittle = ndb.StringProperty()
     date = ndb.DateTimeProperty()
@@ -85,6 +86,7 @@ class Article(ndb.Model, Jsonifiable):
 
 
 class Subscriber(ndb.Model, Jsonifiable):
+    """Represents subscribers of blog"""
     name = ndb.StringProperty()
     email = ndb.StringProperty()
     created_on = ndb.DateTimeProperty(auto_now_add=True)
@@ -93,6 +95,7 @@ class Subscriber(ndb.Model, Jsonifiable):
 
 
 class Auth(ndb.Model, Jsonifiable):
+    """Represents Authorisation token for verifing user"""
     token = ndb.StringProperty()
     created_on = ndb.DateTimeProperty(auto_now_add=True)
     modified_on = ndb.DateTimeProperty()
@@ -100,6 +103,7 @@ class Auth(ndb.Model, Jsonifiable):
 
 
 class ShortUrl(ndb.Model, Jsonifiable):
+    """Represents short url for blog"""
     full_url = ndb.StringProperty()
     Short_url = ndb.StringProperty()
     created_on = ndb.DateTimeProperty(auto_now_add=True)
@@ -108,6 +112,7 @@ class ShortUrl(ndb.Model, Jsonifiable):
 
 
 class Tag(ndb.Model):
+    """Represents tags for blog"""
     tag = ndb.StringProperty()
     created_on = ndb.DateTimeProperty(auto_now_add=True)
     modified_on = ndb.DateTimeProperty()

@@ -41,8 +41,9 @@ class JsonRestHandler(webapp2.RequestHandler):
             self.response.out.write(json.dumps(obj, cls=model.JsonifiableEncoder))
 
 
-# base handler
 class BlogHandler(server.BaseHandler):
+    """Base handler for blog"""
+
     def __init__(self, request, response):
         # Set self.request, self.response and self.app.
         self.initialize(request, response)
@@ -128,8 +129,8 @@ class ArticleHandler(BlogHandler, JsonRestHandler):
         article.put()
         self.send_success(article)
 
-    # PATCH article
     def patch():
+        """PATCH method for article - Exposed as `PATCH /api/article/<id>`"""
         id = id = kwargs['id']
         header = self.request.get('header')
         content = self.request.get('text')
@@ -143,8 +144,8 @@ class ArticleHandler(BlogHandler, JsonRestHandler):
         save.put()
 
 
-    # DELETE article - sets softDeleted flag
     def delete():
+        """DELETE method for articles - Exposed as `DELETE /api/article/<id>`"""
         id = kwargs['id']
         if id:
             article = model.Article.get_by_id(long(id)).to_dict()
@@ -154,15 +155,18 @@ class ArticleHandler(BlogHandler, JsonRestHandler):
             self.send_success({'message' : 'sucess'})
 
 
-# handler for writing blog
 class SubscriberHandler(BlogHandler, JsonRestHandler):
-    # GET all subscribers
+    """Handler for subscribers - Exposes GET, POST, PATCH,
+    DELETE for `/api/subscriber`
+    """
+
     def get():
+        """GET method for subscribers - Exposed as `GET /api/subscribers`"""
         article = model.Subscriber.query()
         self.send_response(article)
 
-    # POST subscriber
     def post():
+        """POST method for subscribers - Exposed as `POST /api/subscriber`"""
         name = self.request.get('name')
         email = self.request.get('email')
 
@@ -171,37 +175,55 @@ class SubscriberHandler(BlogHandler, JsonRestHandler):
         save.put()
         self.send_success(save)
 
-    # PATCH an existing subscriber detail
     def patch():
+        """PATCH method for subscribers -
+        Exposed as `PATCH /api/subscriber/<id>`
+        """
         pass
 
-    # DELETE subscriber - sets softDeleted flag
     def delete():
+        """DELETE method for subscribers -
+        Exposed as `DELETE /api/subscriber/<id>`
+        """
         pass
 
 
-# handler for blog tags
 class TagHandler(BlogHandler, JsonRestHandler):
-    # GET all tags
+    """Blog tag handler -
+    Exposes api for GET, POST, DELETE
+    """
     def get():
+        """GET method for all tags - Exposed as `GET /api/tag`"""
         pass
 
-    # add a new tag
     def post():
+        """POST method for all tags - Exposed as `POST /api/tag`"""
         pass
 
-    # delete a tag
     def delete():
+        """DELETE method for all tags - Exposed as `DELETE /api/tag/<id>`"""
         pass
 
 
-# Handler for URL shortner
 class UrlShortnerHandler(BlogHandler, JsonRestHandler):
+    """URL shortner API handler -
+    Exposes GET and POST API
+    """
+
     def get():
+        """GET method for url shortner -
+        Exposed as `GET /api/short?short_url=<short_url>`
+        """
         pass
 
     def post():
+        """POST method for url shortner -
+        Exposed as `POST /api/short>`
+        """
         pass
 
     def delete():
+        """DELETE method for url shortner -
+        Exposed as `DELETE /api/short/<id>`
+        """
         pass
