@@ -33,8 +33,8 @@ app = webapp2.WSGIApplication([
             handler=blog.ArticleHandler, name='article', strict_slash=True),
         routes.RedirectRoute(
             '/write/resend_mail',
-            handler=blog.BlogHandler, name='resendMail',
-            handler_method='resendMail', strict_slash=True),
+            handler=blog.BlogHandler, name='resend_mail',
+            handler_method='resend_mail', strict_slash=True),
         routes.RedirectRoute(
             '/dashboard/',
             handler=blog.DashboardHandler, name='dashboard',
@@ -56,8 +56,8 @@ app = webapp2.WSGIApplication([
         handler_method='authentication', strict_slash=True),
     routes.RedirectRoute(
         '/write/resend_mail',
-        handler=blog.BlogHandler, name='resendMail',
-        handler_method='resendMail', strict_slash=True),
+        handler=blog.BlogHandler, name='resend_mail',
+        handler_method='resend_mail', strict_slash=True),
     routes.RedirectRoute(
         '/blog/write/<token>',
         handler=blog.WriteHandler, name='write', strict_slash=True),
