@@ -94,18 +94,18 @@ class BlogHandler(server.BaseHandler):
         return short_url
 
 
-# handler for serving article
 class ArticleHandler(BlogHandler, JsonRestHandler):
-    # GET method to retrive all articles
+    """Article handler - Provides an api for working with articles"""
+
     def all_articles(self):
+        """GET request to get all articles - Exposed as `GET /api/articles`"""
         limit = self.request.get('limit', default_value=2)
-        # cookie = self.request.cookies
         articles = model.Article.query().order(model.Article.date).fetch()
 
         self.send_success(articles)
 
-    # GET articles by id
     def get(self, **kwargs):
+        """GET request to get article by id - Exposed as `GET /api/article/<id>`"""
         try:
             # TODO get user from session and verify
             id = kwargs['id']
@@ -117,27 +117,16 @@ class ArticleHandler(BlogHandler, JsonRestHandler):
         except Exception as e:
             self.send_error(500, 'Server error')
 
-    # POST article
     def post(self, **kwargs):
-        tittle = self.request.get('header')
-        content = self.request.get('text')
+        """POST method for articles - Exposed as `POST /api/article`"""
+        article = model.Article()
+        article.from_json(self.request.body)
+        article.url = re.sub(r'[/|!|"|:|;|.|%|^|&|*|(|)|@|,|{|}|+|=|_|?|<|>]',
+                             'p', header).replace(' ', '-').lower()
+        article.short_url = self.url_shortner(url)
 
-        url = re.sub(r'[/|!|"|:|;|.|%|^|&|*|(|)|@|,|{|}|+|=|_|?|<|>]',
-                     'p', header).replace(' ', '-').lower()
-        short_url = self.url_shortner(url)
-        tags = self.request.get('tags')
-        publish = self.request.get('publish', default_value=True)
-        currentTime = self.request.get('date', default_value=datetime.datetime.now())
-        article = model.Article(tittle=header,
-                             content=content,
-                             url=url,
-                             short_url
-                             date=currentTime
-                             short_url=short_url,
-                             published=publish,
-                             tags=tags)
         article.put()
-        send_success(article)
+        self.send_success(article)
 
     # PATCH article
     def patch():
