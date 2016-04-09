@@ -22,7 +22,7 @@ class BaseHandler(webapp2.RequestHandler):
         self.response.write(temp)
 
     # funtion to send mail
-    def sendEmail(self, emailTo, emailSubject, emailBody):
+    def send_email(self, emailTo, emailSubject, emailBody):
         mail.send_mail(sender=config.admin['admin_mail'],
                        to=emailTo,
                        subject=emailSubject,
