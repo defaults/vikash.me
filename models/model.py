@@ -47,7 +47,7 @@ class Jsonifiable:
         result = {}
         a = self
         properties = self.to_dict()
-        properties = dict(properties, **dict(id=self.key.id()))
+        # properties = dict(properties, **dict(id=self.key.id()))
         if isinstance(self, ndb.Model):
             properties['id'] = unicode(self.key.id())
         for key, value in properties.iteritems():
@@ -55,6 +55,20 @@ class Jsonifiable:
                 value = value.strftime("%Y-%m-%d")
             result[Jsonifiable.transform_to_camelcase(key)] = value
         return json.dumps(result)
+
+    def from_json(self, json_string):
+        """Sets properties on this object based on the JSON string supplied."""
+        o = json.loads(json_string)
+        properties = {}
+        if isinstance(self, ndb.Model):
+            properties = self._properties
+        for key, value in o.iteritems():
+            property_value = value
+            property_key = Jsonifiable.transform_from_camelcase(key)
+            if property_key in properties.keys():
+                if isinstance(properties[property_key], ndb.IntegerProperty):
+                    property_value = int(value)
+            self.__setattr__(property_key, property_value)
 
 class Article(ndb.Model, Jsonifiable):
     url = ndb.StringProperty()
