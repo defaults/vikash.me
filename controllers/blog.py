@@ -16,6 +16,31 @@ from config import config
 from controllers import server
 
 
+class JsonRestHandler(webapp2.RequestHandler):
+  """Base RequestHandler type which provides convenience methods for writing
+  JSON HTTP responses.
+  """
+  JSON_MIMETYPE = "application/json"
+
+  def send_error(self, code, message):
+    """Convenience method to format an HTTP error response in a standard format.
+    """
+    self.response.set_status(code, message)
+    self.response.out.write(message)
+    return
+
+  def send_success(self, obj=None):
+    """Convenience method to format a PhotoHunt JSON HTTP response in a standard
+    format.
+    """
+    self.response.headers["Content-Type"] = "application/json"
+    if obj is not None:
+        if isinstance(obj, basestring):
+            self.response.out.write(obj)
+        else:
+            self.response.out.write(json.dumps(obj, cls=model.JsonifiableEncoder))
+
+
 # base handler
 class BlogHandler(server.BaseHandler):
     def __init__(self, request, response):
@@ -41,7 +66,7 @@ class BlogHandler(server.BaseHandler):
 
         self.render_response('write.html', **params)
 
-    def resendMail(self):
+    def resend_mail(self):
         """Method to resend mail for login to admin"""
         verify = model.Auth.query().get()
 
@@ -55,42 +80,18 @@ class BlogHandler(server.BaseHandler):
         subject = 'Link to write blog'
         body = 'https://blog.vikashkumar.me/write/{0}'.format(verify.token)
 
-        self.sendEmail(to, subject, body)
+        self.send_email(to, subject, body)
         self.response.out.write(json.dumps({'status': 'success'}))
 
-    def urlShortner(self, fullUrl):
+    @staticmethod
+    def url_shortner(full_url):
         """Method for sortning full URL and saving and returning short URL"""
-        ShortUrl = ''.join(random.choice(string.ascii_lowercase +
+        short_url = ''.join(random.choice(string.ascii_lowercase +
                                          string.digits) for _ in range(5))
-        save = model.ShortUrl(fullUrl=fullUrl,
-                              shortURl=shortURl)
+        save = model.ShortUrl(full_url=fullUrl,
+                              short_url=short_url)
         save.put()
-        return shortURl
-
-
-class JsonRestHandler(webapp2.RequestHandler):
-  """Base RequestHandler type which provides convenience methods for writing
-  JSON HTTP responses.
-  """
-  JSON_MIMETYPE = "application/json"
-
-  def send_error(self, code, message):
-    """Convenience method to format an HTTP error response in a standard format.
-    """
-    self.response.set_status(code, message)
-    self.response.out.write(message)
-    return
-
-  def send_success(self, obj=None):
-    """Convenience method to format a PhotoHunt JSON HTTP response in a standard
-    format.
-    """
-    self.response.headers["Content-Type"] = "application/json"
-    if obj is not None:
-      if isinstance(obj, basestring):
-        self.response.out.write(obj)
-      else:
-        self.response.out.write(json.dumps(obj, cls=model.JsonifiableEncoder))
+        return short_url
 
 
 # handler for serving article
@@ -99,41 +100,48 @@ class ArticleHandler(BlogHandler, JsonRestHandler):
     def all_articles(self):
         limit = self.request.get('limit', default_value=2)
         # cookie = self.request.cookies
-        time = datetime.datetime(2015, 03, 02, hour=01, minute=25,
-                                     second=55, microsecond=66)
-        # save = model.Article(tittle='hii',
-        #                      content='hii how are you',
-        #                      url='/url',
-        #                      date=time)
-        # save.put()
-        articles = model.Article.query().fetch()
-        # self.response.headers["Content-Type"] = "application/json"
-        # self.response.write(json.dumps(articles, cls=MyJsonEncoder))
+        articles = model.Article.query().order(model.Article.date).fetch()
+
         self.send_success(articles)
 
     # GET articles by id
     def get(self, **kwargs):
-        id = kwargs['id']
-        article = model.Article.query(id=id)
-        self.send_response(article)
+        try:
+            # TODO get user from session and verify
+            id = kwargs['id']
+            if id:
+                article = model.Article.get_by_id(long(id))
+                self.send_success(article)
+        except TypeError as te:
+            self.send_error(404, 'Resource not found')
+        except Exception as e:
+            self.send_error(500, 'Server error')
 
     # POST article
     def post(self, **kwargs):
-        header = self.request.get('header')
+        tittle = self.request.get('header')
         content = self.request.get('text')
+
         url = re.sub(r'[/|!|"|:|;|.|%|^|&|*|(|)|@|,|{|}|+|=|_|?|<|>]',
                      'p', header).replace(' ', '-').lower()
-        time = datetime.datetime()
-        save = model.Article(tittle=header,
+        short_url = self.url_shortner(url)
+        tags = self.request.get('tags')
+        publish = self.request.get('publish', default_value=True)
+        currentTime = self.request.get('date', default_value=datetime.datetime.now())
+        article = model.Article(tittle=header,
                              content=content,
                              url=url,
-                             date=time)
-        save.put()
-        return
+                             short_url
+                             date=currentTime
+                             short_url=short_url,
+                             published=publish,
+                             tags=tags)
+        article.put()
+        send_success(article)
 
     # PATCH article
     def patch():
-        id = self.request.get('id')
+        id = id = kwargs['id']
         header = self.request.get('header')
         content = self.request.get('text')
         url = re.sub(r'[/|!|"|:|;|.|%|^|&|*|(|)|@|,|{|}|+|=|_|?|<|>]',
@@ -144,15 +152,21 @@ class ArticleHandler(BlogHandler, JsonRestHandler):
                              url=url,
                              date=time)
         save.put()
-        return
+
 
     # DELETE article - sets softDeleted flag
     def delete():
-        id = self.request.get('id')
+        id = kwargs['id']
+        if id:
+            article = model.Article.get_by_id(long(id)).to_dict()
+            article.soft_deleted = True
+            article.put()
+
+            self.send_success({'message' : 'sucess'})
 
 
 # handler for writing blog
-class SubscriberHandler(BlogHandler):
+class SubscriberHandler(BlogHandler, JsonRestHandler):
     # GET all subscribers
     def get():
         article = model.Subscriber.query()
@@ -166,6 +180,7 @@ class SubscriberHandler(BlogHandler):
         save = model.Subscriber(name=name,
                                 email=email)
         save.put()
+        self.send_success(save)
 
     # PATCH an existing subscriber detail
     def patch():
@@ -177,7 +192,7 @@ class SubscriberHandler(BlogHandler):
 
 
 # handler for blog tags
-class TagHandler(BlogHandler):
+class TagHandler(BlogHandler, JsonRestHandler):
     # GET all tags
     def get():
         pass
@@ -192,7 +207,7 @@ class TagHandler(BlogHandler):
 
 
 # Handler for URL shortner
-class UrlShortnerHandler(BlogHandler):
+class UrlShortnerHandler(BlogHandler, JsonRestHandler):
     def get():
         pass
 
@@ -201,13 +216,3 @@ class UrlShortnerHandler(BlogHandler):
 
     def delete():
         pass
-
-
-class MyJsonEncoder(json.JSONEncoder):
-   def default(self, obj):
-      if isinstance(obj, datetime.datetime):
-         # format however you like/need
-         return obj.strftime("%Y-%m-%d")
-      # pass any other unknown types to the base class handler, probably
-      # to raise a TypeError.
-      return json.JSONEncoder.default(self, obj)
