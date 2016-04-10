@@ -87,9 +87,9 @@ class BlogHandler(server.BaseHandler):
     @staticmethod
     def url_shortner(full_url):
         """Method for sortning full URL and saving and returning short URL"""
-        short_url = ''.join(random.choice(string.ascii_lowercase +
-                                         string.digits) for _ in range(5))
-        save = model.ShortUrl(full_url=fullUrl,
+        short_url = ''.join(random.choice(string.ascii_letters +
+                                         string.digits) for _ in range(10))
+        save = model.ShortUrl(full_url=full_url,
                               short_url=short_url)
         save.put()
         return short_url
@@ -123,8 +123,8 @@ class ArticleHandler(BlogHandler, JsonRestHandler):
         article = model.Article()
         article.from_json(self.request.body)
         article.url = re.sub(r'[/|!|"|:|;|.|%|^|&|*|(|)|@|,|{|}|+|=|_|?|<|>]',
-                             'p', header).replace(' ', '-').lower()
-        article.short_url = self.url_shortner(url)
+                             'p', article.tittle).replace(' ', '-').lower()
+        article.short_url = self.url_shortner(article.url)
 
         article.put()
         self.send_success(article)
@@ -212,8 +212,9 @@ class UrlShortnerHandler(BlogHandler, JsonRestHandler):
 
     def get():
         """GET method for url shortner -
-        Exposed as `GET /api/short?short_url=<short_url>`
+        Exposed as `GET /api/short?short_url=<shortUrl>`
         """
+        short_url = self.request.get('shortUrl')
         pass
 
     def post():

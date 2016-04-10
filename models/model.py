@@ -105,7 +105,7 @@ class Auth(ndb.Model, Jsonifiable):
 class ShortUrl(ndb.Model, Jsonifiable):
     """Represents short url for blog"""
     full_url = ndb.StringProperty()
-    Short_url = ndb.StringProperty()
+    short_url = ndb.StringProperty()
     created_on = ndb.DateTimeProperty(auto_now_add=True)
     modified_on = ndb.DateTimeProperty()
     soft_deleted = ndb.BooleanProperty(default=False)
