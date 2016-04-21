@@ -215,13 +215,18 @@ class UrlShortnerHandler(BlogHandler, JsonRestHandler):
         Exposed as `GET /api/short?short_url=<shortUrl>`
         """
         short_url = self.request.get('shortUrl')
-        pass
+        url = model.shortUrl.query(short_url=short_url).get()
+        send_success(url)
 
     def post():
         """POST method for url shortner -
         Exposed as `POST /api/short>`
         """
-        pass
+        short_url = model.ShortUrl()
+        short_url.from_json(self.request.body)
+        short_url.put()
+        send_success(short_url)
+
 
     def delete():
         """DELETE method for url shortner -
