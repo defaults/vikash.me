@@ -124,7 +124,7 @@ class ArticleHandler(BlogHandler, JsonRestHandler):
         article.from_json(self.request.body)
         article.url = re.sub(r'[/|!|"|:|;|.|%|^|&|*|(|)|@|,|{|}|+|=|_|?|<|>]',
                              'p', article.tittle).replace(' ', '-').lower()
-        article.short_url = self.url_shortner(article.url)
+        article.short_url = BlogHandler.url_shortner(article.url)
 
         article.put()
         self.send_success(article)
@@ -152,7 +152,7 @@ class ArticleHandler(BlogHandler, JsonRestHandler):
             article.soft_deleted = True
             article.put()
 
-            self.send_success({'message' : 'sucess'})
+            self.send_success({'message': 'sucess'})
 
 
 class SubscriberHandler(BlogHandler, JsonRestHandler):
@@ -224,6 +224,7 @@ class UrlShortnerHandler(BlogHandler, JsonRestHandler):
         """
         short_url = model.ShortUrl()
         short_url.from_json(self.request.body)
+        short_url.short_url = BlogHandler.url_shortner(short_url.full_url)
         short_url.put()
         send_success(short_url)
 
@@ -232,4 +233,9 @@ class UrlShortnerHandler(BlogHandler, JsonRestHandler):
         """DELETE method for url shortner -
         Exposed as `DELETE /api/short/<id>`
         """
-        pass
+        id = self.request.get('id')
+        short_url = model.ShortUrl.get_by_id(long(id))
+        short_url.soft_deleted = true
+        short_url.put()
+
+        send_success({'message': 'sucess'})
