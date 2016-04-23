@@ -119,7 +119,7 @@ class ShortUrl(ndb.Model, Jsonifiable):
     soft_deleted = ndb.BooleanProperty(default=False)
 
 
-class Tag(ndb.Model):
+class Tag(ndb.Model, Jsonifiable):
     """Represents tags for blog"""
     tag = ndb.StringProperty()
     created_on = ndb.DateTimeProperty(auto_now_add=True)
