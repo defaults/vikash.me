@@ -1,8 +1,8 @@
-import datetime
 import random
 import re
 import string
 import json
+from datetime import datetime
 
 import webapp2
 from google.appengine.api import mail
@@ -17,28 +17,33 @@ from controllers import server
 
 
 class JsonRestHandler(webapp2.RequestHandler):
-  """Base RequestHandler type which provides convenience methods for writing
-  JSON HTTP responses.
-  """
-  JSON_MIMETYPE = "application/json"
-
-  def send_error(self, code, message):
-    """Convenience method to format an HTTP error response in a standard format.
     """
-    self.response.set_status(code, message)
-    self.response.out.write(message)
-    return
-
-  def send_success(self, obj=None):
-    """Convenience method to format a PhotoHunt JSON HTTP response in a standard
-    format.
+    Base RequestHandler type which provides convenience methods for writing
+    JSON HTTP responses.
     """
-    self.response.headers["Content-Type"] = "application/json"
-    if obj is not None:
-        if isinstance(obj, basestring):
-            self.response.out.write(obj)
-        else:
-            self.response.out.write(json.dumps(obj, cls=model.JsonifiableEncoder))
+    JSON_MIMETYPE = "application/json"
+
+    def send_error(self, code, message):
+        """
+        Convenience method to format an HTTP error response in a standard
+        format.
+        """
+        self.response.set_status(code, message)
+        self.response.out.write(message)
+        return
+
+    def send_success(self, obj=None):
+        """
+        Convenience method to format a PhotoHunt JSON HTTP response in a
+        standard format.
+        """
+        self.response.headers["Content-Type"] = "application/json"
+        if obj is not None:
+            if isinstance(obj, basestring):
+                self.response.out.write(obj)
+            else:
+                self.response.out.write(json.dumps(obj,
+                                        cls=model.JsonifiableEncoder))
 
 
 class BlogHandler(server.BaseHandler):
@@ -88,7 +93,7 @@ class BlogHandler(server.BaseHandler):
     def url_shortner(full_url):
         """Method for sortning full URL and saving and returning short URL"""
         short_url = ''.join(random.choice(string.ascii_letters +
-                                         string.digits) for _ in range(10))
+                                          string.digits) for _ in range(10))
         save = model.ShortUrl(full_url=full_url,
                               short_url=short_url)
         save.put()
@@ -99,143 +104,225 @@ class ArticleHandler(BlogHandler, JsonRestHandler):
     """Article handler - Provides an api for working with articles"""
 
     def all_articles(self):
-        """GET request to get all articles - Exposed as `GET /api/articles`"""
-        limit = self.request.get('limit', default_value=2)
-        articles = model.Article.query().order(model.Article.date).fetch()
+        """
+        GET request to get all articles - Exposed as `GET /api/articles`
+        """
+        try:
+            limit = self.request.get('limit', default_value=10)
+            deleted = self.request.get('with_deleted', default_value=False)
+            tags = self.request.get('')
+            articles = model.Article.query().order(-model.Article.date).fetch()
 
-        self.send_success(articles)
+            self.send_success(articles)
+        except Exception as e:
+            self.send_error(500, e)
 
     def get(self, **kwargs):
-        """GET request to get article by id - Exposed as `GET /api/article/<id>`"""
+        """
+        GET request to get article by id - Exposed as `GET /api/article/<id>`
+        """
         try:
             # TODO get user from session and verify
             id = kwargs['id']
-            if id:
-                article = model.Article.get_by_id(long(id))
+            article = model.Article.get_by_id(long(id))
+            if article:
                 self.send_success(article)
+            else:
+                raise TypeError
         except TypeError as te:
             self.send_error(404, 'Resource not found')
         except Exception as e:
-            self.send_error(500, 'Server error')
+            self.send_error(500, e)
 
-    def post(self, **kwargs):
+    def post(self):
         """POST method for articles - Exposed as `POST /api/article`"""
-        article = model.Article()
-        article.from_json(self.request.body)
-        article.url = re.sub(r'[/|!|"|:|;|.|%|^|&|*|(|)|@|,|{|}|+|=|_|?|<|>]',
-                             'p', article.tittle).replace(' ', '-').lower()
-        article.short_url = BlogHandler.url_shortner(article.url)
+        try:
+            article = model.Article()
+            article.from_json(self.request.body)
+            article.url = re.sub(r'[/|!|"|:|;|.|%|^|&|*|(|)|@|,|{|}|+|=|_|?|<|>]',
+                                 'p', article.tittle).replace(' ', '-').lower()
+            article.short_url = BlogHandler.url_shortner(article.url)
 
-        article.put()
-        self.send_success(article)
-
-    def patch():
-        """PATCH method for article - Exposed as `PATCH /api/article/<id>`"""
-        id = id = kwargs['id']
-        header = self.request.get('header')
-        content = self.request.get('text')
-        url = re.sub(r'[/|!|"|:|;|.|%|^|&|*|(|)|@|,|{|}|+|=|_|?|<|>]',
-                     'p', header).replace(' ', '-').lower()
-        time = datetime.datetime()
-        save = model.Article(tittle=header,
-                             content=content,
-                             url=url,
-                             date=time)
-        save.put()
-
-
-    def delete():
-        """DELETE method for articles - Exposed as `DELETE /api/article/<id>`"""
-        id = kwargs['id']
-        if id:
-            article = model.Article.get_by_id(long(id)).to_dict()
-            article.soft_deleted = True
             article.put()
+            self.send_success(article)
+        except Exception as e:
+                self.send_error(404, e)
 
-            self.send_success({'message': 'sucess'})
+    def put(self, **kwargs):
+        """
+        PUT method for article - Exposed as `PATCH /api/article/<id>/`
+        """
+        try:
+            id = kwargs['id']
+            article = model.Article.get_by_id(long(id))
+            if article:
+                article.from_json(self.request.body)
+                article.modified_on = datetime.now()
+                article.put()
+                self.send_success(article)
+            else:
+                raise IndexError
+        except ValueError as ve:
+            self.send_error(404, 'invalid literal')
+        except IndexError as e:
+            self.send_error(504, 'wrong index')
+        except Exception as e:
+            self.send_error(500, e)
+
+    def delete(self, **kwargs):
+        """
+        DELETE method for articles - Exposed as `DELETE /api/article/<id>`
+        """
+        try:
+            id = kwargs['id']
+            article = model.Article.get_by_id(long(id))
+            if article:
+                article.soft_deleted = True
+                article.put()
+
+                self.send_success({'message': 'sucess'})
+            else:
+                raise IndexError
+        except IndexError as ie:
+            self.send_error(404, 'wrong index')
+        except Exception as e:
+            self.send_error(500, e)
 
 
 class SubscriberHandler(BlogHandler, JsonRestHandler):
-    """Handler for subscribers - Exposes GET, POST, PATCH,
+    """
+    Handler for subscribers - Exposes GET, POST, PATCH,
     DELETE for `/api/subscriber`
     """
 
-    def get():
-        """GET method for subscribers - Exposed as `GET /api/subscribers`"""
-        article = model.Subscriber.query()
-        self.send_response(article)
-
-    def post():
-        """POST method for subscribers - Exposed as `POST /api/subscriber`"""
-        name = self.request.get('name')
-        email = self.request.get('email')
-
-        save = model.Subscriber(name=name,
-                                email=email)
-        save.put()
-        self.send_success(save)
-
-    def patch():
-        """PATCH method for subscribers -
-        Exposed as `PATCH /api/subscriber/<id>`
+    def get(self):
+        """G
+        ET method for subscribers - Exposed as `GET /api/subscribers`
         """
-        pass
+        try:
+            article = model.Subscriber.query(-model.Subscriber.created_on).fetch()
+            self.send_response(article)
+        except Exception as e:
+            self.send_error(500, e)
 
-    def delete():
-        """DELETE method for subscribers -
+    def post(self):
+        """
+        POST method for subscribers - Exposed as `POST /api/subscriber`
+        """
+        try:
+            subscriber = model.Subscriber()
+            subscriber.from_json(self.request.body)
+            subscriber.put()
+            self.send_success(subscriber)
+        except Exception as e:
+            self.send_error(500, e)
+
+    def delete(self, **kwargs):
+        """
+        DELETE method for subscribers -
         Exposed as `DELETE /api/subscriber/<id>`
         """
-        pass
+        try:
+            id = kwargs['id']
+            subscriber = model.Subscriber.get_by_id(long(id))
+            if subscriber:
+                subscriber.soft_deleted = True
+                self.send_success({'message': 'sucess'})
+            else:
+                raise IndexError
+        except IndexError as ie:
+            self.send_error(404, 'wrong index')
+        except Exception as e:
+            self.send_error(500, e)
 
 
 class TagHandler(BlogHandler, JsonRestHandler):
-    """Blog tag handler -
+    """
+    Blog tag handler -
     Exposes api for GET, POST, DELETE
     """
-    def get():
-        """GET method for all tags - Exposed as `GET /api/tag`"""
-        pass
+    def get(self):
+        """
+        GET method for all tags - Exposed as `GET /api/tag`
+        """
+        try:
+            tags = Model.Tag.query().fetch()
+            self.send_success(tags)
+        except Exception as e:
+            self.send_error(500, e)
 
-    def post():
-        """POST method for all tags - Exposed as `POST /api/tag`"""
-        pass
+    def post(self):
+        """
+        POST method for all tags - Exposed as `POST /api/tag`
+        """
+        try:
+            tag = model.Tag()
+            tag.from_json(self.request.body)
+            tag.put()
+            self.send_success(tag)
+        except Exception as e:
+            self.send_error(500, e)
 
-    def delete():
-        """DELETE method for all tags - Exposed as `DELETE /api/tag/<id>`"""
-        pass
+    def delete(self, **kwargs):
+        """
+        DELETE method for all tags - Exposed as `DELETE /api/tag/<id>`
+        """
+        try:
+            id = kwargs['id']
+            tag = model.Tag.get_by_id(long(id))
+            if tag:
+                tag.soft_deleted = True
+                self.send_success({'message': 'sucess'})
+            else:
+                raise IndexError
+        except IndexError as ie:
+            self.send_error(404, 'wrong index')
+        except Exception as e:
+            self.send_error(500, e)
 
 
 class UrlShortnerHandler(BlogHandler, JsonRestHandler):
-    """URL shortner API handler -
+    """
+    URL shortner API handler -
     Exposes GET and POST API
     """
 
-    def get():
-        """GET method for url shortner -
+    def get(self):
+        """
+        GET method for url shortner -
         Exposed as `GET /api/short?short_url=<shortUrl>`
         """
-        short_url = self.request.get('shortUrl')
-        url = model.shortUrl.query(short_url=short_url).get()
-        send_success(url)
+        try:
+            short_url = self.request.get('shortUrl')
+            url = model.shortUrl.query(short_url=short_url).get()
+            self.send_success(url)
+        except Exception as e:
+            self.send_error(500, e)
 
-    def post():
-        """POST method for url shortner -
+    def post(self):
+        """
+        POST method for url shortner -
         Exposed as `POST /api/short>`
         """
-        short_url = model.ShortUrl()
-        short_url.from_json(self.request.body)
-        short_url.short_url = BlogHandler.url_shortner(short_url.full_url)
-        short_url.put()
-        send_success(short_url)
+        try:
+            short_url = model.ShortUrl()
+            short_url.from_json(self.request.body)
+            short_url.short_url = BlogHandler.url_shortner(short_url.full_url)
+            short_url.put()
+            self.send_success(short_url)
+        except Exception as e:
+            self.send_error(500, e)
 
-
-    def delete():
-        """DELETE method for url shortner -
+    def delete(self, **kwargs):
+        """
+        DELETE method for url shortner -
         Exposed as `DELETE /api/short/<id>`
         """
-        id = self.request.get('id')
-        short_url = model.ShortUrl.get_by_id(long(id))
-        short_url.soft_deleted = true
-        short_url.put()
-
-        send_success({'message': 'sucess'})
+        try:
+            id = self.request.get('id')
+            short_url = model.ShortUrl.get_by_id(long(id))
+            short_url.soft_deleted = true
+            short_url.put()
+            send_success({'message': 'sucess'})
+        except Exception as e:
+            self.send_error(500, e)
