@@ -36,7 +36,7 @@ app = webapp2.WSGIApplication([
         routes.RedirectRoute(
             '/api/subscriber/<id>',
             handler=blog.SubscriberHandler,
-            name='subscriber', methods=['PUT', 'DELETE'], strict_slash=True),
+            name='subscriber', methods=['DELETE'], strict_slash=True),
         routes.RedirectRoute(
             '/api/tags',
             handler=blog.TagHandler, name='get_all_tags',
