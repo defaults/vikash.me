@@ -44,6 +44,8 @@ class JsonRestHandler(webapp2.RequestHandler):
             else:
                 self.response.out.write(json.dumps(obj,
                                         cls=model.JsonifiableEncoder))
+        else:
+            self.response.out.write('[]')
 
 
 class BlogHandler(server.BaseHandler):
@@ -200,8 +202,8 @@ class SubscriberHandler(BlogHandler, JsonRestHandler):
         ET method for subscribers - Exposed as `GET /api/subscribers`
         """
         try:
-            article = model.Subscriber.query(-model.Subscriber.created_on).fetch()
-            self.send_response(article)
+            article = model.Subscriber.query().fetch()
+            self.send_success(article)
         except Exception as e:
             self.send_error(500, e)
 
@@ -246,7 +248,7 @@ class TagHandler(BlogHandler, JsonRestHandler):
         GET method for all tags - Exposed as `GET /api/tag`
         """
         try:
-            tags = Model.Tag.query().fetch()
+            tags = model.Tag.query().fetch()
             self.send_success(tags)
         except Exception as e:
             self.send_error(500, e)
@@ -272,6 +274,7 @@ class TagHandler(BlogHandler, JsonRestHandler):
             tag = model.Tag.get_by_id(long(id))
             if tag:
                 tag.soft_deleted = True
+                tag.put()
                 self.send_success({'message': 'sucess'})
             else:
                 raise IndexError
@@ -293,8 +296,9 @@ class UrlShortnerHandler(BlogHandler, JsonRestHandler):
         Exposed as `GET /api/short?short_url=<shortUrl>`
         """
         try:
-            short_url = self.request.get('shortUrl')
-            url = model.shortUrl.query(short_url=short_url).get()
+            query_url = self.request.get('short_url')
+            url = model.ShortUrl.query(model.ShortUrl.short_url == query_url).get()
+            print query_url
             self.send_success(url)
         except Exception as e:
             self.send_error(500, e)
@@ -319,10 +323,15 @@ class UrlShortnerHandler(BlogHandler, JsonRestHandler):
         Exposed as `DELETE /api/short/<id>`
         """
         try:
-            id = self.request.get('id')
+            id = kwargs['id']
             short_url = model.ShortUrl.get_by_id(long(id))
-            short_url.soft_deleted = true
-            short_url.put()
-            send_success({'message': 'sucess'})
+            if short_url:
+                short_url.soft_deleted = True
+                short_url.put()
+                self.send_success({'message': 'sucess'})
+            else:
+                raise IndexError
+        except IndexError as ie:
+            self.send_error(404, 'wrong index')
         except Exception as e:
             self.send_error(500, e)
