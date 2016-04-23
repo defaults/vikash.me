@@ -5,6 +5,7 @@ import re
 import string
 import datetime
 import types
+from datetime import datetime
 
 from google.appengine.api import images
 from google.appengine.ext import ndb
@@ -17,6 +18,7 @@ class JsonifiableEncoder(json.JSONEncoder):
             result = json.loads(obj.to_json())
             return result
             return json.JSONEncoder.default(self, obj)
+
 
 class Jsonifiable:
     """JSON encoder which provides a convenient extension point for custom JSON
@@ -44,6 +46,9 @@ class Jsonifiable:
         return re.sub('([a-z0-9])([A-Z])', r'\1_\2', s1).lower()
 
     def to_json(self):
+        """
+        Converts object to json.
+        """
         result = {}
         a = self
         properties = self.to_dict()
@@ -51,8 +56,8 @@ class Jsonifiable:
         if isinstance(self, ndb.Model):
             properties['id'] = unicode(self.key.id())
         for key, value in properties.iteritems():
-            if isinstance(value, datetime.datetime):
-                value = value.strftime("%Y-%m-%d")
+            if isinstance(value, datetime):
+                value = value.strftime("%Y-%m-%d %H:%M:%S")
             result[Jsonifiable.transform_to_camelcase(key)] = value
         return json.dumps(result)
 
@@ -68,13 +73,16 @@ class Jsonifiable:
             if property_key in properties.keys():
                 if isinstance(properties[property_key], ndb.IntegerProperty):
                     property_value = int(value)
+                if isinstance(properties[property_key], ndb.DateTimeProperty):
+                    property_value = datetime.strptime(value, "%Y-%m-%d %H:%M:%S")
             self.__setattr__(property_key, property_value)
+
 
 class Article(ndb.Model, Jsonifiable):
     """Represents article written"""
     url = ndb.StringProperty()
     tittle = ndb.StringProperty()
-    date = ndb.DateTimeProperty()
+    date = ndb.DateTimeProperty(default=datetime.now())
     content = ndb.TextProperty()
     short_url = ndb.StringProperty()
     stars = ndb.IntegerProperty(default=0)
