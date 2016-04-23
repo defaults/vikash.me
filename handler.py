@@ -52,7 +52,7 @@ app = webapp2.WSGIApplication([
         routes.RedirectRoute(
             '/api/short',
             handler=blog.UrlShortnerHandler, name='short',
-            methods=['GET', 'PUT'], strict_slash=True),
+            methods=['GET', 'POST'], strict_slash=True),
         routes.RedirectRoute(
             '/api/short/<id>',
             handler=blog.UrlShortnerHandler, name='delete_short',
