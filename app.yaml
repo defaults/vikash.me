@@ -17,7 +17,7 @@ handlers:
   static_dir: static
 
 - url: /api/.*
-  script: handler.app
+  script: api_handler.app
 
 - url: /.*
   script: router.app
