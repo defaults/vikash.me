@@ -60,37 +60,6 @@ class BlogHandler(server.BaseHandler):
     #     # TODO: format return to JSON here
     #     pass
 
-    def authentication(self):
-        gtoken = ''.join(random.choice(string.ascii_uppercase +
-                                       string.digits) for _ in range(20))
-        save = model.Auth(token=gtoken)
-        save.put()
-
-        to = config.admin['admin_name'] + ' ' + '<' + config.admin['admin_mail'] + '>'
-        subject = 'Link to write blog'
-        body = 'https://blog.vikashkumar.me/write/{0}'.format(gtoken)
-
-        self.sendEmail(to, subject, body)
-
-        self.render_response('write.html', **params)
-
-    def resend_mail(self):
-        """Method to resend mail for login to admin"""
-        verify = model.Auth.query().get()
-
-        if not verify:
-            verify = ''.join(random.choice(string.ascii_uppercase +
-                                           string.digits) for _ in range(20))
-            save = model.Auth(token=verify)
-            save.put()
-
-        to = config.admin['admin_name'] + ' ' + '<' + config.admin['admin_mail'] + '>'
-        subject = 'Link to write blog'
-        body = 'https://blog.vikashkumar.me/write/{0}'.format(verify.token)
-
-        self.send_email(to, subject, body)
-        self.response.out.write(json.dumps({'status': 'success'}))
-
     @staticmethod
     def url_shortner(full_url):
         """Method for sortning full URL and saving and returning short URL"""
@@ -141,8 +110,9 @@ class ArticleHandler(BlogHandler, JsonRestHandler):
         try:
             article = model.Article()
             article.from_json(self.request.body)
-            article.url = re.sub(r'[/|!|"|:|;|.|%|^|&|*|(|)|@|,|{|}|+|=|_|?|<|>]',
-                                 'p', article.tittle).replace(' ', '-').lower()
+            article.url = re.sub(
+                        r'[/|!|"|:|;|.|%|^|&|*|(|)|@|,|{|}|+|=|_|?|<|>]',
+                        'p', article.tittle).replace(' ', '-').lower()
             article.short_url = BlogHandler.url_shortner(article.url)
 
             article.put()
@@ -297,7 +267,8 @@ class UrlShortnerHandler(BlogHandler, JsonRestHandler):
         """
         try:
             query_url = self.request.get('short_url')
-            url = model.ShortUrl.query(model.ShortUrl.short_url == query_url).get()
+            url = model.ShortUrl \
+                .query(model.ShortUrl.short_url == query_url).get()
             print query_url
             self.send_success(url)
         except Exception as e:
