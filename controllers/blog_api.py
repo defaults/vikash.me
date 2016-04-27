@@ -81,9 +81,10 @@ class ArticleHandler(BlogHandler, JsonRestHandler):
         try:
             limit = self.request.get('limit', default_value=10)
             deleted = self.request.get('with_deleted', default_value=False)
-            tags = self.request.get('')
+            tags = self.request.get('tags')
+            tags = self.request.get_all('tags')
+            print limit, deleted, tags
             articles = model.Article.query().order(-model.Article.date).fetch()
-
             self.send_success(articles)
         except Exception as e:
             self.send_error(500, e)
@@ -114,7 +115,6 @@ class ArticleHandler(BlogHandler, JsonRestHandler):
                         r'[/|!|"|:|;|.|%|^|&|*|(|)|@|,|{|}|+|=|_|?|<|>]',
                         'p', article.tittle).replace(' ', '-').lower()
             article.short_url = BlogHandler.url_shortner(article.url)
-
             article.put()
             self.send_success(article)
         except Exception as e:
@@ -151,7 +151,6 @@ class ArticleHandler(BlogHandler, JsonRestHandler):
             if article:
                 article.soft_deleted = True
                 article.put()
-
                 self.send_success({'message': 'sucess'})
             else:
                 raise IndexError
