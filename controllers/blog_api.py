@@ -9,6 +9,7 @@ from google.appengine.api import mail
 from webapp2_extras import jinja2
 from webapp2_extras import routes
 from webapp2_extras import sessions
+from google.appengine.datastore.datastore_query import Cursor
 
 from vendors import markdown
 from models import model
@@ -79,12 +80,16 @@ class ArticleHandler(BlogHandler, JsonRestHandler):
         GET request to get all articles - Exposed as `GET /api/articles`
         """
         try:
+            cursor = Cursor(urlsafe=self.request.get('cursor'))
+            reverse = self.request.get('reverse', default_value=False)
             limit = self.request.get('limit', default_value=10)
             deleted = self.request.get('with_deleted', default_value=False)
-            tags = self.request.get('tags')
             tags = self.request.get_all('tags')
-            print limit, deleted, tags
-            articles = model.Article.query().order(-model.Article.date).fetch()
+            articles, next_cursor, more = model.Article.query().order(-model.Article.date).fetch_page(limit, start_cursor=cursor)
+            print articles
+            articles.append(next_cursor.urlsafe())
+            articles.append(more)
+            print articles
             self.send_success(articles)
         except Exception as e:
             self.send_error(500, e)
