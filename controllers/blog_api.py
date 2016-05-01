@@ -86,6 +86,10 @@ class ArticleHandler(BlogHandler, JsonRestHandler):
             deleted = self.request.get('with_deleted', default_value=False)
             tags = self.request.get_all('tags')
             articles, next_cursor, more = model.Article.query().order(-model.Article.date).fetch_page(limit, start_cursor=cursor)
+            if tags:
+                pass
+            if reverse:
+                articles, next_cursor, more = model.Article.query().order(model.Article.date).fetch_page(limit, start_cursor=cursor)
             print articles
             articles.append(next_cursor.urlsafe())
             articles.append(more)
