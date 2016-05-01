@@ -81,19 +81,28 @@ class ArticleHandler(BlogHandler, JsonRestHandler):
         """
         try:
             cursor = Cursor(urlsafe=self.request.get('cursor'))
-            reverse = self.request.get('reverse', default_value=False)
-            limit = self.request.get('limit', default_value=10)
-            deleted = self.request.get('with_deleted', default_value=False)
+            reverse = bool(self.request.get('reverse'))
+            limit = self.request.get('limit', default_value=5)
+            with_deleted = bool(self.request.get('with_deleted'))
+            deleted = bool(self.request.get('deleted'))
             tags = self.request.get_all('tags')
-            articles, next_cursor, more = model.Article.query().order(-model.Article.date).fetch_page(limit, start_cursor=cursor)
+            query = model.Article.query(model.Article.soft_deleted == deleted)
             if tags:
-                pass
+                query = model.Article \
+                    .query(model.Article.soft_deleted == deleted,
+                           model.Article.tags.IN(tags))
+            if with_deleted:
+                query = model.Article.query()
+                if tags:
+                    query = model.Article.query(model.Article.tags.IN(tags))
+            final_query = query.order(-model.Article.created_on)
             if reverse:
-                articles, next_cursor, more = model.Article.query().order(model.Article.date).fetch_page(limit, start_cursor=cursor)
-            print articles
-            articles.append(next_cursor.urlsafe())
-            articles.append(more)
-            print articles
+                final_query = query.order(model.Article.created_on)
+            articles, next_cursor, more = final_query.fetch_page(
+                                                limit, start_cursor=cursor)
+            if articles:
+                articles.append(next_cursor.urlsafe())
+                articles.append(more)
             self.send_success(articles)
         except Exception as e:
             self.send_error(500, e)
