@@ -74,7 +74,8 @@ class Jsonifiable:
                 if isinstance(properties[property_key], ndb.IntegerProperty):
                     property_value = int(value)
                 if isinstance(properties[property_key], ndb.DateTimeProperty):
-                    property_value = datetime.strptime(value, "%Y-%m-%d %H:%M:%S")
+                    property_value = datetime.strptime(value,
+                                                       "%Y-%m-%d %H:%M:%S")
             self.__setattr__(property_key, property_value)
 
 
