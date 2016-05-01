@@ -13,6 +13,7 @@ from vendors import markdown
 from models import model
 from config import config
 from controllers import server
+from controllers import blog_api
 
 
 # base handler
@@ -31,7 +32,8 @@ class BlogHandler(server.BaseHandler):
             save = model.Auth(token=gtoken)
             save.put()
 
-            to = config.admin['admin_name'] + ' ' + '<' + config.admin['admin_mail'] + '>'
+            to = config.admin['admin_name'] + ' ' + '<' + \
+                config.admin['admin_mail'] + '>'
             subject = 'Link to write blog'
             body = 'https://blog.vikashkumar.me/write/{0}'.format(gtoken)
 
@@ -53,7 +55,8 @@ class BlogHandler(server.BaseHandler):
             save = model.Auth(token=verify)
             save.put()
 
-        to = config.admin['admin_name'] + ' ' + '<' + config.admin['admin_mail'] + '>'
+        to = config.admin['admin_name'] + ' ' + '<' + \
+            config.admin['admin_mail'] + '>'
         subject = 'Link to write blog'
         body = 'https://blog.vikashkumar.me/write/{0}'.format(verify.token)
 
@@ -147,5 +150,5 @@ class WriteHandler(BlogHandler):
 
 
 class DashboardHandler(BlogHandler):
-    def fet(self):
+    def get(self):
         pass

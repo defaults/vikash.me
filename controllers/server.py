@@ -8,22 +8,22 @@ from webapp2_extras import jinja2
 from config import config
 
 
-# base handler
 class BaseHandler(webapp2.RequestHandler):
+    """Base handler for webpage"""
 
     @webapp2.cached_property
     def jinja2(self):
-        # Returns a Jinja2 renderer cached in the app registry.
+        """Returns a Jinja2 renderer cached in the app registry."""
         return jinja2.get_jinja2(app=self.app)
 
     def render_response(self, _template, **params):
-        # Renders a template and writes the result to the response.
+        """Renders a template and writes the result to the response."""
         temp = self.jinja2.render_template(_template, **params)
         self.response.write(temp)
 
-    # funtion to send mail
-    def sendEmail(self, emailTo, emailSubject, emailBody):
-        mail.send_mail(sender="Vikash Kumar <mailkumarvikash@gmail.com>",
+    def send_email(self, emailTo, emailSubject, emailBody):
+        """method to send mail"""
+        mail.send_mail(sender=config.admin['admin_mail'],
                        to=emailTo,
                        subject=emailSubject,
                        body=emailBody)
@@ -31,8 +31,9 @@ class BaseHandler(webapp2.RequestHandler):
         return
 
 
-# welcome page handler
 class HomeHandler(BaseHandler):
+    """Welcome page handler"""
+
     def get(self):
         params = {
             'page': 'Vikash Kumar'
@@ -40,8 +41,9 @@ class HomeHandler(BaseHandler):
         self.render_response('home.html', **params)
 
 
-# handler for about page
 class AboutHandler(BaseHandler):
+    """About page handler"""
+
     def get(self):
         params = {
             'page': 'about'
