@@ -56,10 +56,17 @@ class BlogHandler(server.BaseHandler):
         # Set self.request, self.response and self.app.
         self.initialize(request, response)
 
-    # def handle_dispatch():
-    #     """custom dispatch handler"""
-    #     # TODO: format return to JSON here
-    #     pass
+    def handle_dispatch():
+        """custom dispatch handler"""
+        # TODO: format return to JSON here
+        self.session_store = sessions.get_store(request=self.request)
+
+        try:
+            # Dispatch the request.
+            webapp2.RequestHandler.dispatch(self)
+        finally:
+            # Save all sessions.
+            self.session_store.save_sessions(self.response)
 
     @staticmethod
     def url_shortner(full_url):
