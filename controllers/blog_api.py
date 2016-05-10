@@ -71,6 +71,9 @@ class BlogHandler(server.BaseHandler):
         save.put()
         return short_url
 
+    def ping(self):
+        self.response.out.write('sucess')
+
 
 class ArticleHandler(BlogHandler, JsonRestHandler):
     """Article handler - Provides an api for working with articles"""
