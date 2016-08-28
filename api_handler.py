@@ -12,6 +12,11 @@ config['webapp2_extras.sessions'] = {
 }
 
 app = webapp2.WSGIApplication([
+    routes.DomainRoute('blog.vikashkumar.me', [
+        routes.RedirectRoute(
+            '/api',
+            handler=blog_api.BlogHandler,
+            handler_method='ping', methods=['GET'], strict_slash=True),
         routes.RedirectRoute(
             '/api/articles',
             handler=blog_api.ArticleHandler,
@@ -61,4 +66,5 @@ app = webapp2.WSGIApplication([
             '/auth',
             handler=blog_api.BlogHandler,
             name='auth', handler_method='authentication', strict_slash=True),
+            ])
     ], config=config, debug=True)
