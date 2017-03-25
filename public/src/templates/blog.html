@@ -34,7 +34,9 @@
 
 {% block content %}
 <main class="blog_main">
-    <h1 class="blog_tittle">Blog</h1>
+  <header class="blog_tittle">
+    <h1>Blog</h1>
+  </header>
   {% for article in article %}
     <section class="blog_articles_section">
       <a href="/{{article.url}}/">
