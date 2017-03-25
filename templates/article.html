@@ -40,15 +40,20 @@
 {% endblock %}
 
 {% block content %}
-<div class="row">
-    <div class="col-lg-12 main-content">
-      <h1 class="tittle"><a href="disqus"></a>{{tittle}}</h1>
-      <h3 class="time">{{date.strftime('%a, %B %d')}}</h3>
-      <article class="article">{{content | safe}}</article>
-   </div>
-  <div class="col-lg-12 main-content">
+<main class="article_main">
+    <article class="article_wrapper">
+      <section class="article_tittle">
+        <h1>{{tittle}}</h1>
+      </section>
+      <section class="article_date">
+        <h3>{{date.strftime('%a, %B %d')}}</h3>
+      </section>
+      <section class="article_content">{{content | safe}}</section>
+   </article>
+  <section class="disqus_section">
     <div id="disqus_thread"></div>
-</div>
+  </section>
+</main>
  {% endblock %}
 
 {% block discus %}
@@ -69,5 +74,5 @@
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
 </script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments.</a></noscript>
 {% endblock %}

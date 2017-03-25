@@ -54,7 +54,6 @@
 {% block nav %}
   <nav>
     <div class="nav_heading">Vikash Kumar</div>
-
     <div class="nav_navigation">
       <ul class="nav_naviagation_list">
         <li classs"list_elements">Home</li>
@@ -70,11 +69,15 @@
 {% block content %}
 {% endblock %}
 
-{% block social %}
-
-{% endblock %}
-
 {% block footer %}
+<footer class="footer">
+    <div class="footer_social">
+      <p>Connect: <span class="footer_social_icons"></span></p>
+    </div>
+    <div class="footer_copyright">
+      <p>It's all yours under<a href="https://creativecommons.org/publicdomain/zero/1.0/"> Creative Commons CC0.</a> | <a href="https://github.com/codervikash/vikash" target="blank">source.</a></p>
+    </div>
+</footer>
 
 <script>
   // jquery for toggling light
@@ -88,6 +91,7 @@
 
 //   $('#{{page}}').addClass('active');
 
+// TODO: remove this and use goole code highlighter
 $(document).ready(function() {
     $('pre').each(function(i, block) {
     hljs.highlightBlock(block);
