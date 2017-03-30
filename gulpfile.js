@@ -15,18 +15,21 @@ var
     deporder = require('gulp-deporder'),
     stripdebug = require('gulp-strip-debug'),
     uglify = require('gulp-uglify'),
-    rename = require('gulp-rename'),
     newer = require('gulp-newer'),
     imagemin = require('gulp-imagemin'),
     htmlclean = require('gulp-htmlclean'),
     sourcemaps = require('gulp-sourcemaps'),
-
+    del = require('del'),
+    rev = require('gulp-rev-all'),
+    useref = require('gulp-useref'),
+    runSequence = require('run-sequence'),
     // development mode?
     devBuild = (process.env.NODE_ENV !== 'production'),
 
     // folders
     folder = {
         src: 'public/src/',
+        temp: 'public/temp/',
         build: 'public/build/'
     }
 ;
@@ -40,7 +43,6 @@ gulp.task('lint', function() {
 
 // JavaScript processing
 gulp.task('scripts', function() {
-
     var jsbuild = gulp.src(folder.src + 'scripts/**/*')
         .pipe(deporder())
         .pipe(concat('main.js'));
@@ -50,13 +52,12 @@ gulp.task('scripts', function() {
             .pipe(stripdebug())
             .pipe(uglify());
     }
-
-    return jsbuild.pipe(gulp.dest(folder.build + 'scripts/'));
+    return jsbuild.pipe(gulp.dest(folder.temp + 'scripts/'));
 });
 
 // compress and optimize images
 gulp.task('images', function() {
-    var out = folder.build + 'images/';
+    var out = folder.temp + 'images/';
     return gulp.src(folder.src + 'images/**/*')
         .pipe(newer(out))
         .pipe(imagemin(
@@ -72,9 +73,10 @@ gulp.task('images', function() {
 // HTML processing
 gulp.task('html', ['images'], function() {
     var
-        out = folder.build + 'templates/',
+        out = folder.temp + 'templates/',
         page = gulp.src(folder.src + 'templates/**/*')
-            .pipe(newer(out));
+            .pipe(newer(out))
+            .pipe(useref());
 
     // minify production code
     if (!devBuild) {
@@ -105,16 +107,53 @@ gulp.task('css', ['images'], function() {
             errLogToConsole: true
         }))
         .pipe(postcss(postCssOpts))
-        .pipe(gulp.dest(folder.build + 'stylesheets/'));
+        .pipe(gulp.dest(folder.temp + 'stylesheets/'));
+});
+
+// copy remaining css files
+gulp.task('copy',['html'], function() {
+    gulp.src(folder.src + '**/*.{css,xml,txt,json}')
+        .pipe(gulp.dest(folder.temp));
+});
+
+// gulp task to add revision
+gulp.task('rev',[ 'copy'], function() {
+    gulp.src(folder.temp + '**/*')
+        .pipe(rev.revision({
+            dontRenameFile: ['.html','.xml','.json','.txt'],
+            dontUpdateReference: ['.html','.xml','.json','.txt']
+            }))
+        .pipe(gulp.dest(folder.build))
+        .pipe(rev.manifestFile())
+        .pipe(gulp.dest(folder.build))
 });
 
 // Watch Files For Changes
 gulp.task('watch', function() {
-    gulp.watch('js/*.js', ['lint', 'scripts']);
-    gulp.watch('scss/*.scss', ['css']);
-    gulp.watch('src/images/**/*', ['images']);
+    gulp.watch(folder.src + '**/*.js', ['lint', 'scripts']);
+    gulp.watch(folder.src + '**/*.scss', ['css']);
+    gulp.watch(folder.src + '**/*.{svg,jpeg,jpg,img,png}', ['images']);
 });
 
+// Clean Output Directory
+gulp.task('clean', function() {
+    return del(folder.build + '**');
+});
+
+//finish task to delete temp folders
+gulp.task('finish', function() {
+    return del(folder.temp, {force: true});
+});
+
+// all tasks
+allTasks = ['clean', 'lint', 'css', 'scripts', 'images', 'html', 'copy', 'rev'];
 
 // Default Task
-gulp.task('default', ['lint', 'css', 'scripts', 'images', 'html', 'watch']);
+gulp.task('default', function() {
+    return runSequence(allTasks);
+});
+
+// Dev tasks
+gulp.task('dev', function() {
+    return runSequence(allTasks, 'watch');
+});
