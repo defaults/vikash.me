@@ -9,17 +9,10 @@
 
 		<!-- CSS -->
 		<link href='//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+		<link href="/static/stylesheets/blog.css" rel="stylesheet">
 
-		<link href="/static/css/style_zenpen.css" rel="stylesheet">
-		<link href="/static/css/fonts.css" rel="stylesheet">
-
-		<!-- LIBS -->
-		<script src="/static/js/libs/head.min.js"></script>
-		<script src="/static/js/libs/FileSaver.min.js"></script>
-		<script src="/static/js/libs/Blob.js"></script>
-		<script src="/static/js/libs/fullScreen.js"></script>
-
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="/static/scripts/lib_blog.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
 
 		<!-- JS loading in footer -->
@@ -32,9 +25,9 @@
 
 			<div class="wordcount modal">
 				<h1>Target Word Count</h1>
-				<div>
-					<input type="number" name="quantity" value="0" min="0"></input>
-				</div>
+                <div>
+                    <input type="number" name="quantity" value="0" min="0"></input>
+                </div>
 			</div>
 
 		</div>
@@ -110,9 +103,7 @@
 		<script type="text/javascript">
 			// Load required scripts.
 			head.js(
-				"/static/js/utils.js",
-				"/static/js/ui.js",
-				"/static/js/editor.js",
+				"/static/scripts/blog.js",
 	        	function(){
 
 	            	// Initiate ZenPen
