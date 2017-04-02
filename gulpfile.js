@@ -41,11 +41,11 @@ gulp.task('lint', function() {
         .pipe(jshint.reporter('default'));
 });
 
-// JavaScript processing
-gulp.task('scripts', function() {
-    var jsbuild = gulp.src(folder.src + 'scripts/**/*')
+// JavaScript processing for blog js
+gulp.task('scripts-blog', function() {
+    var jsbuild = gulp.src(folder.src + 'scripts/blog/*.js')
         .pipe(deporder())
-        .pipe(concat('main.js'));
+        .pipe(concat('blog.js'));
 
     if (!devBuild) {
         jsbuild = jsbuild
@@ -54,6 +54,41 @@ gulp.task('scripts', function() {
     }
     return jsbuild.pipe(gulp.dest(folder.temp + 'scripts/'));
 });
+
+// Javascript processing for blog lib js file
+gulp.task('scripts-blog_lib', function() {
+    var jsbuild = gulp.src(folder.src + 'scripts/blog/libs/*.js')
+        .pipe(deporder())
+        .pipe(concat('lib_blog.js'));
+
+    if (!devBuild) {
+        jsbuild = jsbuild
+            .pipe(stripdebug())
+            .pipe(uglify());
+    }
+    return jsbuild.pipe(gulp.dest(folder.temp + 'scripts/'));
+});
+
+// Javascript processing for app js files
+gulp.task('scripts-app', function() {
+    var jsbuild = gulp.src(folder.src + 'scripts/app/*.js')
+        .pipe(deporder())
+        .pipe(concat('app.js'));
+
+    if (!devBuild) {
+        jsbuild = jsbuild
+            .pipe(stripdebug())
+            .pipe(uglify());
+    }
+    return jsbuild.pipe(gulp.dest(folder.temp + 'scripts/'));
+});
+
+// All Js master task
+gulp.task('scripts', [
+    'scripts-app',
+    'scripts-blog_lib',
+    'scripts-blog'
+]);
 
 // compress and optimize images
 gulp.task('images', function() {
