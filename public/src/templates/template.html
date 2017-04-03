@@ -46,7 +46,9 @@
 
 {% block extra %}
 {% endblock %}
-<!-- google analytics -->
+<style>
+    {% include "static/stylesheets/app.css" %}
+</style>
 </head>
 <body>
 {% endblock %}
@@ -99,6 +101,7 @@ $(document).ready(function() {
 
 });
 </script>
+<script src="/static/scripts/app.js" async defer></script>
 {% block discus %}
 {% endblock %}
 
