@@ -1,5 +1,6 @@
 application: vikash-kumar
 version: v201703
+
 runtime: python27
 threadsafe: true
 api_version: 1
@@ -13,49 +14,49 @@ handlers:
   static_files: public/src/robots.txt
   upload: public/src/robots.txt
 
-- url: static/images/(.*)
-    static_files: static/images/\1
-    expiration: "365d"
-    upload: public/build/images/(.*)
-    secure: always
+- url: /static/images/(.*)
+  static_files: static/images/\1
+  expiration: "365d"
+  upload: public/build/images/(.*)
+  secure: always
 
 - url: /sw.js
-    static_files: static/scripts/sw.js
-    expiration: "1s"
-    upload: public/build/scripts/sw.js
-    secure: always
+  static_files: static/scripts/sw.js
+  expiration: "1s"
+  upload: public/build/scripts/sw.js
+  secure: always
 
 - url: /favicon.ico
-    static_files: public/build/favicon.ico
-    expiration: "365d"
-    upload: public/build/favicon.ico
-    secure: always
+  static_files: public/build/favicon.ico
+  expiration: "365d"
+  upload: public/build/favicon.ico
+  secure: always
 
 - url: /manifest.json
-    static_files: public/build/manifest.json
-    expiration: "1s"
-    upload: public/build/manifest.json
-    secure: always
+  static_files: public/build/manifest.json
+  expiration: "1s"
+  upload: public/build/manifest.json
+  secure: always
 
-- url: static/scripts/(.*)
-    static_files: public/build/scripts/\1
-    expiration: "365d"
-    upload: public/build/scripts/(.*)
-    secure: always
+- url: /static/scripts/(.*)
+  static_files: public/build/scripts/\1
+  expiration: "365d"
+  upload: public/build/scripts/(.*)
+  secure: always
 
-- url: static/stylesheets/(.*)
-    static_files: public/build/styles/\1
-    expiration: "365d"
-    upload: public/build/styles/(.*)
-    secure: always
-    application_readable: true
+- url: /static/stylesheets/(.*)
+  static_files: public/build/styles/\1
+  expiration: "365d"
+  upload: public/build/styles/(.*)
+  secure: always
+  application_readable: true
 
 - url: /LICENSE
-    static_files: public/build/LICENSE
-    expiration: "7d"
-    mime_type: text/plain
-    upload: public/build/LICENSE
-    secure: always
+  static_files: public/build/LICENSE
+  expiration: "7d"
+  mime_type: text/plain
+  upload: public/build/LICENSE
+  secure: always
 
 - url: /api/.*
   script: api_handler.app
