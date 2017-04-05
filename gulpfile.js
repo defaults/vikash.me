@@ -24,7 +24,7 @@ var
     useref = require('gulp-useref'),
     runSequence = require('run-sequence'),
     // development mode?
-    devBuild = (process.env.NODE_ENV !== 'production'),
+    devBuild = true,
 
     // folders
     folder = {
@@ -106,7 +106,7 @@ gulp.task('images', function() {
 });
 
 // HTML processing
-gulp.task('html', ['images'], function() {
+gulp.task('html', function() {
     var
         out = folder.temp + 'templates/',
         page = gulp.src(folder.src + 'templates/**/*')
@@ -122,7 +122,7 @@ gulp.task('html', ['images'], function() {
 });
 
 // CSS processing
-gulp.task('css', ['images'], function() {
+gulp.task('css', function() {
 
     var postCssOpts = [
         assets({ loadPaths: ['images/'] }),
@@ -146,16 +146,16 @@ gulp.task('css', ['images'], function() {
 });
 
 // copy remaining css files
-gulp.task('copy',['html'], function() {
+gulp.task('copy', function() {
     gulp.src(folder.src + '**/*.{css,xml,txt,json}')
         .pipe(gulp.dest(folder.temp));
 });
 
 // gulp task to add revision
-gulp.task('rev',[ 'copy'], function() {
+gulp.task('rev', function() {
     gulp.src(folder.temp + '**/*')
         .pipe(rev.revision({
-            dontRenameFile: ['.html','.xml','.json','.txt'],
+            dontRenameFile: [/^\/favicon.ico$/g,'.html','.xml','.json','.txt'],
             dontUpdateReference: ['.html','.xml','.json','.txt']
             }))
         .pipe(gulp.dest(folder.build))
@@ -177,18 +177,16 @@ gulp.task('clean', function() {
 
 //finish task to delete temp folders
 gulp.task('finish', function() {
-    return del(folder.temp, {force: true});
+    return del(folder.temp + '**/*', {force: true});
 });
-
-// all tasks
-allTasks = ['clean', 'lint', 'css', 'scripts', 'images', 'html', 'copy', 'rev'];
 
 // Default Task
 gulp.task('default', function() {
-    return runSequence(allTasks);
+    devBuild = false;
+    return runSequence('clean', 'lint', 'css', 'scripts', 'images', 'html', 'copy', 'rev');
 });
 
 // Dev tasks
 gulp.task('dev', function() {
-    return runSequence(allTasks, 'watch');
+    return runSequence('clean', 'lint', 'css', 'scripts', 'images', 'html', 'copy', 'rev', 'watch');
 });
