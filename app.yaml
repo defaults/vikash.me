@@ -7,21 +7,21 @@ api_version: 1
 
 handlers:
 - url: /favicon.ico
-  static_files: static/img/favicon.png
+  static_files: public/build/favicon.png
   upload: static/img/favicon.png
 
 - url: /robots.txt
-  static_files: public/src/robots.txt
+  static_files: public/build/robots.txt
   upload: public/src/robots.txt
 
-- url: /static/images/(.*)
-  static_files: static/images/\1
+- url: /images/(.*)
+  static_files: public/build/images/\1
   expiration: "365d"
   upload: public/build/images/(.*)
   secure: always
 
 - url: /sw.js
-  static_files: static/scripts/sw.js
+  static_files: public/build/scripts/sw.js
   expiration: "1s"
   upload: public/build/scripts/sw.js
   secure: always
@@ -38,13 +38,13 @@ handlers:
   upload: public/build/manifest.json
   secure: always
 
-- url: /static/scripts/(.*)
+- url: /scripts/(.*)
   static_files: public/build/scripts/\1
   expiration: "365d"
   upload: public/build/scripts/(.*)
   secure: always
 
-- url: /static/stylesheets/(.*)
+- url: /stylesheets/(.*)
   static_files: public/build/styles/\1
   expiration: "365d"
   upload: public/build/styles/(.*)
