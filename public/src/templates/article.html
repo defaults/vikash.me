@@ -1,63 +1,53 @@
-{% extends "template.html" %}
+{% extends "templates/template.html" %}
 
 {% block seo %}
-  <meta name="description" content="Personal home page and blog of Vikash Kumar.
-  A passionate Geek & Developer. I love Python and algorithms.
-  @CoderVikash" />
-  <meta name="google-site-verification" content="DbfaEmBqSHBfNrEjIqF3UbAsQu-lXI21ZU-GgeM2bLs
+<meta name="description" content="Personal home page and blog of Vikash Kumar. Currently developer @Practo" />
+<meta name="google-site-verification" content="DbfaEmBqSHBfNrEjIqF3UbAsQu-lXI21ZU-GgeM2bLs
 " />
 <!-- Facebook tag -->
- <meta property="og:tittle" content="{{tittle}} - Blog | Vikash Kumar" />
-  <meta property="og:url" content="https://blog.vikashkumar.me/{{url}}/" />
-  <meta property="og:type" content="blog" />
-  <meta property="og:description" content="Personal home page and blog of Vikash Kumar.
-  A passionate Geek & Developer. I love Python and algorithms.
-  @CoderVikash"/>
-  <meta property="og:image" content="https://vikashkumar.me/static/img/100x100.jpeg" />
-  <meta property - Blog="og:site_name" content="Blog Vikash Kumar">
+<meta property="og:tittle" content="{{tittle}} - Blog | Vikash Kumar" />
+<meta property="og:url" content="https://blog.vikash.me/{{url}}/" />
+<meta property="og:type" content="blog" />
+<meta property="og:description" content="Personal home page and blog of Vikash Kumar. Currently developer @Practo"/>
+<meta property="og:image" content="https://vikash.me/images/vikash_1000x100.jpg" />
+<meta property - Blog="og:site_name" content="Blog Vikash Kumar">
 
 
 <!-- twitter tag -->
-   <meta name="twitter:card" content="summary" />
-   <meta name="twitter:title" content="{{tittle}} - Blog | Vikash Kumar" />
-   <meta name="twitter:description" content="Personal home page and blog of Vikash Kumar.
-  A passionate Geek & Developer. I love Python and algorithms.
-  @CoderVikash"/>
-   <meta name="twitter:url" content="https://blog.vikashkumar.me/{{url}}/"/>
-   <meta name="twitter:image" content="https://vikashkumar.me/static/img/100x100.jpeg"/>
-   <meta name="twitter:creator" content="@CoderVikash">
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="{{tittle}} - Blog | Vikash Kumar" />
+<meta name="twitter:description" content="Personal home page and blog of Vikash Kumar. Currently developer @Practo"/>
+<meta name="twitter:url" content="https://blog.vikash.me/{{url}}/"/>
+<meta name="twitter:image" content="https://vikash.me/images/vikash_1000x100.jpg"/>
+<meta name="twitter:creator" content="@CoderVikash">
 {% endblock %}
-
 
 {% block tittle %}{{tittle}} - Blog | Vikash Kumar{% endblock %}
 
-
 {% block extra %}
-
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/default.min.css">
-
 {% endblock %}
 
 {% block content %}
 <main class="article_main">
     <article class="article_wrapper">
-      <header class="article_tittle">
-        <h1>{{tittle}}</h1>
-      </header>
-      <section class="article_date">
-        <h3>{{date.strftime('%a, %B %d')}}</h3>
-      </section>
-      <section class="article_content">{{content | safe}}</section>
-   </article>
-  <section class="disqus_section">
-    <div id="disqus_thread"></div>
-  </section>
+        <header class="article_tittle">
+            <h1>{{tittle}}</h1>
+        </header>
+        <section class="article_date">
+            <h3>{{date.strftime('%a, %B %d')}}</h3>
+        </section>
+        <section class="article_content">{{content | safe}}</section>
+    </article>
+    <section class="disqus_section">
+        <div id="disqus_thread"></div>
+    </section>
 </main>
- {% endblock %}
+{% endblock %}
 
 {% block discus %}
-  <script type="text/javascript">
+<script type="text/javascript">
     /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
     // Variables
     var link = window.location.href;
@@ -65,7 +55,6 @@
     var disqus_identifier = '{{url}}';
     var disqus_tittle = '{{tittle}}';
     var disqus_url = link;
-
 
     /* * * DON'T EDIT BELOW THIS LINE * * */
     (function() {
