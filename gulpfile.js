@@ -155,8 +155,8 @@ gulp.task('copy', function() {
 gulp.task('rev', function() {
     gulp.src(folder.temp + '**/*')
         .pipe(rev.revision({
-            dontRenameFile: [/^\/favicon.ico$/g,'.html','.xml','.json','.txt'],
-            dontUpdateReference: ['.html','.xml','.json','.txt']
+            dontRenameFile: [/^\/favicon.ico$/g,/^\/vikash_1000x100.jpg$/g,'.html','.xml','.json','.txt'],
+            dontUpdateReference: [/^\/vikash_1000x100.jpg$/g,'.html','.xml','.json','.txt']
             }))
         .pipe(gulp.dest(folder.build))
         .pipe(rev.manifestFile())
@@ -168,6 +168,7 @@ gulp.task('watch', function() {
     gulp.watch(folder.src + '**/*.js', ['lint', 'scripts']);
     gulp.watch(folder.src + '**/*.scss', ['css']);
     gulp.watch(folder.src + '**/*.{svg,jpeg,jpg,img,png}', ['images']);
+    gulp.watch(folder.src + '**/*.{html}', ['html']);
 });
 
 // Clean Output Directory
