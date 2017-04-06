@@ -81,4 +81,3 @@ skip_files:
 - ^(temp/.*)
 - ^(test/.*)
 - ^(node_modules/.*)
-
