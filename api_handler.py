@@ -61,4 +61,4 @@ app = webapp2.WSGIApplication([
             '/auth',
             handler=blog_api.BlogHandler,
             name='auth', handler_method='authentication', strict_slash=True),
-    ], config=config, debug=True)
+    ], config=config)
