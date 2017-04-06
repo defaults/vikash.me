@@ -1,25 +1,39 @@
 import datetime
 import string
+import os
 
 import webapp2
+import jinja2
+import logging
 from google.appengine.api import mail
-from webapp2_extras import jinja2
 
 from config import config
+
+JINJA_ENVIRONMENT = jinja2.Environment(
+    loader=jinja2.FileSystemLoader(os.path.dirname(
+        'public/build/')),
+    extensions=['jinja2.ext.autoescape'],
+    autoescape=True)
+
+
+# method for handling errors
+def error_handlar(request, response, exception):
+    logging.exception(exception)
+    params = {
+        'error': exception
+    }
+    template = JINJA_ENVIRONMENT.get_template('templates/error.html')
+    response.write(template.render(params))
 
 
 class BaseHandler(webapp2.RequestHandler):
     """Base handler for webpage"""
 
-    @webapp2.cached_property
-    def jinja2(self):
-        """Returns a Jinja2 renderer cached in the app registry."""
-        return jinja2.get_jinja2(app=self.app)
-
     def render_response(self, _template, **params):
+        print os.path
         """Renders a template and writes the result to the response."""
-        temp = self.jinja2.render_template(_template, **params)
-        self.response.write(temp)
+        template = JINJA_ENVIRONMENT.get_template('templates/' + _template)
+        self.response.write(template.render(**params))
 
     def send_email(self, emailTo, emailSubject, emailBody):
         """method to send mail"""

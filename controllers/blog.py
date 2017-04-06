@@ -37,7 +37,7 @@ class BlogHandler(server.BaseHandler):
             subject = 'Link to write blog'
             body = 'https://blog.vikashkumar.me/write/{0}'.format(gtoken)
 
-            self.sendEmail(to, subject, body)
+            self.send_email(to, subject, body)
 
             params = {
                 'page': 'token'
