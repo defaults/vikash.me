@@ -1,16 +1,14 @@
-{% extends "template.html" %}
+{% extends "templates/template.html" %}
 
-{% block tittle %} {% if error.code %}
-{{error.code}}
-{% else %}
-{{error}}
-{% endif %} | Vikash Kumar{% endblock %}
+{% block tittle %}
+{% if error.code %}{{error.code}}{% else %}{{error}}{% endif %} | Vikash Kumar
+{% endblock %}
 
 {% block content %}
 <div class="row main-content">
-  <div class="col-lg-12 error">
-    <img src="/static/img/error.svg">
-    <p>Err, I know it sucks but you can always return for the <a href="/">awesome </a>!!</p>
-  </div>
+    <div class="col-lg-12 error">
+        <img src="/static/img/error.svg">
+        <p>Err, I know it sucks but you can always return for the <a href="/">awesome </a>!!</p>
+    </div>
 </div>
 {% endblock %}
