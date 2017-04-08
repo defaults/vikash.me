@@ -1,0 +1,22 @@
+// core particles
+@import "core/_colors";
+@import "core/_core";
+@import "core/_nav";
+@import "core/_footer";
+
+// home page partials
+@import "home/_content";
+@import "home/_nav";
+
+// blog listing page partials
+@import "blog/_blog";
+
+
+// article page partials
+@import "article/_article";
+
+// about page partials
+@import "about/_about";
+
+// error page partials
+@import "error/_error";
