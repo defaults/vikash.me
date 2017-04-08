@@ -147,28 +147,34 @@ gulp.task('css', function() {
 
 // copy remaining css files
 gulp.task('copy', function() {
-    gulp.src(folder.src + '**/*.{css,xml,txt,json}')
+    return gulp.src(folder.src + '**/*.{css,xml,txt,json}')
         .pipe(gulp.dest(folder.temp));
 });
 
 // gulp task to add revision
 gulp.task('rev', function() {
-    gulp.src(folder.temp + '**/*')
-        .pipe(rev.revision({
-            dontRenameFile: [/^\/favicon.ico$/g,/^\/vikash_1000x100.jpg$/g,'.html','.xml','.json','.txt'],
-            dontUpdateReference: [/^\/vikash_1000x100.jpg$/g,'.html','.xml','.json','.txt']
+    revisionTask = gulp.src(folder.temp + '**/*')
+    if (!devBuild) {
+        revisionTask = revisionTask
+            .pipe(rev.revision({
+                dontRenameFile: [/^\/favicon.ico$/g,/^\/vikash_1000x100.jpg$/g,'.html','.xml','.json','.txt'],
+                dontUpdateReference: [/^\/vikash_1000x100.jpg$/g,'.html','.xml','.json','.txt']
             }))
-        .pipe(gulp.dest(folder.build))
-        .pipe(rev.manifestFile())
-        .pipe(gulp.dest(folder.build))
+            .pipe(gulp.dest(folder.build))
+            .pipe(rev.manifestFile())
+
+    }
+
+    return revisionTask.pipe(gulp.dest(folder.build))
 });
 
 // Watch Files For Changes
 gulp.task('watch', function() {
-    gulp.watch(folder.src + '**/*.js', ['lint', 'scripts']);
-    gulp.watch(folder.src + '**/*.scss', ['css']);
-    gulp.watch(folder.src + '**/*.{svg,jpeg,jpg,img,png}', ['images']);
-    gulp.watch(folder.src + '**/*.{html}', ['html']);
+    gulp.watch(folder.src + '**/*.js', ['lint', 'scripts', 'rev']);
+    gulp.watch(folder.src + '**/*.scss', ['css', 'rev']);
+    gulp.watch(folder.src + '**/*.{svg,jpeg,jpg,img,png}', ['images', 'html', 'css', 'rev']);
+    gulp.watch(folder.src + 'templates/**/*', ['html', 'rev']);
+    gulp.watch(folder.src + '**/*.{css,xml,txt,json}', ['copy', 'rev'])
 });
 
 // Clean Output Directory
@@ -184,7 +190,7 @@ gulp.task('finish', function() {
 // Default Task
 gulp.task('default', function() {
     devBuild = false;
-    return runSequence('clean', 'lint', 'css', 'scripts', 'images', 'html', 'copy', 'rev');
+    return runSequence('clean', 'lint', 'css', 'scripts', 'images', 'html', 'copy', 'rev', 'finish');
 });
 
 // Dev tasks
