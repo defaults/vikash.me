@@ -1,0 +1,19 @@
+.footer {
+    display: flex;
+    justify-content: center;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+}
+
+.footer_social {
+    align-self: center;
+}
+
+.footer_social_icons {
+}
+
+.footer_copyright {
+    align-self: center;
+    text-align: center;
+}

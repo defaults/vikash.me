@@ -2,6 +2,7 @@
 @import "core/_colors";
 @import "core/_core";
 @import "core/_nav";
+@import "core/_content";
 @import "core/_footer";
 
 // home page partials
@@ -16,6 +17,12 @@
 
 // about page partials
 @import "about/_about";
+
+// write page partials
+@import "write/_write";
+
+// projrct page partials
+@import "project/_project";
 
 // error page partials
 @import "error/_error";
