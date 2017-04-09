@@ -4,17 +4,17 @@
 
 {% block content %}
 {% if pending %}
-    <div class="row main-content">
-        <div class="col-lg-12 error">
-            <p id="status">Check your mail your request is pending </p>
-            <button type="button" class="btn btn-default btn-lg" onclick=resend()>Resend Link</button>
+    <div class="write_main">
+        <div class="write_notice">
+            <p class="write_status">Check your mail your request is pending </p>
+            <button type="button" class="write_email_button" onclick=resend()>Resend Link</button>
         </div>
     </div>
 {% else %}
-    <div class="row main-content">
-        <div class="col-lg-12 error">
-            <p id="status"> We have send you link at your mail. Kindly follow it to get write page.</p>
-            <button type="button" class="btn btn-default btn-lg" onclick=resend()>Resend Link</button>
+    <div class="write_main">
+        <div class="write_notice">
+            <p class="write_status"> We have send you link at your mail. Kindly follow it to get write page.</p>
+            <button type="button" class="write_email_button" onclick=resend()>Resend Link</button>
         </div>
     </div>
 {% endif %}

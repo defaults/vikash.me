@@ -25,16 +25,18 @@
 
 {% block content %}
 <main class="blog_main">
-    <header class="blog_tittle">
+    <header class="blog_title">
         <h1>Blog</h1>
     </header>
-    {% for article in article %}
-        <section class="blog_articles_section">
-            <a href="/{{article.url}}/">
-                <h2 class="blog_articles_title">{{article.tittle}}</h1>
-            </a>
-            <h3 class="time-blog_articles_date">{{article.date.strftime('%a, %B %d')}}</h3>
-        </section>
-    {% endfor %}
+    <section class="blog_articles_section">
+        {% for article in article %}
+            <div class="blog_articles_row">
+                <a href="/{{article.url}}/">
+                    <h2 class="blog_articles_title">{{article.tittle}}</h1>
+                </a>
+                <h3 class="blog_articles_date">{{article.date.strftime('%a, %B %d')}}</h3>
+            </div>
+        {% endfor %}
+    </section>
 </main>
 {% endblock %}

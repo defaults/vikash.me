@@ -48,8 +48,8 @@
     </head>
     <body>
 
-    {% block nav %}
     <nav class="navigation">
+        {% block nav %}
         <div class="nav_heading">Vikash Kumar</div>
         <div class="nav_navigation">
             <ul class="nav_naviagation_list">
@@ -60,22 +60,38 @@
                 <li classs"list_elements">Contact</li>
             </ul>
         </div>
+        {% endblock %}
     </nav>
-    {% endblock %}
 
-    {% block content %}
-    {% endblock %}
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
 
-    {% block footer %}
     <footer class="footer">
+        {% block footer %}
         <div class="footer_social">
-            <p>Connect: <span class="footer_social_icons"></span></p>
+            <!-- <span class="footer_social_icons">
+                <a href="#"><img src="/images/twitter-logo.svg" alt=""></a>
+            </span>
+            <span class="footer_social_icons">
+                <a href="#"><img src="/images/github-logo.svg" alt=""></a>
+            </span>
+            <span class="footer_social_icons">
+                <a href="#"><img src="/images/linkedin-logo.svg" alt=""></a>
+            </span>
+            <span class="footer_social_icons">
+                <a href="#"><img src="/images/email-logo.svg" alt=""></a>
+            </span> -->
+            <span class="footer_social_icons">
+                <a href="#">Connect:</a>
+            </span>
         </div>
         <div class="footer_copyright">
-            <p>It's all yours under<a href="https://creativecommons.org/publicdomain/zero/1.0/"> Creative Commons CC0.</a> | <a href="https://github.com/codervikash/vikash" target="blank">source.</a></p>
+            <p>All yours under<a href="https://creativecommons.org/publicdomain/zero/1.0/"> Creative Commons CC0</a> | <a href="https://github.com/codervikash/vikash" target="blank">source.</a></p>
         </div>
-    </footer>
     {% endblock %}
+</footer>
 
     <script>
         // jquery for toggling light
