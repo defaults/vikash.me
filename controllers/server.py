@@ -44,6 +44,9 @@ class BaseHandler(webapp2.RequestHandler):
 
         return
 
+    def warmup(self):
+        pass
+
 
 class HomeHandler(BaseHandler):
     """Welcome page handler"""

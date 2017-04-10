@@ -55,6 +55,9 @@ app = webapp2.WSGIApplication([
         handler=blog.DashboardHandler, name='dashboard', strict_slash=True),
     routes.RedirectRoute(
         '/', handler=server.HomeHandler, name='home', strict_slash=True),
+    routes.RedirectRoute(
+        '/_ah/warmup', handler=server.BaseHandler,
+        name='warmup', handler_method='warmup')
 ])
 
 # errors
