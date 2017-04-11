@@ -1,7 +1,10 @@
 .home_nav {
-
+    display: flex;
+    flex-direction: column;
 }
 
 .home_nav_links {
-    
+    margin: auto;
+    padding: 10px 0px;
+    font-size: 30px;
 }

@@ -8,12 +8,17 @@
 
 .footer_social {
     align-self: center;
+    display: flex;
 }
 
 .footer_social_icons {
+    margin: 0px 30px;
+
+    img {
+        height: 20px;
+    }
 }
 
 .footer_copyright {
     align-self: center;
-    text-align: center;
 }

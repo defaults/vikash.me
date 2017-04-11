@@ -1,15 +1,20 @@
 .home_main {
-
+    display: flex;
+    flex-direction: column;
+    max-width: 35%;
+    margin: auto;
+    padding: 5%;
 }
 
 .home_tittle {
-
+    margin: auto;
 }
 
 .home_title_underline {
-
+    background-color: #d0d0d0;
+    height: 2px;
 }
 
 .home_description {
-    
+    padding: 20px 20px
 }
