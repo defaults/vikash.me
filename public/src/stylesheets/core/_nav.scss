@@ -1,7 +1,10 @@
 .navigation {
     display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
+    flex-flow: row;
+    justify-content: space-between;
+    height: 5em;
+    min-width: 50%;
+    align-self: center;
 }
 
 .nav_heading {
