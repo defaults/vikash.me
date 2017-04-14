@@ -2,6 +2,10 @@
 
 {% block tittle %}Blog | Vikash Kumar{% endblock %}
 
+{% block stylesheet %}
+{% include "stylesheets/write.css" %}
+{% endblock %}
+
 {% block content %}
 {% if pending %}
     <div class="write_main">

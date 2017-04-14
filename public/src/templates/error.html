@@ -4,6 +4,10 @@
 {% if error.code %}{{error.code}}{% else %}{{error}}{% endif %} | Vikash Kumar
 {% endblock %}
 
+{% block stylesheet %}
+{% include "stylesheets/error.css" %}
+{% endblock %}
+
 {% block content %}
 <div class="error_main">
     <section class="error_section">
