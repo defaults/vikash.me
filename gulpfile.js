@@ -31,6 +31,19 @@ var
         src: 'public/src/',
         temp: 'public/temp/',
         build: 'public/build/'
+    },
+
+    postCssOpts = [
+        assets({ loadPaths: ['images/'] }),
+        autoprefixer({ browsers: ['last 2 versions', '> 2%'] }),
+        mqpacker
+    ],
+
+    scssOpts = {
+        outputStyle: 'nested',
+        imagePath: 'images/',
+        precision: 3,
+        errLogToConsole: true
     }
 ;
 
@@ -122,25 +135,98 @@ gulp.task('html', function() {
 });
 
 // CSS processing
-gulp.task('css', function() {
-
-    var postCssOpts = [
-        assets({ loadPaths: ['images/'] }),
-        autoprefixer({ browsers: ['last 2 versions', '> 2%'] }),
-        mqpacker
-    ];
+gulp.task('css-home', function() {
 
     if (!devBuild) {
         postCssOpts.push(cssnano);
     }
 
-    return gulp.src(folder.src + 'stylesheets/app.scss')
-        .pipe(sass({
-            outputStyle: 'nested',
-            imagePath: 'images/',
-            precision: 3,
-            errLogToConsole: true
-        }))
+    return gulp.src(folder.src + 'stylesheets/home.scss')
+        .pipe(sass(scssOpts))
+        .pipe(postcss(postCssOpts))
+        .pipe(gulp.dest(folder.temp + 'stylesheets/'));
+});
+
+gulp.task('css-about', function() {
+
+    if (!devBuild) {
+        postCssOpts.push(cssnano);
+    }
+
+    return gulp.src(folder.src + 'stylesheets/about.scss')
+        .pipe(sass(scssOpts))
+        .pipe(postcss(postCssOpts))
+        .pipe(gulp.dest(folder.temp + 'stylesheets/'));
+});
+
+gulp.task('css-blog', function() {
+
+    if (!devBuild) {
+        postCssOpts.push(cssnano);
+    }
+
+    return gulp.src(folder.src + 'stylesheets/blog.scss')
+        .pipe(sass(scssOpts))
+        .pipe(postcss(postCssOpts))
+        .pipe(gulp.dest(folder.temp + 'stylesheets/'));
+});
+
+gulp.task('css-article', function() {
+
+    if (!devBuild) {
+        postCssOpts.push(cssnano);
+    }
+
+    return gulp.src(folder.src + 'stylesheets/article.scss')
+        .pipe(sass(scssOpts))
+        .pipe(postcss(postCssOpts))
+        .pipe(gulp.dest(folder.temp + 'stylesheets/'));
+});
+
+gulp.task('css-write', function() {
+
+    if (!devBuild) {
+        postCssOpts.push(cssnano);
+    }
+
+    return gulp.src(folder.src + 'stylesheets/write.scss')
+        .pipe(sass(scssOpts))
+        .pipe(postcss(postCssOpts))
+        .pipe(gulp.dest(folder.temp + 'stylesheets/'));
+});
+
+gulp.task('css-project', function() {
+
+    if (!devBuild) {
+        postCssOpts.push(cssnano);
+    }
+
+    return gulp.src(folder.src + 'stylesheets/project.scss')
+        .pipe(sass(scssOpts))
+        .pipe(postcss(postCssOpts))
+        .pipe(gulp.dest(folder.temp + 'stylesheets/'));
+});
+
+
+// All css tasks
+gulp.task('css', [
+    'css-home',
+    'css-about',
+    'css-write',
+    'css-project',
+    'css-blog',
+    'css-article',
+    'css-error'
+]);
+
+gulp.task('css-error', function() {
+
+    if (!devBuild) {
+        postCssOpts.push(cssnano);
+    }
+
+    return gulp.src(folder.src + 'stylesheets/error.scss')
+        .pipe(sass(scssOpts))
         .pipe(postcss(postCssOpts))
         .pipe(gulp.dest(folder.temp + 'stylesheets/'));
 });
