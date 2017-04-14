@@ -1,3 +1,6 @@
+$homePrimary: #ffe63e;
+$homeSecondary: #58b23d;
+
 .blog_main {
 
 }
@@ -20,4 +23,8 @@
 
 .blog_articles_date {
 
+}
+
+.nav_naviagation_list.blog_link> a {
+    border-bottom: solid .1rem $homeSecondary;
 }

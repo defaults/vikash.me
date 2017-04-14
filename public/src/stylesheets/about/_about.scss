@@ -1,3 +1,6 @@
+$homePrimary: #2260ff;
+$homeSecondary: #5d0587;
+
 .about_main {
 
 }
@@ -15,5 +18,9 @@
 }
 
 .about_detail {
-    
+
+}
+
+.nav_naviagation_list.about_link> a {
+    border-bottom: solid .1rem $homeSecondary;
 }

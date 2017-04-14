@@ -1,3 +1,6 @@
+$homePrimary: #ff8000;
+$homeSecondary: #008c8c;
+
 .error_main {
 
 }
@@ -12,4 +15,8 @@
 
 .error_section_description {
 
+}
+
+.nav_naviagation_list.error_link> a {
+    border-bottom: solid .1rem $homeSecondary;
 }

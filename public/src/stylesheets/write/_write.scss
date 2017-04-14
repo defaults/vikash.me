@@ -1,3 +1,6 @@
+$homePrimary: #ff8000;
+$homeSecondary: #008c8c;
+
 .write_main {
 
 }
@@ -12,4 +15,8 @@
 
 .write_email_button{
 
+}
+
+.nav_naviagation_list.write_link> a {
+    border-bottom: solid .1rem $homeSecondary;
 }

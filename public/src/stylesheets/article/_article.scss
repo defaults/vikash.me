@@ -1,3 +1,6 @@
+$homePrimary: #ff8000;
+$homeSecondary: #008c8c;
+
 .article_main {
 
 }
@@ -24,4 +27,8 @@
 
 .disqus_thread {
 
+}
+
+.nav_naviagation_list.article_link> a {
+    border-bottom: solid .1rem $homeSecondary;
 }

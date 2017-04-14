@@ -1,8 +1,15 @@
+$homePrimary: #50c0fb;
+$homeSecondary: #630;
+
 .home_main {
     display: flex;
     flex-direction: column;
+    max-width: 600px;
     margin: auto;
-    padding: 5%;
+
+    a {
+        color: $homeSecondary;
+    }
 }
 
 .home_tittle {
@@ -15,4 +22,8 @@
 }
 
 .home_description {
+}
+
+.nav_naviagation_list.home_link> a {
+    border-bottom: solid .1rem $homeSecondary;
 }
