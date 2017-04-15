@@ -24,7 +24,7 @@
 {% block tittle %}Blog | Vikash Kumar{% endblock %}
 
 {% block stylesheet %}
-{% include "stylesheets/blog.css" %}
+{% include "stylesheets/article_list.css" %}
 {% endblock %}
 
 {% block content %}
@@ -36,10 +36,19 @@
     <section class="blog_articles_section">
         {% for article in article %}
             <div class="blog_articles_row">
-                <a href="/{{article.url}}/">
-                    <h2 class="blog_articles_title">{{article.tittle}}</h1>
-                </a>
-                <h3 class="blog_articles_date">{{article.date.strftime('%a, %B %d')}}</h3>
+                <span class="blog_articles_title">
+                    <a href="/blog/{{article.url}}/">{{article.tittle}}</a>
+                </span>
+                <span class="blog_articles_desc">
+                    <span class="blog_articles_date"><img class="blog_articles_desc_img" src="/images/clock.svg" alt="">{{article.date.strftime('%b %d')}}</span>
+                    {% if article.tags %}
+                        <span class="blog_articles_tags"><img class="blog_articles_desc_img" src="/images/tag.svg" alt="">
+                            {% for tag in article.tags %}
+                                #{{tag}},
+                            {% endfor %}
+                        </span>
+                    {% endif %}
+                </span>
             </div>
         {% endfor %}
     </section>

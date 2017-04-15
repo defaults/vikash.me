@@ -165,7 +165,7 @@ gulp.task('css-blog', function() {
         postCssOpts.push(cssnano);
     }
 
-    return gulp.src(folder.src + 'stylesheets/blog.scss')
+    return gulp.src(folder.src + 'stylesheets/article_list.scss')
         .pipe(sass(scssOpts))
         .pipe(postcss(postCssOpts))
         .pipe(gulp.dest(folder.temp + 'stylesheets/'));
