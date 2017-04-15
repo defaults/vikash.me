@@ -4,7 +4,7 @@
     min-height: 2rem;
     justify-content: space-between;
     align-self: center;
-    padding: 2rem 1rem;
+    padding: 1.5rem 0rem;
     width: 800px;
     box-shadow: 0 2px 2px -2px rgba(0,0,0,.15);
 }
@@ -25,7 +25,7 @@
 
 @media only screen and (max-width: 800px) {
     .navigation {
-        width: 90%;
+        width:100%;
     }
 }
 
@@ -66,10 +66,15 @@
 
 
 .nav_navigation {
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: row;
+    -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row;
     font-weight: 500;
     font-size: 1.1rem;
+    justify-content: space-around;
 
 }
 

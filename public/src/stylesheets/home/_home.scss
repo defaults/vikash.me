@@ -2,9 +2,13 @@ $homePrimary: #50c0fb;
 $homeSecondary: #630;
 
 .home_main {
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
-    max-width: 600px;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    max-width: 480px;
     margin: auto;
 
     a {
@@ -14,14 +18,56 @@ $homeSecondary: #630;
 
 .home_tittle {
     margin: auto;
+    align-self: center;
 }
 
 .home_title_underline {
-    background-color: #d0d0d0;
+    background-color: $homePrimary;
     height: .2rem;
 }
 
 .home_description {
+}
+
+.home_fact_list {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    justify-content: flex-start;
+}
+
+.home_fact_list_row {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    margin: .3rem 0;
+
+}
+
+.fact_list_heading {
+    align-self: flex-start;
+    min-width: 5rem;
+    font-weight: 500;
+}
+
+.fact_list_desc {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    justify-content: flex-start;
+}
+
+.fact_list_desc_items {
+    margin-bottom: .2rem;
 }
 
 .nav_naviagation_list.home_link> a {

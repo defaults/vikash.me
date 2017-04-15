@@ -5,8 +5,12 @@
         -ms-flex-direction: column;
             flex-direction: column;
     min-height: 5rem;
-    padding: 2rem 1rem;
+    padding-top: 2rem;
     color: $secondaryText;
+
+    a {
+        color: $homeSecondary;
+    }
 }
 
 .footer_social {
