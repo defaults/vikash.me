@@ -1,16 +1,20 @@
 $homePrimary: #2260ff;
 $homeSecondary: #5d0587;
 
-.about_main {
+.page_main {
 
 }
 
 .about_image_section {
-
+    justify-content: center;
+    margin: auto;
+    padding: 2rem;
 }
 
 .about_image {
-
+    border-radius: 50%;
+    height: 12rem;
+    width: 12rem;
 }
 
 .about_detail_section {

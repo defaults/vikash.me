@@ -2,5 +2,30 @@
     flex: 1;
     align-items: center;
     justify-content: center;
-    padding: .5rem;
+    padding: 1rem;
+}
+
+.page_main {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    margin: auto;
+    max-width: 800px;
+
+    a {
+        color: $homeSecondary;
+    }
+}
+
+.page_tittle {
+    margin: auto;
+    align-self: center;
+}
+
+.page_title_underline {
+    background-color: $homePrimary;
+    height: .2rem;
 }

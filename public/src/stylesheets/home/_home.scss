@@ -1,32 +1,8 @@
 $homePrimary: #50c0fb;
 $homeSecondary: #630;
 
-.home_main {
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-flex-direction: column;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    max-width: 480px;
-    margin: auto;
-
-    a {
-        color: $homeSecondary;
-    }
-}
-
-.home_tittle {
-    margin: auto;
-    align-self: center;
-}
-
-.home_title_underline {
-    background-color: $homePrimary;
-    height: .2rem;
-}
-
-.home_description {
+.page_main {
+    max-width: 480px !important;
 }
 
 .home_fact_list {
