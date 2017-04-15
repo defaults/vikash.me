@@ -10,10 +10,8 @@
 
 {% block content %}
 <main class="page_main">
-    <header class="page_title">
-        <h1>Error {% if error.code %}{{error.code}}{% else %}{{error}}{% endif %}</h1>
-        <div class="page_title_underline"></div>
-    </header>
+    <header class="page_title">Error {% if error.code %}{{error.code}}{% else %}{{error}}{% endif %}</header>
+    <div class="page_title_underline"></div>
     <section class="error_section">
         <div class="error_section_img">
             <img src="">

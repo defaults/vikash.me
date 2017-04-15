@@ -92,13 +92,15 @@ class ArticleHandler(BlogHandler):
                 tittle = article.tittle
                 date = article.date
                 url = article.url
+                tags = article.tags
 
             params = {
                 'page': 'article',
                 'tittle': tittle,
                 'content': content,
                 'date': date,
-                'url': url
+                'url': url,
+                'tags': tags
             }
             self.render_response('article.html', **params)
         else:

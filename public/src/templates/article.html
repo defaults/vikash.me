@@ -29,19 +29,22 @@
 {% endblock %}
 
 {% block extra %}
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/default.min.css">
+<script src="https://rawgit.com/google/code-prettify/master/loader/run_prettify.js?autoload=true"></script>
 {% endblock %}
 
 {% block content %}
 <main class="page_main">
     <article class="article_wrapper">
-        <header class="page_title">
-            <h1>{{tittle}}</h1>
-            <div class="page_title_underline"></div>
-        </header>
-        <section class="article_date">
-            <h3>{{date.strftime('%a, %B %d')}}</h3>
+        <header class="page_title">{{tittle}}</header>
+        <div class="page_title_underline"></div>
+        <section class="article_desc">
+            {% if tags %}
+                <span class="blog_article_tags"><img class="blog_article_desc_img" src="/images/tag.svg" alt="">
+                    {% for tag in tags %}
+                        #{{tag}},
+                    {% endfor %}
+                </span>
+            {% endif %}
         </section>
         <section class="article_content">{{content | safe}}</section>
     </article>
