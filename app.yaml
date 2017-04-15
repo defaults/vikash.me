@@ -45,9 +45,9 @@ handlers:
   secure: always
 
 - url: /stylesheets/(.*)
-  static_files: public/build/styles/\1
+  static_files: public/build/stylesheets/\1
   expiration: "365d"
-  upload: public/build/styles/(.*)
+  upload: public/build/stylesheets/(.*)
   secure: always
   application_readable: true
 

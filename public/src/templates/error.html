@@ -9,7 +9,11 @@
 {% endblock %}
 
 {% block content %}
-<div class="page_main">
+<main class="page_main">
+    <header class="page_title">
+        <h1>Error {% if error.code %}{{error.code}}{% else %}{{error}}{% endif %}</h1>
+        <div class="page_title_underline"></div>
+    </header>
     <section class="error_section">
         <div class="error_section_img">
             <img src="">
@@ -18,5 +22,5 @@
             <p>Err, I know it sucks but you can always return for the <a href="/">awesome </a>!!</p>
         </div>
     </section>
-</div>
+</main>
 {% endblock %}

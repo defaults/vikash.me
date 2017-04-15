@@ -207,18 +207,6 @@ gulp.task('css-project', function() {
         .pipe(gulp.dest(folder.temp + 'stylesheets/'));
 });
 
-
-// All css tasks
-gulp.task('css', [
-    'css-home',
-    'css-about',
-    'css-write',
-    'css-project',
-    'css-blog',
-    'css-article',
-    'css-error'
-]);
-
 gulp.task('css-error', function() {
 
     if (!devBuild) {
@@ -231,10 +219,27 @@ gulp.task('css-error', function() {
         .pipe(gulp.dest(folder.temp + 'stylesheets/'));
 });
 
+// All css tasks
+gulp.task('css', [
+    'css-home',
+    'css-about',
+    'css-write',
+    'css-project',
+    'css-blog',
+    'css-article',
+    'css-error'
+]);
+
 // copy remaining css files
-gulp.task('copy', function() {
-    return gulp.src(folder.src + '**/*.{css,xml,txt,json}')
+gulp.task('copy',['copy-zenpen'], function() {
+    return gulp.src(folder.src + '**/*.{xml,txt,json,css}')
         .pipe(gulp.dest(folder.temp));
+});
+
+// copy remaining css files
+gulp.task('copy-zenpen', function() {
+    return gulp.src(folder.src + 'stylesheets/fonts/**/*')
+        .pipe(gulp.dest(folder.temp + 'stylesheets/fonts'));
 });
 
 // gulp task to add revision
