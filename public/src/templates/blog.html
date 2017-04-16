@@ -1,24 +1,29 @@
 {% extends "templates/template.html" %}
 
 {% block seo %}
-<meta name="description" content="Personal home page and blog of Vikash Kumar. Currently developer @Practo" />
-<meta name="google-site-verification" content="DbfaEmBqSHBfNrEjIqF3UbAsQu-lXI21ZU-GgeM2bLs
-" />
+<meta name="google-site-verification" content="GhSWpL7W7Bxc4DAY1kzcRgpWhKUO5kDX5gCXIR94P9g" />
+
+<meta itemprop="name" content="Personal Blog - Vikash Kumar">
+<meta name="description" content="Personal Blog - Vikash Kumar. @CoderVikash. Currently developer @Practo"/>
+<meta itemprop="image" content="https://vikash.me/images/vikash_seo.png">
+
 <!-- Facebook tag -->
-<meta property="og:tittle" content="Blog | Vikash Kumar" />
-<meta property="og:url" content="https://blog.vikash.me" />
+<meta property="og:tittle" content="Personal Blog - Vikash Kumar" />
+<meta property="og:url" content="https://blog.vikash.me/" />
 <meta property="og:type" content="blog" />
-<meta property="og:description" content="Personal home page and blog of Vikash Kumar.Currently developer @Practo"/>
-<meta property="og:image" content="https://vikash.me/images/vikash_1000x1000.jpg" />
-<meta property="og:site_name" content="Blog Vikash Kumar">
+<meta property="og:description" content="Personal Blog of Vikash Kumar. @CoderVikash. Currently developer @Practo"/>
+<meta property="og:image" content="https://vikash.me/images/vikash_seo.png" />
+<meta property="og:site_name" content="Personal Blog">
+<meta property="fb:admins" content="1456060372" />
 
 <!-- twitter tag -->
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="Blog | Vikash Kumar" />
-<meta name="twitter:description" content="Personal home page and blog of Vikash Kumar. Currently developer @Practo"/>
-<meta name="twitter:url" content="https://blog.vikash.me"/>
-<meta name="twitter:image" content="https://vikash.me/images/vikash_1000x1000.jpg"/>
+<meta name="twitter:title" content="Personal Blog - Vikash Kumar" />
+<meta name="twitter:description" content="Personal Blog of Vikash Kumar. @CoderVikash. Currently developer @Practo"/>
+<meta name="twitter:url" content="https://blog.vikash.me/"/>
+<meta name="twitter:image" content="https://vikash.me/images/vikash_seo.png"/>
 <meta name="twitter:creator" content="@CoderVikash">
+<meta name="twitter:author" content="@CoderVikash">
 {% endblock %}
 
 {% block tittle %}Blog | Vikash Kumar{% endblock %}
@@ -35,7 +40,7 @@
         {% for article in article %}
             <div class="blog_articles_row">
                 <span class="blog_articles_title">
-                    <a href="/blog/{{article.url}}/">{{article.tittle}}</a>
+                    <a href="/{{article.url}}/">{{article.tittle}}</a>
                 </span>
                 <span class="blog_articles_desc">
                     <span class="blog_articles_date"><img class="blog_articles_desc_img" src="/images/clock.svg" alt="">{{article.date.strftime('%b %d')}}</span>

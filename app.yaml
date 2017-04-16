@@ -3,13 +3,41 @@ threadsafe: true
 api_version: 1
 
 handlers:
-- url: /favicon.ico
-  static_files: public/build/favicon.ico
-  upload: public/build/favicon.ico
+- url: /(.*\.(gif|png))$
+  static_files: public/build/favicons/\1
+  expiration: "1s"
+  upload: public/build/favicons/.*\.(gif|png)$
+  secure: always
 
 - url: /robots.txt
   static_files: public/build/robots.txt
+  expiration: "1s"
   upload: public/src/robots.txt
+  secure: always
+
+- url: /favicon.ico
+  static_files: public/build/favicons/favicon.ico
+  expiration: "365d"
+  upload: public/build/favicons/favicon.ico
+  secure: always
+
+- url: /manifest.json
+  static_files: public/build/favicons/manifest.json
+  expiration: "1s"
+  upload: public/build/favicons/manifest.json
+  secure: always
+
+- url: /browserconfig.xml
+  static_files: public/build/favicons/browserconfig.xml
+  expiration: "1s"
+  upload: public/build/favicons/browserconfig.xml
+  secure: always
+
+- url: /sitemap.xml
+  static_files: public/build/sitemap.xml
+  expiration: "1s"
+  upload: public/build/sitemap.xml
+  secure: always
 
 - url: /images/(.*)
   static_files: public/build/images/\1
@@ -21,18 +49,6 @@ handlers:
   static_files: public/build/scripts/sw.js
   expiration: "1s"
   upload: public/build/scripts/sw.js
-  secure: always
-
-- url: /favicon.ico
-  static_files: public/build/favicon.ico
-  expiration: "365d"
-  upload: public/build/favicon.ico
-  secure: always
-
-- url: /manifest.json
-  static_files: public/build/manifest.json
-  expiration: "1s"
-  upload: public/build/manifest.json
   secure: always
 
 - url: /scripts/(.*)

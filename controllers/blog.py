@@ -93,6 +93,9 @@ class ArticleHandler(BlogHandler):
                 date = article.date
                 url = article.url
                 tags = article.tags
+                description = (
+                        re.sub('<[^<]+?>', '', article.content[:100]) + '...'
+                    ).strip()
 
             params = {
                 'page': 'article',
@@ -100,7 +103,8 @@ class ArticleHandler(BlogHandler):
                 'content': content,
                 'date': date,
                 'url': url,
-                'tags': tags
+                'tags': tags,
+                'description': description
             }
             self.render_response('article.html', **params)
         else:

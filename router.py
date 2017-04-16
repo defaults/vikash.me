@@ -61,7 +61,7 @@ app = webapp2.WSGIApplication([
         handler=blog.DashboardHandler, name='dashboard', strict_slash=True),
     routes.RedirectRoute(
         '/', handler=server.HomeHandler, name='home', strict_slash=True)
-], debug=True)
+])
 
 # errors
 app.error_handlers[404] = server.error_handlar

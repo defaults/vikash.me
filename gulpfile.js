@@ -232,7 +232,7 @@ gulp.task('css', [
 
 // copy remaining css files
 gulp.task('copy',['copy-zenpen'], function() {
-    return gulp.src(folder.src + '**/*.{xml,txt,json,css,ico}')
+    return gulp.src(folder.src + '**/*.{xml,txt,json,css,ico,png}')
         .pipe(gulp.dest(folder.temp));
 });
 
@@ -248,8 +248,8 @@ gulp.task('rev', function() {
     if (!devBuild) {
         revisionTask = revisionTask
             .pipe(rev.revision({
-                dontRenameFile: [/^\/favicon.ico$/g,/^\/vikash_1000x100.jpg$/g,'.html','.xml','.json','.txt'],
-                dontUpdateReference: [/^\/vikash_1000x100.jpg$/g,'.html','.xml','.json','.txt']
+                dontRenameFile: ['.ico','.png','.html','.xml','.json','.txt'],
+                dontUpdateReference: ['.png','.html','.xml','.json','.txt']
             }))
             .pipe(gulp.dest(folder.build))
             .pipe(rev.manifestFile())
@@ -263,7 +263,10 @@ gulp.task('rev', function() {
 gulp.task('watch', function() {
     gulp.watch(folder.src + '**/*.js', ['lint', 'scripts', 'rev']);
     gulp.watch(folder.src + '**/*.scss', ['css', 'rev']);
-    gulp.watch(folder.src + '**/*.{svg,jpeg,jpg,img,png}', ['images', 'html', 'css', 'rev']);
+    gulp.watch(
+        folder.src + '**/*.{svg,jpeg,jpg,img,png}',
+        ['images', 'html', 'css', 'rev']
+    );
     gulp.watch(folder.src + 'templates/**/*', ['html', 'rev']);
     gulp.watch(folder.src + '**/*.{css,xml,txt,json}', ['copy', 'rev'])
 });
@@ -281,10 +284,16 @@ gulp.task('finish', function() {
 // Default Task
 gulp.task('default', function() {
     devBuild = false;
-    return runSequence('clean', 'lint', 'css', 'scripts', 'images', 'html', 'copy', 'rev', 'finish');
+    return runSequence(
+        'clean', 'lint', 'css', 'scripts', 'images',
+        'html', 'copy', 'rev', 'finish'
+    );
 });
 
 // Dev tasks
 gulp.task('dev', function() {
-    return runSequence('clean', 'lint', 'css', 'scripts', 'images', 'html', 'copy', 'rev', 'watch');
+    return runSequence(
+        'clean', 'lint', 'css', 'scripts',
+        'images', 'html', 'copy', 'rev', 'watch'
+    );
 });

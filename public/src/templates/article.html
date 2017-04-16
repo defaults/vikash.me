@@ -1,25 +1,34 @@
 {% extends "templates/template.html" %}
 
 {% block seo %}
-<meta name="description" content="Personal home page and blog of Vikash Kumar. Currently developer @Practo" />
-<meta name="google-site-verification" content="DbfaEmBqSHBfNrEjIqF3UbAsQu-lXI21ZU-GgeM2bLs
-" />
+<meta name="google-site-verification" content="GhSWpL7W7Bxc4DAY1kzcRgpWhKUO5kDX5gCXIR94P9g" />
+
+<meta itemprop="name" content="{{tittle}} - Blog | Vikash Kumar">
+<meta itemprop="description" content="{{description}}">
+<meta itemprop="image" content="https://vikash.me/images/vikash_seo.png">
+
 <!-- Facebook tag -->
-<meta property="og:tittle" content="{{tittle}} - Blog | Vikash Kumar" />
+<meta property="og:title" content="{{tittle}} - Blog | Vikash Kumar" />
 <meta property="og:url" content="https://blog.vikash.me/{{url}}/" />
 <meta property="og:type" content="blog" />
-<meta property="og:description" content="Personal home page and blog of Vikash Kumar. Currently developer @Practo"/>
-<meta property="og:image" content="https://vikash.me/images/vikash_1000x100.jpg" />
-<meta property - Blog="og:site_name" content="Blog Vikash Kumar">
+<meta property="og:description" content="{{description}}"/>
+<meta property="og:image:secure_url" content="https://vikash.me/images/vikash_seo.png" />
+<meta property="og:site_name" content="Blog | Vikash Kumar">
+<meta property="og:site_name" content="Vikash Kumar" />
+<meta property="article:published_time" content="{{date}}" />
+<meta property="article:modified_time" content="{{date}}" />
+<meta property="article:tag" content="{{tags}}" />
+<meta property="fb:admins" content="1456060372" />
 
 
 <!-- twitter tag -->
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="{{tittle}} - Blog | Vikash Kumar" />
-<meta name="twitter:description" content="Personal home page and blog of Vikash Kumar. Currently developer @Practo"/>
+<meta name="twitter:description" content="{{description}}"/>
 <meta name="twitter:url" content="https://blog.vikash.me/{{url}}/"/>
-<meta name="twitter:image" content="https://vikash.me/images/vikash_1000x100.jpg"/>
+<meta name="twitter:image" content="https://vikash.me/images/vikash_seo.png"/>
 <meta name="twitter:creator" content="@CoderVikash">
+<meta name="twitter:author" content="@CoderVikash">
 {% endblock %}
 
 {% block tittle %}{{tittle}} - Blog | Vikash Kumar{% endblock %}
