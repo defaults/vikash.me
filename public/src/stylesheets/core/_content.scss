@@ -6,12 +6,8 @@
 }
 
 .page_main {
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-flex-direction: column;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    flex-direction: column;
     margin: auto;
     max-width: 750px;
 

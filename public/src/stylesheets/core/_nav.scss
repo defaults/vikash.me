@@ -27,15 +27,9 @@
 
 @media only screen and (max-width: 600px) {
     .navigation {
-        display: -webkit-flex;
-        display: -ms-flexbox;
         display: flex;
-        -webkit-flex-direction: column;
-            -ms-flex-direction: column;
-                flex-direction: column;
-        -webkit-flex-wrap: nowrap;
-            -ms-flex-wrap: nowrap;
-                flex-wrap: nowrap;
+        flex-direction: column;
+        flex-wrap: nowrap;
     }
 
     .nav_naviagation_list.home_link {
@@ -62,12 +56,8 @@
 
 
 .nav_navigation {
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-flex-direction: row;
-        -ms-flex-direction: row;
-            flex-direction: row;
+    flex-direction: row;
     font-weight: 500;
     font-size: 1.1rem;
     justify-content: space-around;

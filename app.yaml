@@ -1,14 +1,11 @@
-application: vikash-kumar
-version: v201703
-
 runtime: python27
 threadsafe: true
 api_version: 1
 
 handlers:
 - url: /favicon.ico
-  static_files: public/build/favicon.png
-  upload: static/img/favicon.png
+  static_files: public/build/favicon.ico
+  upload: public/build/favicon.ico
 
 - url: /robots.txt
   static_files: public/build/robots.txt

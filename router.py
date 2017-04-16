@@ -7,6 +7,9 @@ from webapp2_extras import routes
 app = webapp2.WSGIApplication([
     routes.DomainRoute('blog.vikash.me', [
         routes.RedirectRoute(
+            '/_ah/warmup', handler=server.BaseHandler,
+            name='warmup', handler_method='warmup'),
+        routes.RedirectRoute(
             '/write',
             handler=blog.BlogHandler,
             name='authentication',
@@ -31,6 +34,9 @@ app = webapp2.WSGIApplication([
             strict_slash=True),
     ]),
     routes.RedirectRoute(
+        '/_ah/warmup', handler=server.BaseHandler,
+        name='warmup', handler_method='warmup'),
+    routes.RedirectRoute(
         '/about',
         handler=server.AboutHandler, name='about', strict_slash=True),
     routes.RedirectRoute(
@@ -54,11 +60,8 @@ app = webapp2.WSGIApplication([
         '/blog/dashboard/',
         handler=blog.DashboardHandler, name='dashboard', strict_slash=True),
     routes.RedirectRoute(
-        '/', handler=server.HomeHandler, name='home', strict_slash=True),
-    routes.RedirectRoute(
-        '/_ah/warmup', handler=server.BaseHandler,
-        name='warmup', handler_method='warmup')
-])
+        '/', handler=server.HomeHandler, name='home', strict_slash=True)
+], debug=True)
 
 # errors
 app.error_handlers[404] = server.error_handlar

@@ -10,22 +10,14 @@ $homeSecondary: #630;
 }
 
 .home_fact_list {
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-flex-direction: column;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    flex-direction: column;
     justify-content: flex-start;
 }
 
 .home_fact_list_row {
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-flex-direction: row;
-        -ms-flex-direction: row;
-            flex-direction: row;
+    flex-direction: row;
     margin: .3rem 0;
 
 }
@@ -37,12 +29,8 @@ $homeSecondary: #630;
 }
 
 .fact_list_desc {
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-flex-direction: column;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    flex-direction: column;
     justify-content: flex-start;
 }
 

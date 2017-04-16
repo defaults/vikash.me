@@ -232,7 +232,7 @@ gulp.task('css', [
 
 // copy remaining css files
 gulp.task('copy',['copy-zenpen'], function() {
-    return gulp.src(folder.src + '**/*.{xml,txt,json,css}')
+    return gulp.src(folder.src + '**/*.{xml,txt,json,css,ico}')
         .pipe(gulp.dest(folder.temp));
 });
 

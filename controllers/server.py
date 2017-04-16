@@ -18,7 +18,6 @@ JINJA_ENVIRONMENT = jinja2.Environment(
 
 # method for handling errors
 def error_handlar(request, response, exception):
-    logging.exception(exception)
     params = {
         'error': exception
     }
@@ -45,7 +44,9 @@ class BaseHandler(webapp2.RequestHandler):
         return
 
     def warmup(self):
-        pass
+        self.response.headers["Content-Type"] = "application/json"
+
+        self.response.write({'status': 'success'})
 
 
 class HomeHandler(BaseHandler):
