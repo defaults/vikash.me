@@ -5,18 +5,6 @@ $homeSecondary: #008c8c;
     width: 15rem;
 }
 
-blockquote {
-    border-left: 4px solid #ff8000;
-    margin-left: .5rem;
-    padding: .1rem 0 .1rem 1rem;
-    margin-right: 0px;
-    font-size: 1.3rem;
-    line-height: 1.5rem;
-    font-style: italic;
-    font-weight: 100;
-    background: #fbfbfb;
-}
-
 .article_wrapper {
     display: flex;
     flex-direction: column;
@@ -50,9 +38,9 @@ blockquote {
 }
 
 pre {
-  background-color: #fbfbfb;
+  background-color: $highlightedBackground;
   padding: 2rem;
-  color: #555555;
+  color: $codeSnippetColor;
   border: 0!important;
   overflow-x: auto;
 }

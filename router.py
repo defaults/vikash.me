@@ -5,7 +5,7 @@ from controllers import blog
 from webapp2_extras import routes
 
 app = webapp2.WSGIApplication([
-    routes.DomainRoute('blog.vikashkumar.me', [
+    routes.DomainRoute('blog.vikash.me', [
         routes.RedirectRoute(
             '/write',
             handler=blog.BlogHandler,
