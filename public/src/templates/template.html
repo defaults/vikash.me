@@ -89,23 +89,10 @@
     {% endblock %}
 </footer>
 
-    <script>
-        // jquery for toggling light
-        // var d = localStorage.getItem("nightmode");
-        // d == "true" ? ($("body").addClass("night-mode"), $(".q-brand").addClass("brand-night"),$(".toggle-light").css("color","white")) : ($("body").removeClass("night-mode"), $(".q-brand").removeClass("brand-night"),$(".toggle-light").css("color","black"));
-        //
-        // $(".toggle-light").click(function() {
-        //     $("body").toggleClass("night-mode");
-        //     $("body").hasClass("night-mode") ? (localStorage.setItem("nightmode", "true"), $(".q-brand").addClass("brand-night"),$(".toggle-light").css("color","white")) : (localStorage.setItem("nightmode", "false"), $(".q-brand").removeClass("brand-night"),$(".toggle-light").css("color","black"));
-        // });
-
-        //   $('#{{page}}').addClass('active');
-
-        // TODO: remove this and use goole code highlighter
-    </script>
-
+    {% block js_files %}
     <!-- base script file  -->
     <script src="/scripts/app.js" async defer></script>
+    {% endblock %}
 
     {% block discus %}
     {% endblock %}
