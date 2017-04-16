@@ -1,0 +1,75 @@
+{% extends "templates/template.html" %}
+
+{% block seo %}
+<meta name="description" content="Personal home page and blog of Vikash Kumar. Currently developer @Practo" />
+<meta name="google-site-verification" content="DbfaEmBqSHBfNrEjIqF3UbAsQu-lXI21ZU-GgeM2bLs
+" />
+<!-- Facebook tag -->
+<meta property="og:tittle" content="{{tittle}} - Blog | Vikash Kumar" />
+<meta property="og:url" content="https://blog.vikash.me/{{url}}/" />
+<meta property="og:type" content="blog" />
+<meta property="og:description" content="Personal home page and blog of Vikash Kumar. Currently developer @Practo"/>
+<meta property="og:image" content="https://vikash.me/images/vikash_1000x100.jpg" />
+<meta property - Blog="og:site_name" content="Blog Vikash Kumar">
+
+
+<!-- twitter tag -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="{{tittle}} - Blog | Vikash Kumar" />
+<meta name="twitter:description" content="Personal home page and blog of Vikash Kumar. Currently developer @Practo"/>
+<meta name="twitter:url" content="https://blog.vikash.me/{{url}}/"/>
+<meta name="twitter:image" content="https://vikash.me/images/vikash_1000x100.jpg"/>
+<meta name="twitter:creator" content="@CoderVikash">
+{% endblock %}
+
+{% block tittle %}{{tittle}} - Blog | Vikash Kumar{% endblock %}
+
+{% block stylesheet %}
+{% include "stylesheets/article.css" %}
+{% endblock %}
+
+{% block extra %}
+<script src="https://rawgit.com/google/code-prettify/master/loader/run_prettify.js?autoload=true"></script>
+{% endblock %}
+
+{% block content %}
+<main class="page_main">
+    <article class="article_wrapper">
+        <header class="page_title">{{tittle}}</header>
+        <div class="page_title_underline"></div>
+        <section class="article_desc">
+            {% if tags %}
+                <span class="blog_article_tags"><img class="blog_article_desc_img" src="/images/tag.svg" alt="">
+                    {% for tag in tags %}
+                        #{{tag}},
+                    {% endfor %}
+                </span>
+            {% endif %}
+        </section>
+        <section class="article_content">{{content | safe}}</section>
+    </article>
+    <section class="disqus_section">
+        <div id="disqus_thread"></div>
+    </section>
+</main>
+{% endblock %}
+
+{% block discus %}
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    // Variables
+    var link = window.location.href;
+    var disqus_shortname = 'vikashkumarme';
+    var disqus_identifier = '{{url}}';
+    var disqus_tittle = '{{tittle}}';
+    var disqus_url = link;
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments.</a></noscript>
+{% endblock %}

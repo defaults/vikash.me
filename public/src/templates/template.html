@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <!-- TODO: verify again for vikash.me -->
+        <meta name="p:domain_verify" content="4493cd35fd394942c5559497139e1ef0"/>
+
+        <!-- theming the status bar -->
+        <!-- Chrome & Firefox OS -->
+        <meta name="theme-color" content="#636569">
+        <!-- Windows Phone -->
+        <meta name="msapplication-navbutton-color" content="#636569">
+        <!-- iOS Safari -->
+        <meta name="apple-mobile-web-app-status-bar-style" content="#636569">
+
+        {% block seo %}
+        <meta name="description" content="Personal homepage and blog of Vikash Kumar. @CoderVikash. Currently developer @Practo"/>
+        <!-- TODO: do the verification again -->
+        <meta name="google-site-verification" content="DbfaEmBqSHBfNrEjIqF3UbAsQu-lXI21ZU-GgeM2bLs" />
+        <!-- Facebook tag -->
+        <meta property="og:tittle" content="Vikash Kumar" />
+        <meta property="og:url" content="https://vikash.me/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:description" content="Personal homepage and blog of Vikash Kumar. Currently developer @Practo"/>
+        <meta property="og:image" content="https://vikash.me/images/vikash_1000x1000.jpg" />
+        <meta property="og:site_name" content="Home">
+        <!-- twitter tag -->
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="Vikash Kumar" />
+        <meta name="twitter:description" content="Personal homepage and blog of Vikash Kumar. Currently developer @Practo"/>
+        <meta name="twitter:url" content="https://vikash.me/"/>
+        <meta name="twitter:image" content="https://vikash.me/images/vikash_1000x1000.jpg"/>
+        <meta name="twitter:creator" content="@CoderVikash">
+        {% endblock %}
+
+        <title>
+            {% block tittle %}Vikash Kumar{% endblock %}
+        </title>
+
+        {% block extra %}
+        {% endblock %}
+
+        <style>
+            {% block stylesheet %}
+            {% endblock %}
+        </style>
+    </head>
+    <body>
+
+    <nav class="navigation">
+        {% block nav %}
+        <div class="nav_heading"><a href="http://vikash.me">Vikash Kumar</a></div>
+        <div class="nav_navigation">
+                <span class="nav_naviagation_list home_link"><a href="/">Home</a></span>
+                <span class="nav_naviagation_list blog_link"><a href="http://blog.vikash.me">Blog</a></span>
+                <span class="nav_naviagation_list projects_link"><a href="https://github.com/codervikash?tab=repositories" target="_blank">Projects</a></span>
+                <span class="nav_naviagation_list about_link"><a href="http://vikash.me/about">About</a></span>
+                <!-- <span class="nav_naviagation_list contact_link"><a href="/contact">Contact</a></span> -->
+        </div>
+        {% endblock %}
+    </nav>
+
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <footer class="footer">
+        {% block footer %}
+        <div class="footer_social">
+            <span class="footer_social_icons">
+                <a href="https://twitter.com/codervikash"><img src="/images/twitter.svg"></a>
+            </span>
+            <span class="footer_social_icons">
+                <a href="https://github.com/codervikash"><img src="/images/github.svg"></a>
+            </span>
+            <span class="footer_social_icons">
+                <a href="https://www.linkedin.com/in/codervikash/"><img src="/images/linkedin.svg"></a>
+            </span>
+            <span class="footer_social_icons">
+                <a href="mailto:mailkumarvikash@gmail.com"><img src="/images/envelope.svg"></a>
+            </span>
+        </div>
+        <div class="footer_copyright">
+            <p>All yours under<a href="https://creativecommons.org/publicdomain/zero/1.0/"> CC0</a> | <a href="https://github.com/codervikash/vikash" target="blank">source.</a></p>
+        </div>
+    {% endblock %}
+</footer>
+
+    <script>
+        // jquery for toggling light
+        // var d = localStorage.getItem("nightmode");
+        // d == "true" ? ($("body").addClass("night-mode"), $(".q-brand").addClass("brand-night"),$(".toggle-light").css("color","white")) : ($("body").removeClass("night-mode"), $(".q-brand").removeClass("brand-night"),$(".toggle-light").css("color","black"));
+        //
+        // $(".toggle-light").click(function() {
+        //     $("body").toggleClass("night-mode");
+        //     $("body").hasClass("night-mode") ? (localStorage.setItem("nightmode", "true"), $(".q-brand").addClass("brand-night"),$(".toggle-light").css("color","white")) : (localStorage.setItem("nightmode", "false"), $(".q-brand").removeClass("brand-night"),$(".toggle-light").css("color","black"));
+        // });
+
+        //   $('#{{page}}').addClass('active');
+
+        // TODO: remove this and use goole code highlighter
+    </script>
+
+    <!-- base script file  -->
+    <script src="/scripts/app.js" async defer></script>
+
+    {% block discus %}
+    {% endblock %}
+
+    </body>
+</html>

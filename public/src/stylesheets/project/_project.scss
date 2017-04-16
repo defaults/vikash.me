@@ -1,0 +1,10 @@
+$homePrimary: #0085b2;
+$homeSecondary: #ff007f;
+
+.page_title_underline {
+    width: 7rem;
+}
+
+.nav_naviagation_list.projects_link> a {
+    border-bottom: solid .1rem $homeSecondary;
+}

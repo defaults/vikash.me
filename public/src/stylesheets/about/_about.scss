@@ -1,0 +1,22 @@
+$homePrimary: #2260ff;
+$homeSecondary: #5d0587;
+
+.page_title_underline {
+    width: 7rem;
+}
+
+.about_image_section {
+    justify-content: center;
+    margin: auto;
+    padding: 2rem;
+}
+
+.about_image {
+    border-radius: 50%;
+    height: 12rem;
+    width: 12rem;
+}
+
+.nav_naviagation_list.about_link> a {
+    border-bottom: solid .1rem $homeSecondary;
+}

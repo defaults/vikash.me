@@ -1,0 +1,38 @@
+.content {
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.page_main {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    margin: auto;
+    max-width: 750px;
+
+    a {
+        color: $homeSecondary;
+    }
+}
+
+.page_title {
+    margin: auto;
+    align-self: center;
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin: 1rem 0;
+    line-height: 2rem;
+    text-align: center;
+}
+
+.page_title_underline {
+    background-color: $homePrimary;
+    height: .2rem;
+    align-self: center;
+    margin: auto;
+}

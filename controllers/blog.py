@@ -5,6 +5,7 @@ import string
 import json
 
 import webapp2
+
 from google.appengine.api import mail
 from webapp2_extras import jinja2
 from webapp2_extras import routes
@@ -37,7 +38,7 @@ class BlogHandler(server.BaseHandler):
             subject = 'Link to write blog'
             body = 'https://blog.vikashkumar.me/write/{0}'.format(gtoken)
 
-            self.sendEmail(to, subject, body)
+            self.send_email(to, subject, body)
 
             params = {
                 'page': 'token'
@@ -91,13 +92,15 @@ class ArticleHandler(BlogHandler):
                 tittle = article.tittle
                 date = article.date
                 url = article.url
+                tags = article.tags
 
             params = {
                 'page': 'article',
                 'tittle': tittle,
                 'content': content,
                 'date': date,
-                'url': url
+                'url': url,
+                'tags': tags
             }
             self.render_response('article.html', **params)
         else:

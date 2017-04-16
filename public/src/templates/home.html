@@ -1,0 +1,47 @@
+{% extends "templates/template.html" %}
+
+{% block tittle %}Vikash Kumar{% endblock %}
+
+{% block stylesheet %}
+{% include "stylesheets/home.css" %}
+{% endblock %}
+
+{% block content %}
+<main class="page_main">
+    <header class="page_title">Hey,</header>
+    <div class="page_title_underline"></div>
+    <section>
+        <p class="home_description">I'm <strong>Vikash Kumar</strong>, currently a Developer @ <a href="https://www.practo.com" target="_blank">Practo</a>. I mostly use and &#x2764 Python and Javascript. I generally work on backend projects but have a penchant for User Experiance and design. This website is a output of it &#9996;.</p>
+    </section>
+    <section class="home_fact_list">
+        <div class="home_fact_list_row">
+            <div class="fact_list_heading">Facts</div>
+            <div class="fact_list_desc">
+                <!-- <span class="fact_list_desc_items">Currently Developer @ <a href="https://www.practo.com">Practo</a>.</span> -->
+                <span class="fact_list_desc_items">Love playing Tennis and swimming.</span>
+                <span class="fact_list_desc_items">Extensively follows TechCrunch and a silent <a href="https://www.quora.com/profile/Vikash-Kumar-193" target="_blank">Quora Reader</a> &#9786;.</span>
+            </div>
+        </div>
+        <div class="home_fact_list_row">
+            <div class="fact_list_heading">Writings</div>
+            <div class="fact_list_desc">
+                <span class="fact_list_desc_items">Check out my <a href="https://blog.vikash.me">blog</a>, the latest one is "<a href="https://blog.vikashkumar.me/app-engine-user-authentication/">App Engine user authentication</a>".</span>
+                <span class="fact_list_desc_items">I read/recommend a lot on <a href="https://medium.com/@CoderVikash" target="_blank">Medium</a>.</span>
+            </div>
+        </div>
+        <div class="home_fact_list_row">
+            <div class="fact_list_heading">Labs</div>
+            <div class="fact_list_desc">
+                <span class="fact_list_desc_items">Check out my latest project. "<a href="https://github.com/codervikash/scribble" target="_blank">A blog engine that power this blog.</a>"</span>
+                <span class="fact_list_desc_items">You can find my other projects at <a href="https://www.github.com/codervikash" target="_blank">Github</a>.</a></span>
+            </div>
+        </div>
+        <div class="home_fact_list_row">
+            <div class="fact_list_heading">Shout</div>
+            <div class="fact_list_desc">
+                <span class="fact_list_desc_items">I'm on <a href="https://www.twitter.com/codervikash" target="_blank">Twitter</a>, and you can always drop me an <a href="mailto:mailkumarvikash@gmail.com">email</a>.</span>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}

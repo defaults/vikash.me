@@ -1,20 +1,62 @@
 application: vikash-kumar
-version: 1
+version: v201703
+
 runtime: python27
 threadsafe: true
 api_version: 1
 
 handlers:
 - url: /favicon.ico
-  static_files: static/img/favicon.png
+  static_files: public/build/favicon.png
   upload: static/img/favicon.png
 
 - url: /robots.txt
-  static_files: static/robots.txt
-  upload: static/robots.txt
+  static_files: public/build/robots.txt
+  upload: public/src/robots.txt
 
-- url: /static
-  static_dir: static
+- url: /images/(.*)
+  static_files: public/build/images/\1
+  expiration: "365d"
+  upload: public/build/images/(.*)
+  secure: always
+
+- url: /sw.js
+  static_files: public/build/scripts/sw.js
+  expiration: "1s"
+  upload: public/build/scripts/sw.js
+  secure: always
+
+- url: /favicon.ico
+  static_files: public/build/favicon.ico
+  expiration: "365d"
+  upload: public/build/favicon.ico
+  secure: always
+
+- url: /manifest.json
+  static_files: public/build/manifest.json
+  expiration: "1s"
+  upload: public/build/manifest.json
+  secure: always
+
+- url: /scripts/(.*)
+  static_files: public/build/scripts/\1
+  expiration: "365d"
+  upload: public/build/scripts/(.*)
+  secure: always
+
+- url: /stylesheets/(.*)
+  static_files: public/build/stylesheets/\1
+  expiration: "365d"
+  upload: public/build/stylesheets/(.*)
+  secure: always
+  application_readable: true
+
+- url: /LICENSE
+  static_files: public/build/LICENSE
+  expiration: "7d"
+  mime_type: text/plain
+  upload: public/build/LICENSE
+  secure: always
 
 - url: /api/.*
   script: api_handler.app
@@ -28,3 +70,14 @@ libraries:
 
 - name: webapp2
   version: "latest"
+
+skip_files:
+- ^(.*/)?.*/src/.*$
+- ^(.*/)?.*/temp/.*$
+- ^(.*/)?.*/test/.*$
+- ^(.*/)?.*/node_modules/.*$
+
+- ^(src/.*)
+- ^(temp/.*)
+- ^(test/.*)
+- ^(node_modules/.*)

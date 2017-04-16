@@ -1,0 +1,22 @@
+$homePrimary: #ff8000;
+$homeSecondary: #008c8c;
+
+.page_title_underline {
+    width: 7rem;
+}
+
+.error_section {
+
+}
+
+.error_section_img {
+
+}
+
+.error_section_description {
+
+}
+
+.nav_naviagation_list.error_link> a {
+    border-bottom: solid .1rem $homeSecondary;
+}

@@ -1,0 +1,31 @@
+{% extends "templates/template.html" %}
+
+{% block tittle %}Writing | Vikash Kumar{% endblock %}
+
+{% block stylesheet %}
+{% include "stylesheets/write.css" %}
+{% endblock %}
+
+{% block content %}
+{% if pending %}
+    <main class="page_main">
+        <header class="page_title">Link to write</header>
+        <div class="page_title_underline"></div>
+        <div class="write_notice">
+            <p class="write_status">Check your mail your request is pending </p>
+            <button type="button" class="write_email_button" onclick=resend()>Resend Link</button>
+        </div>
+    </main>
+{% else %}
+    <main class="page_main">
+        <header class="page_title">
+            <h1>Link to write</h1>
+            <div class="page_title_underline"></div>
+        </header>
+        <div class="write_notice">
+            <p class="write_status"> We have send you link at your mail. Kindly follow it to get write page.</p>
+            <button type="button" class="write_email_button" onclick=resend()>Resend Link</button>
+        </div>
+    </main>
+{% endif %}
+{% endblock %}

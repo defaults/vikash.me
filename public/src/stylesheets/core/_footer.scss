@@ -1,0 +1,31 @@
+.footer {
+    display: flex;
+    justify-content: center;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    min-height: 5rem;
+    padding-top: 2rem;
+    color: $secondaryText;
+
+    a {
+        color: $homeSecondary;
+    }
+}
+
+.footer_social {
+    align-self: center;
+    display: flex;
+}
+
+.footer_social_icons {
+    margin: 0px 30px;
+
+    img {
+        height: 20px;
+    }
+}
+
+.footer_copyright {
+    align-self: center;
+}

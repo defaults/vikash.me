@@ -1,0 +1,33 @@
+{% extends "templates/template.html" %}
+
+{% block seo %}
+<meta name="description" content="Projects - Vikash Kumar. Currently developer @Practo" />
+<meta name="google-site-verification" content="DbfaEmBqSHBfNrEjIqF3UbAsQu-lXI21ZU-GgeM2bLs" />
+<!-- Facebook tag -->
+<meta property="og:tittle" content="About | Vikash Kumar" />
+<meta property="og:url" content="https://vikash.me/about" />
+<meta property="og:type" content="website" />
+<meta property="og:description" content="Projects - Vikash Kumar. Currently developer @Practo"/>
+<meta property="og:image" content="https://vikash.me/images/vikash_1000x1000.jpg" />
+<meta property="og:site_name" content="About">
+
+<!-- twitter tag -->
+<meta name="twitter:card" content="Projects Description" />
+<meta name="twitter:title" content="Projects | Vikash Kumar" />
+<meta name="twitter:description" content="Projects - Vikash Kumar.  Currently developer @Practo"/>
+<meta name="twitter:url" content="https://vikash.me.me/about"/>
+<meta name="twitter:image" content="https://vikash.me/images/vikash_1000x1000.jpg"/>
+<meta name="twitter:creator" content="@CoderVikash">
+{% endblock %}
+{% block tittle %}About | Vikash Kumar{% endblock %}
+
+{% block stylesheet %}
+{% include "stylesheets/projects.css" %}
+{% endblock %}
+
+{% block content %}
+<main class="page_main">
+    <header class="page_title">Projects</header>
+    <div class="page_title_underline"></div>
+</main>
+{% endblock %}
