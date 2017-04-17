@@ -12,7 +12,7 @@ handlers:
 - url: /robots.txt
   static_files: public/build/robots.txt
   expiration: "1s"
-  upload: public/src/robots.txt
+  upload: public/build/robots.txt
   secure: always
 
 - url: /favicon.ico

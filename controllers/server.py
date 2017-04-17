@@ -29,7 +29,6 @@ class BaseHandler(webapp2.RequestHandler):
     """Base handler for webpage"""
 
     def render_response(self, _template, **params):
-        print os.path
         """Renders a template and writes the result to the response."""
         template = JINJA_ENVIRONMENT.get_template('templates/' + _template)
         self.response.write(template.render(**params))
