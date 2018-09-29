@@ -11,7 +11,7 @@
         <link rel="manifest" href="/manifest.json">
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#4f4f4f">
         <meta name="theme-color" content="#ffffff">
-
+        <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,400i,700&amp;subset=latin-ext" rel="stylesheet">
         {% block seo %}
         <meta name="google-site-verification" content="SDpxvVVmU0iOOw8NsbJHEoidHQAU9L1pzvIG8XUgM6" />
 
@@ -38,7 +38,7 @@
         <meta name="twitter:author" content="@CoderVikash">
         {% endblock %}
 
-        <title>
+        <title class=title>
             {% block tittle %}Vikash Kumar{% endblock %}
         </title>
 
@@ -52,23 +52,22 @@
     </head>
     <body>
 
-    <nav class="navigation">
+    <header class="navigation">
+        <div class="nav_content">
         {% block nav %}
-        <div class="nav_heading"><a href="http://vikash.me">Vikash Kumar</a></div>
+        <div class="nav_icon"><a href="http://vikash.me"><img class="nav_image" src=/images/vikash.svg></a></div>
         <div class="nav_navigation">
-                <span class="nav_naviagation_list home_link"><a href="http://vikash.me">Home</a></span>
-                <span class="nav_naviagation_list blog_link"><a href="http://blog.vikash.me">Blog</a></span>
-                <span class="nav_naviagation_list projects_link"><a href="https://github.com/codervikash?tab=repositories" target="_blank">Projects</a></span>
-                <span class="nav_naviagation_list about_link"><a href="http://vikash.me/about">About</a></span>
-                <!-- <span class="nav_naviagation_list contact_link"><a href="/contact">Contact</a></span> -->
+                <nav class="nav_naviagation_list blog_link"><a href="http://blog.vikash.me">Blog</a></nav>
+                <nav class="nav_naviagation_list projects_link"><a href="https://github.com/codervikash?tab=repositories" target="_blank">Projects</a></nav>
         </div>
         {% endblock %}
-    </nav>
+        </div>
+    </header>
 
-    <div class="content">
+    <main class="content">
         {% block content %}
         {% endblock %}
-    </div>
+    </main>
 
     <footer class="footer">
         {% block footer %}
