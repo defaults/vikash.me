@@ -1,10 +1,6 @@
 $homePrimary: #ffe63e;
 $homeSecondary: #384b2f;
 
-.page_title_underline {
-    width: 7rem;
-}
-
 .blog_articles_section {
     margin: 2rem 0rem;
 }
@@ -19,8 +15,8 @@ $homeSecondary: #384b2f;
 }
 
 .blog_articles_title {
-    font-size: 1.6rem;
-    font-weight: 300;
+    font-size: 1.5rem;
+    font-weight: 400;
     margin-bottom: .2rem;
 }
 
@@ -59,8 +55,4 @@ $homeSecondary: #384b2f;
     flex-direction: row;
     flex-wrap: wrap;
     color: $secondaryText;
-}
-
-.nav_naviagation_list.blog_link> a {
-    border-bottom: solid .1rem $homeSecondary;
 }

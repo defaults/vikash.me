@@ -1,17 +1,12 @@
 $homePrimary: #ff8000;
 $homeSecondary: #008c8c;
 
-.page_title_underline {
-    width: 15rem;
-}
-
 .article_wrapper {
     display: flex;
     flex-direction: column;
 }
 
 .article_desc {
-    align-self: center;
     margin: 2rem 0;
     color: $secondaryText;
 }
