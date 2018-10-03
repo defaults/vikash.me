@@ -20,7 +20,6 @@
 <meta property="article:tag" content="{{tags}}" />
 <meta property="fb:admins" content="1456060372" />
 
-
 <!-- twitter tag -->
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="{{tittle}} - Blog | Vikash Kumar" />
@@ -41,26 +40,24 @@
 <script src="https://rawgit.com/google/code-prettify/master/loader/run_prettify.js?autoload=true"></script>
 {% endblock %}
 
+{% block page_heading %}{{tittle}}{% endblock %}
+
 {% block content %}
-<main class="page_main">
-    <article class="article_wrapper">
-        <header class="page_title">{{tittle}}</header>
-        <div class="page_title_underline"></div>
-        <section class="article_desc">
-            {% if tags %}
-                <span class="blog_article_tags"><img class="blog_article_desc_img" src="/images/tag.svg" alt="">
-                    {% for tag in tags %}
-                        #{{tag}},
-                    {% endfor %}
-                </span>
-            {% endif %}
-        </section>
-        <section class="article_content">{{content | safe}}</section>
-    </article>
-    <section class="disqus_section">
-        <div id="disqus_thread"></div>
+<article class="article_wrapper">
+    <section class="article_desc">
+        {% if tags %}
+        <span class="blog_article_tags"><img class="blog_article_desc_img" src="/images/tag.svg" alt="">
+            {% for tag in tags %}
+            #{{tag}},
+            {% endfor %}
+        </span>
+        {% endif %}
     </section>
-</main>
+    <section class="article_content">{{content | safe}}</section>
+</article>
+<section class="disqus_section">
+    <div id="disqus_thread"></div>
+</section>
 {% endblock %}
 
 {% block js_files %}

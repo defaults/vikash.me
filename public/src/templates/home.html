@@ -6,44 +6,41 @@
 {% include "stylesheets/home.css" %}
 {% endblock %}
 
+{% block page_heading %}Hey,{% endblock %}
+
 {% block content %}
-<main class="page_main">
-    <header class="page_title">Hey,</header>
-    <div class="page_title_underline"></div>
     <section>
-        <p class="home_description">I'm <strong>Vikash Kumar</strong>, currently a Developer @ <a href="https://www.zynga.com" target="_blank">Zynga</a>. I mostly use and &#x2764 Python and Javascript. I generally work on backend projects but have a penchant for User Experiance and design. This website is an output of it &#9996;.</p>
+        <p class="home_description">I'm <strong>Vikash Kumar</strong>, working @<a href="https://www.grab.com" target="_blank">Grab</a>. When I am not building Grab or working on personal projects, I like reading business books and biographies, understanding business side of tech and startups. Hope to use the knowledge some day.</p>
+        <p>This website contains my learnings, notes and projects.</p>
     </section>
-    <section class="home_fact_list">
-        <div class="home_fact_list_row">
-            <div class="fact_list_heading">Facts</div>
-            <div class="fact_list_desc">
-                <!-- <span class="fact_list_desc_items">Currently Developer @ <a href="https://www.practo.com">Practo</a>.</span> -->
-                <span class="fact_list_desc_items">Loves playing Tennis and swimming.</span>
-                <span class="fact_list_desc_items">Extensively follows TechCrunch and a silent <a href="https://www.quora.com/profile/Vikash-Kumar-193" target="_blank">Quora Reader</a> &#9786;.</span>
+    <section class="home_section">
+        <div class="home_section_row">
+            <h5 class="home_ruled_heading">Recent Writings</h5>
+            <div class="home_section_desc">
+                <span class="home_section_desc_items"><a href="https://blog.vikash.me/app-engine-user-authentication/">App Engine user authentication</a></span>
+                <p class="home_section_desc_item_desc">Tried user authentication on App Engine, Google's PaS. Let's figure out!</p>
+                <span class="home_section_desc_items"><a href="https://blog.vikash.me/androidp-getlastlocationpp-returning-null/">Android: getLastLocation() returning null</a></span>
+                <p class="home_section_desc_item_desc">Understanding how to debug and get user's last location on Android.</p>
+
+                <p>I also read and recommend a lot on <a href="https://medium.com/@_vikashk" target="_blank">Medium</a>.</p>
             </div>
         </div>
-        <div class="home_fact_list_row">
-            <div class="fact_list_heading">Writings</div>
-            <div class="fact_list_desc">
-                <span class="fact_list_desc_items">Check out my <a href="https://blog.vikash.me">blog</a>, the latest one is "<a href="https://blog.vikashkumar.me/app-engine-user-authentication/">App Engine user authentication</a>".</span>
-                <span class="fact_list_desc_items">I read/recommend a lot on <a href="https://medium.com/@CoderVikash" target="_blank">Medium</a>.</span>
+        <div class="home_section_row">
+            <h5 class="home_ruled_heading">Recent Side Projets</h5>
+            <div class="home_section_desc">
+                <span class="home_section_desc_items"><a href="https://github.com/defaults/scribble" target="_blank">A bloging platform that power this blog.</a></span>
+                <p class="home_section_desc_item_desc">Wrote a simple and lightweight blogging platform build on GCP, ideal for dev or personal bloggers.</p>
+
+                <p>You can find my other projects at <a href="https://www.github.com/defaults" target="_blank">Github</a>.</p>
             </div>
         </div>
-        <div class="home_fact_list_row">
-            <div class="fact_list_heading">Labs</div>
-            <div class="fact_list_desc">
-                <span class="fact_list_desc_items">Check out my latest project, "<a href="https://github.com/codervikash/scribble" target="_blank">A blog engine that power this blog.</a>"</span>
-                <span class="fact_list_desc_items">You can find my other projects at <a href="https://www.github.com/codervikash" target="_blank">Github</a>.</a></span>
-            </div>
-        </div>
-        <div class="home_fact_list_row">
-            <div class="fact_list_heading">Shout</div>
-            <div class="fact_list_desc">
-                <span class="fact_list_desc_items">I'm on <a href="https://www.twitter.com/codervikash" target="_blank">Twitter</a>, and you can always drop me an <a href="mailto:mailkumarvikash@gmail.com">email</a>.</span>
+        <div class="home_section_row">
+            <h5 class="home_ruled_heading">Reach out</h5>
+            <div class="home_section_desc">
+                <p>I'm on <a href="https://www.twitter.com/_vikashk" target="_blank">Twitter</a>, and you can always drop me an <a href="mailto:mailkumarvikash@gmail.com">email</a>.</p>
             </div>
         </div>
     </section>
-</main>
 {% endblock %}
 
 {% block js_files %}

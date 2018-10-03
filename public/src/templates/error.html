@@ -8,19 +8,17 @@
 {% include "stylesheets/error.css" %}
 {% endblock %}
 
+{% block page_heading %}Error {% if error.code %}{{error.code}}{% else %}{{error}}{% endif %}{% endblock %}
+
 {% block content %}
-<main class="page_main">
-    <header class="page_title">Error {% if error.code %}{{error.code}}{% else %}{{error}}{% endif %}</header>
-    <div class="page_title_underline"></div>
-    <section class="error_section">
-        <div class="error_section_img">
-            <img src="">
-        </div>
-        <div class="error_section_description">
-            <p>Err, I know it sucks but you can always return for the <a href="/">awesome </a>!!</p>
-        </div>
-    </section>
-</main>
+<section class="error_section">
+    <div class="error_section_img">
+        <img src="">
+    </div>
+    <div class="error_section_description">
+        <p>Err, I know it sucks but you can always return for the <a href="/">awesome </a>!!</p>
+    </div>
+</section>
 {% endblock %}
 
 {% block js_files %}

@@ -1,41 +1,54 @@
 $homePrimary: #50c0fb;
-$homeSecondary: #630;
+$homeSecondary: #332313;
 
-.page_main {
-    max-width: 480px !important;
-}
-
-.page_title_underline {
-    width: 4rem;
-}
-
-.home_fact_list {
+.home_section {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    margin-top: 1rem;
 }
 
-.home_fact_list_row {
+.home_section_row {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     margin: .3rem 0;
-
 }
 
-.fact_list_heading {
-    align-self: flex-start;
-    min-width: 5rem;
+.home_ruled_heading {
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-box-align: center;
+    align-items: center;
     font-weight: 500;
+    font-style: italic;
+    margin: 0;
 }
 
-.fact_list_desc {
+.home_ruled_heading:after {
+    content: "";
+    background-color: #e8e8e8;
+    height: 1px;
+    -webkit-box-flex: 1;
+    flex: 1;
+    margin-left: 16px;
+}
+
+.home_section_desc_item_desc {
+    margin: 0.3rem;
+    font-style: italic;
+}
+
+.home_section_desc {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
 }
 
-.fact_list_desc_items {
-    margin-bottom: .2rem;
+.home_section_desc_items {
+    margin: 1em 0 0.2em;
+    font-weight: 400;
+    font-size: 1.5rem;
 }
 
 .nav_naviagation_list.home_link> a {
