@@ -32,30 +32,28 @@
 {% include "stylesheets/article_list.css" %}
 {% endblock %}
 
+{% block page_heading %}Writings{% endblock %}
+
 {% block content %}
-<main class="page_main">
-    <header class="page_title">Writings</header>
-    <div class="page_title_underline"></div>
-    <section class="blog_articles_section">
-        {% for article in article %}
-            <div class="blog_articles_row">
-                <span class="blog_articles_title">
-                    <a href="/{{article.url}}/">{{article.tittle}}</a>
-                </span>
-                <span class="blog_articles_desc">
-                    <span class="blog_articles_date"><img class="blog_articles_desc_img" src="/images/clock.svg" alt="">{{article.date.strftime('%b %d')}}</span>
-                    {% if article.tags %}
-                        <span class="blog_articles_tags"><img class="blog_articles_desc_img" src="/images/tag.svg" alt="">
-                            {% for tag in article.tags %}
-                                #{{tag}},
-                            {% endfor %}
-                        </span>
-                    {% endif %}
-                </span>
-            </div>
-        {% endfor %}
-    </section>
-</main>
+<section class="blog_articles_section">
+    {% for article in article %}
+    <div class="blog_articles_row">
+        <span class="blog_articles_title">
+            <a href="/{{article.url}}/">{{article.tittle}}</a>
+        </span>
+        <span class="blog_articles_desc">
+            <span class="blog_articles_date"><img class="blog_articles_desc_img" src="/images/clock.svg" alt="">{{article.date.strftime('%b %d')}}</span>
+            {% if article.tags %}
+            <span class="blog_articles_tags"><img class="blog_articles_desc_img" src="/images/tag.svg" alt="">
+                {% for tag in article.tags %}
+                #{{tag}},
+                {% endfor %}
+            </span>
+            {% endif %}
+        </span>
+    </div>
+    {% endfor %}
+</section>
 {% endblock %}
 
 {% block js_files %}
