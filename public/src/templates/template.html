@@ -57,14 +57,18 @@
         {% block nav %}
         <div class="nav_icon"><a href="http://vikash.me"><img class="nav_image" src=/images/vikash.svg></a></div>
         <div class="nav_navigation">
-                <nav class="nav_naviagation_list blog_link"><a href="http://blog.vikash.me">Blog</a></nav>
-                <nav class="nav_naviagation_list projects_link"><a href="https://github.com/codervikash?tab=repositories" target="_blank">Projects</a></nav>
+            <nav class="nav_naviagation_list blog_link"><a href="http://blog.vikash.me">Blog</a></nav>
+            <nav class="nav_naviagation_list projects_link"><a href="https://github.com/defaults?tab=repositories" target="_blank">Projects</a></nav>
         </div>
         {% endblock %}
         </div>
     </header>
 
     <main class="content">
+        <div class="page_title_section">
+            <h1 class="page_title">{% block page_heading %}Vikash Kumar{% endblock %}</h1>
+            <section class="page_title_underline"></span>
+        </div>
         {% block content %}
         {% endblock %}
     </main>
@@ -73,20 +77,20 @@
         {% block footer %}
         <div class="footer_social">
             <span class="footer_social_icons">
-                <a href="https://twitter.com/codervikash"><img src="/images/twitter.svg"></a>
+                <a href="https://twitter.com/_vikashk"><img src="/images/twitter.svg"></a>
             </span>
             <span class="footer_social_icons">
-                <a href="https://github.com/codervikash"><img src="/images/github.svg"></a>
+                <a href="https://github.com/defaults"><img src="/images/github.svg"></a>
             </span>
-            <span class="footer_social_icons">
-                <a href="https://www.linkedin.com/in/codervikash/"><img src="/images/linkedin.svg"></a>
-            </span>
+            <!-- <span class="footer_social_icons"> -->
+            <!--     <a href="https://www.linkedin.com/in//"><img src="/images/linkedin.svg"></a> -->
+            <!-- </span> -->
             <span class="footer_social_icons">
                 <a href="mailto:mailkumarvikash@gmail.com"><img src="/images/envelope.svg"></a>
             </span>
         </div>
         <div class="footer_copyright">
-            <p>All yours under<a href="https://creativecommons.org/publicdomain/zero/1.0/"> CC0</a> | <a href="https://github.com/codervikash/vikash" target="blank">source.</a></p>
+            <p>All yours under<a href="https://creativecommons.org/publicdomain/zero/1.0/"> CC0</a> | <a href="https://github.com/defaults/vikash" target="blank">source.</a></p>
         </div>
     {% endblock %}
 </footer>
